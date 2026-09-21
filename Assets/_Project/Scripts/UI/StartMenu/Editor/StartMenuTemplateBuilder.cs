@@ -8,7 +8,7 @@ namespace BattleCarArena.UI.Editor
 {
     internal static class StartMenuTemplateBuilder
     {
-        private const string ScenePath = "Assets/Scenes/StartMenu.unity";
+        private const string ScenePath = "Assets/_Project/Scenes/StartMenu.unity";
         private const string ThemeFolder = "Assets/_Project/Data/UI";
         private const string ThemePath = ThemeFolder + "/DefaultStartMenuTheme.asset";
 

@@ -40,8 +40,15 @@ namespace BattleCarArena.UI
             Stretch(tint.rectTransform);
             tint.raycastTarget = false;
 
+            UnityEngine.UI.Image carForeground = CreateImage("CarForeground", canvasObject.transform, Color.white);
+            SetRect(carForeground.rectTransform, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, -36f), new Vector2(1380f, 920f));
+            carForeground.preserveAspect = true;
+            carForeground.raycastTarget = false;
+            carForeground.gameObject.SetActive(theme != null && theme.CarForegroundSprite != null);
+            CarForegroundShake shake = carForeground.gameObject.AddComponent<CarForegroundShake>();
+
             UnityEngine.UI.Image menuPanel = CreateImage("MenuPanel", canvasObject.transform, DefaultPanel);
-            SetRect(menuPanel.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 0.5f), new Vector2(-310f, 0f), new Vector2(620f, 520f));
+            SetRect(menuPanel.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0f, 0.5f), new Vector2(-380f, 0f), new Vector2(760f, 450f));
             menuPanel.raycastTarget = false;
 
             GameObject content = CreateUiObject("Content", menuPanel.transform);
@@ -52,6 +59,12 @@ namespace BattleCarArena.UI
             title.fontSizeMin = 34f;
             title.fontSizeMax = 62f;
             SetRect(title.rectTransform, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), Vector2.zero, new Vector2(0f, 110f));
+
+            UnityEngine.UI.Image logo = CreateImage("Logo", content.transform, Color.white);
+            logo.preserveAspect = true;
+            logo.raycastTarget = false;
+            SetRect(logo.rectTransform, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), Vector2.zero, new Vector2(0f, 110f));
+            logo.gameObject.SetActive(theme != null && theme.LogoSprite != null);
 
             TMP_Text subtitle = CreateText("Subtitle", content.transform, "SELECT AN OPTION", 20f, DefaultAccent, FontStyles.Bold);
             subtitle.characterSpacing = 4f;
@@ -74,7 +87,7 @@ namespace BattleCarArena.UI
 
             EnsureEventSystem(root.transform);
 
-            view.Configure(background, null, menuPanel, null, startButton, exitButton, title, subtitle, startLabel, exitLabel, null, audioSource);
+            view.Configure(background, carForeground, logo, menuPanel, null, startButton, exitButton, title, subtitle, startLabel, exitLabel, null, audioSource);
             view.ApplyTheme(theme);
 
             StartMenuController controller = GetOrAdd<StartMenuController>(root);

@@ -8,6 +8,7 @@ namespace BattleCarArena.UI
     {
         [Header("Replaceable Assets")]
         [SerializeField] private Sprite backgroundSprite;
+        [SerializeField] private Sprite carForegroundSprite;
         [SerializeField] private Sprite logoSprite;
         [SerializeField] private Sprite buttonSprite;
         [SerializeField] private TMP_FontAsset fontAsset;
@@ -23,6 +24,7 @@ namespace BattleCarArena.UI
         [SerializeField] private Color buttonHoverColor = new(0.29f, 0.49f, 0.82f, 1f);
 
         public Sprite BackgroundSprite => backgroundSprite;
+        public Sprite CarForegroundSprite => carForegroundSprite;
         public Sprite LogoSprite => logoSprite;
         public Sprite ButtonSprite => buttonSprite;
         public TMP_FontAsset FontAsset => fontAsset;

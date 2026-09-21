@@ -2,7 +2,13 @@
 
 This checklist tracks verified work from [ImplementationPlan.md](ImplementationPlan.md). Check an item only after its implementation has been validated in Unity.
 
-Last updated: 2026-09-18
+Last updated: 2026-09-22
+
+## Project organization
+
+- [x] Keep project-owned scenes under `Assets/_Project/Scenes`.
+- [x] Keep source fonts under `Assets/_Project/Art/Fonts`.
+- [x] Keep music under `Assets/_Project/Audio/Music`.
 
 ## Phase 1 — Foundation and progression
 
@@ -39,7 +45,9 @@ Last updated: 2026-09-18
 
 ### Garage
 
-- [ ] Create `GarageHub` and add it to Build Settings.
+- [x] Create the `GarageHub` prototype layout scene and add it to Build Settings.
+- [x] Add replaceable background, car preview, upgrade-card art, and button slots.
+- [x] Verify the Start Game action loads `GarageHub` in Play Mode.
 - [ ] Display credits, score, and rank.
 - [ ] Create engine, weapon, and armor upgrade cards.
 - [ ] Display current value, next value, and upgrade cost.

@@ -6,7 +6,7 @@ Source brief: [Google design document](https://docs.google.com/document/d/12c7xQ
 
 - Unity 6000.3.24f1 using URP 2D.
 - New Input System, uGUI, and Unity Test Framework are installed.
-- `Assets/Scenes/StartMenu.unity` is currently the only enabled build scene.
+- `Assets/_Project/Scenes/StartMenu.unity` and `Assets/_Project/Scenes/GarageHub.unity` are enabled build scenes.
 - The project does not yet contain gameplay code, prefabs, tests, or an established application architecture.
 
 ## Architecture
@@ -25,7 +25,7 @@ Suggested project layout:
 ```text
 Assets/_Project/
   Art/
-  Audio/
+  Audio/Music/
   Data/
   Prefabs/
   Scenes/
@@ -64,6 +64,7 @@ Start Menu:
 
 Garage:
 
+- Start with a responsive placeholder layout and named art slots so the car preview, background, upgrade-card art, and button sprites can be replaced independently.
 - Credits, score, and rank display.
 - Engine, weapon, and armor upgrade cards.
 - Current value, next value, and upgrade cost.
@@ -73,6 +74,7 @@ Garage:
 Acceptance criteria:
 
 - Start opens the Garage once the Garage scene is added to Build Settings.
+- The prototype Garage layout is present in `GarageHub.unity` before progression logic and final art are added.
 - Purchases update the UI immediately and cannot create negative credits.
 - Progress survives scene changes and application restarts.
 
@@ -126,4 +128,3 @@ Start → buy upgrade → battle → result → return/rank up → save
 ```
 
 Replace placeholder visuals only after the complete loop is reliable. Estimated effort is 4–6 development days for the functional slice and 6–9 days for a polished first pass, depending on asset readiness.
-

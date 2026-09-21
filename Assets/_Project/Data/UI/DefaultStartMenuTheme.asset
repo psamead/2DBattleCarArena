@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c71e0e1c247545249a951b017ceae782, type: 3}
   m_Name: DefaultStartMenuTheme
   m_EditorClassIdentifier: Assembly-CSharp::BattleCarArena.UI.StartMenuTheme
-  backgroundSprite: {fileID: 0}
-  logoSprite: {fileID: 0}
-  buttonSprite: {fileID: 0}
-  fontAsset: {fileID: 0}
-  menuMusic: {fileID: 0}
+  backgroundSprite: {fileID: -7528616408597447491, guid: 43c0517966f280d44b71770c0ff7b758, type: 3}
+  carForegroundSprite: {fileID: 7878345696739275563, guid: 60a25391e683019459e35f531214cc83, type: 3}
+  logoSprite: {fileID: -2785893148786927106, guid: 3b2a87567d59f4748a1813a0541ac6c0, type: 3}
+  buttonSprite: {fileID: 1450413102316742792, guid: 03d6da9033f0f76428cbdb72f9d87b60, type: 3}
+  fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  menuMusic: {fileID: 8300000, guid: 54d8dcf9620526a4998fc20eddc879aa, type: 3}
   backgroundColor: {r: 0.025, g: 0.035, b: 0.055, a: 1}
-  panelColor: {r: 0.055, g: 0.075, b: 0.11, a: 0.94}
+  panelColor: {r: 0.055, g: 0.075, b: 0.11, a: 0.9411765}
   accentColor: {r: 1, g: 0.34, b: 0.08, a: 1}
   primaryTextColor: {r: 0.96, g: 0.97, b: 1, a: 1}
   mutedTextColor: {r: 0.58, g: 0.65, b: 0.74, a: 1}

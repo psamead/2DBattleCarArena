@@ -7,6 +7,7 @@ namespace BattleCarArena.UI
     {
         [Header("Replaceable Visual Slots")]
         [SerializeField] private UnityEngine.UI.Image backgroundImage;
+        [SerializeField] private UnityEngine.UI.Image carForegroundImage;
         [SerializeField] private UnityEngine.UI.Image logoImage;
         [SerializeField] private UnityEngine.UI.Image panelImage;
         [SerializeField] private UnityEngine.UI.Image accentImage;
@@ -30,6 +31,7 @@ namespace BattleCarArena.UI
 
         public void Configure(
             UnityEngine.UI.Image background,
+            UnityEngine.UI.Image carForeground,
             UnityEngine.UI.Image logo,
             UnityEngine.UI.Image panel,
             UnityEngine.UI.Image accent,
@@ -43,6 +45,7 @@ namespace BattleCarArena.UI
             AudioSource audioSource)
         {
             backgroundImage = background;
+            carForegroundImage = carForeground;
             logoImage = logo;
             panelImage = panel;
             accentImage = accent;
@@ -70,11 +73,22 @@ namespace BattleCarArena.UI
                 return;
             }
 
-            ApplyImage(backgroundImage, theme.BackgroundSprite, theme.BackgroundColor);
+            // Keep the replaceable background artwork visible at full color. The
+            // theme background color remains the fallback when no sprite is set.
+            Color backgroundColor = theme.BackgroundSprite != null ? Color.white : theme.BackgroundColor;
+            ApplyImage(backgroundImage, theme.BackgroundSprite, backgroundColor);
+            ApplyImage(carForegroundImage, theme.CarForegroundSprite, Color.white);
+            if (carForegroundImage != null)
+            {
+                carForegroundImage.preserveAspect = true;
+                carForegroundImage.raycastTarget = false;
+                carForegroundImage.gameObject.SetActive(theme.CarForegroundSprite != null);
+            }
             ApplyImage(panelImage, null, theme.PanelColor);
             ApplyImage(accentImage, null, theme.AccentColor);
-            ApplyImage(startButtonImage, theme.ButtonSprite, theme.ButtonColor);
-            ApplyImage(exitButtonImage, theme.ButtonSprite, theme.ButtonColor);
+            Color buttonColor = theme.ButtonSprite != null ? Color.white : theme.ButtonColor;
+            ApplyImage(startButtonImage, theme.ButtonSprite, buttonColor);
+            ApplyImage(exitButtonImage, theme.ButtonSprite, buttonColor);
 
             if (logoImage != null)
             {
@@ -82,6 +96,11 @@ namespace BattleCarArena.UI
                 logoImage.color = Color.white;
                 logoImage.preserveAspect = true;
                 logoImage.gameObject.SetActive(theme.LogoSprite != null);
+            }
+
+            if (titleText != null)
+            {
+                titleText.gameObject.SetActive(theme.LogoSprite == null);
             }
 
             ApplyText(titleText, theme.FontAsset, theme.PrimaryTextColor);
@@ -153,11 +172,12 @@ namespace BattleCarArena.UI
             }
 
             UnityEngine.UI.ColorBlock colors = button.colors;
-            colors.normalColor = theme.ButtonColor;
+            Color normalColor = theme.ButtonSprite != null ? Color.white : theme.ButtonColor;
+            colors.normalColor = normalColor;
             colors.highlightedColor = theme.ButtonHoverColor;
-            colors.selectedColor = Color.Lerp(theme.ButtonColor, theme.ButtonHoverColor, 0.65f);
+            colors.selectedColor = Color.Lerp(normalColor, theme.ButtonHoverColor, 0.65f);
             colors.pressedColor = Color.Lerp(theme.ButtonHoverColor, Color.black, 0.2f);
-            colors.disabledColor = new Color(theme.ButtonColor.r, theme.ButtonColor.g, theme.ButtonColor.b, 0.45f);
+            colors.disabledColor = new Color(normalColor.r, normalColor.g, normalColor.b, 0.45f);
             colors.colorMultiplier = 1f;
             colors.fadeDuration = 0.12f;
             button.colors = colors;

@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: 60a25391e683019459e35f531214cc83
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7878345696739275563
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_0
+  - first:
+      213: 8706713898475426056
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_1
+  - first:
+      213: -2341606625693976129
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_2
+  - first:
+      213: 659101259817729973
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_3
+  - first:
+      213: -2169496549656969449
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_4
+  - first:
+      213: 793947059729082096
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_5
+  - first:
+      213: -6039872345755587260
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_6
+  - first:
+      213: -5984743148764068938
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_7
+  - first:
+      213: 8170031716482506372
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_8
+  - first:
+      213: -8592174496287223311
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_9
+  - first:
+      213: -1708211319803122478
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_10
+  - first:
+      213: 2520733604666042842
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_11
+  - first:
+      213: -5365290155967198965
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_12
+  - first:
+      213: 1383760568209746288
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_13
+  - first:
+      213: 4343614810635596547
+    second: StartMenuCarForeground_PostApocalypse_45deg_Matched_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1524
+        height: 1016
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b233fdf7ba1855d60800000000000000
+      internalID: 7878345696739275563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 57
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8019597192674d870800000000000000
+      internalID: 8706713898475426056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_2
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 65
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb93fc72e21f08fd0800000000000000
+      internalID: -2341606625693976129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_3
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 65
+        width: 43
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bfb27e8a19952900800000000000000
+      internalID: 659101259817729973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_4
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 39
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71fb240f16664e1e0800000000000000
+      internalID: -2169496549656969449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_5
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 65
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f62e91f4aaa40b00800000000000000
+      internalID: 793947059729082096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_6
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 55
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44d68862a101e2ca0800000000000000
+      internalID: -6039872345755587260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_7
+      rect:
+        serializedVersion: 2
+        x: 564
+        y: 15
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b307f190dbe1fca0800000000000000
+      internalID: -5984743148764068938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_8
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 39
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48e5d983f88c16170800000000000000
+      internalID: 8170031716482506372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_9
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 41
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f111a4a1d672c880800000000000000
+      internalID: -8592174496287223311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_10
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 15
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dc65d9ead63b48e0800000000000000
+      internalID: -1708211319803122478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_11
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 25
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad96287abd17bf220800000000000000
+      internalID: 2520733604666042842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_12
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 61
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b09cca89709aa85b0800000000000000
+      internalID: -5365290155967198965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_13
+      rect:
+        serializedVersion: 2
+        x: 1318
+        y: 69
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 079a552c7ea143310800000000000000
+      internalID: 1383760568209746288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuCarForeground_PostApocalypse_45deg_Matched_14
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 65
+        width: 39
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3037f0528ae974c30800000000000000
+      internalID: 4343614810635596547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_0: 7878345696739275563
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_1: 8706713898475426056
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_10: -1708211319803122478
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_11: 2520733604666042842
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_12: -5365290155967198965
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_13: 1383760568209746288
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_14: 4343614810635596547
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_2: -2341606625693976129
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_3: 659101259817729973
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_4: -2169496549656969449
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_5: 793947059729082096
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_6: -6039872345755587260
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_7: -5984743148764068938
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_8: 8170031716482506372
+      StartMenuCarForeground_PostApocalypse_45deg_Matched_9: -8592174496287223311
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

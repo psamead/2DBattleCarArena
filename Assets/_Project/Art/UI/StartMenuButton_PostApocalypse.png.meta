@@ -1,0 +1,3055 @@
+fileFormatVersion: 2
+guid: 03d6da9033f0f76428cbdb72f9d87b60
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1450413102316742792
+    second: StartMenuButton_PostApocalypse_0
+  - first:
+      213: -8261759053853039518
+    second: StartMenuButton_PostApocalypse_1
+  - first:
+      213: -7797371400002179415
+    second: StartMenuButton_PostApocalypse_2
+  - first:
+      213: 5324149686563195539
+    second: StartMenuButton_PostApocalypse_3
+  - first:
+      213: 381007390702624617
+    second: StartMenuButton_PostApocalypse_4
+  - first:
+      213: -6249083035095766102
+    second: StartMenuButton_PostApocalypse_5
+  - first:
+      213: -6811713954280501142
+    second: StartMenuButton_PostApocalypse_6
+  - first:
+      213: -6814790009885830355
+    second: StartMenuButton_PostApocalypse_7
+  - first:
+      213: 5299757911969771989
+    second: StartMenuButton_PostApocalypse_8
+  - first:
+      213: -2734741049825318608
+    second: StartMenuButton_PostApocalypse_9
+  - first:
+      213: 1612701013735275800
+    second: StartMenuButton_PostApocalypse_10
+  - first:
+      213: -8725081504147723976
+    second: StartMenuButton_PostApocalypse_11
+  - first:
+      213: -3182601031890258953
+    second: StartMenuButton_PostApocalypse_12
+  - first:
+      213: 8026665370212827673
+    second: StartMenuButton_PostApocalypse_13
+  - first:
+      213: 2891303982630398536
+    second: StartMenuButton_PostApocalypse_14
+  - first:
+      213: 697590067495711661
+    second: StartMenuButton_PostApocalypse_15
+  - first:
+      213: 2628049203815866349
+    second: StartMenuButton_PostApocalypse_16
+  - first:
+      213: 6587720938570578134
+    second: StartMenuButton_PostApocalypse_17
+  - first:
+      213: 5273729314038585831
+    second: StartMenuButton_PostApocalypse_18
+  - first:
+      213: -3312670472661633443
+    second: StartMenuButton_PostApocalypse_19
+  - first:
+      213: -193882325674756826
+    second: StartMenuButton_PostApocalypse_20
+  - first:
+      213: 3784330766971429927
+    second: StartMenuButton_PostApocalypse_21
+  - first:
+      213: 3431806155278086837
+    second: StartMenuButton_PostApocalypse_22
+  - first:
+      213: -560572714887140179
+    second: StartMenuButton_PostApocalypse_23
+  - first:
+      213: 5402987283017340902
+    second: StartMenuButton_PostApocalypse_24
+  - first:
+      213: -5535113537439850630
+    second: StartMenuButton_PostApocalypse_25
+  - first:
+      213: -4856953306523757122
+    second: StartMenuButton_PostApocalypse_26
+  - first:
+      213: 7728512806801022951
+    second: StartMenuButton_PostApocalypse_27
+  - first:
+      213: -2894548495131559623
+    second: StartMenuButton_PostApocalypse_28
+  - first:
+      213: 7998855885527193872
+    second: StartMenuButton_PostApocalypse_29
+  - first:
+      213: -6257656779887889260
+    second: StartMenuButton_PostApocalypse_30
+  - first:
+      213: -6817848666855552189
+    second: StartMenuButton_PostApocalypse_31
+  - first:
+      213: -6900302392653221668
+    second: StartMenuButton_PostApocalypse_32
+  - first:
+      213: -1633486143762656470
+    second: StartMenuButton_PostApocalypse_33
+  - first:
+      213: 7177426268289645325
+    second: StartMenuButton_PostApocalypse_34
+  - first:
+      213: -1093801313467092621
+    second: StartMenuButton_PostApocalypse_35
+  - first:
+      213: -6043774861957993996
+    second: StartMenuButton_PostApocalypse_36
+  - first:
+      213: -8183720637264801794
+    second: StartMenuButton_PostApocalypse_37
+  - first:
+      213: -3113650880602274040
+    second: StartMenuButton_PostApocalypse_38
+  - first:
+      213: 8909935792237776746
+    second: StartMenuButton_PostApocalypse_39
+  - first:
+      213: 5938797000682517279
+    second: StartMenuButton_PostApocalypse_40
+  - first:
+      213: 4085043521941652613
+    second: StartMenuButton_PostApocalypse_41
+  - first:
+      213: 8155031948469763749
+    second: StartMenuButton_PostApocalypse_42
+  - first:
+      213: 8705846559975600801
+    second: StartMenuButton_PostApocalypse_43
+  - first:
+      213: 4373052010357685251
+    second: StartMenuButton_PostApocalypse_44
+  - first:
+      213: -6767082568179870034
+    second: StartMenuButton_PostApocalypse_45
+  - first:
+      213: -7782173780221293396
+    second: StartMenuButton_PostApocalypse_46
+  - first:
+      213: -6832473998436082832
+    second: StartMenuButton_PostApocalypse_47
+  - first:
+      213: -5129015296591338664
+    second: StartMenuButton_PostApocalypse_48
+  - first:
+      213: -7431008316309170975
+    second: StartMenuButton_PostApocalypse_49
+  - first:
+      213: -411040529998551160
+    second: StartMenuButton_PostApocalypse_50
+  - first:
+      213: 8980176297025186656
+    second: StartMenuButton_PostApocalypse_51
+  - first:
+      213: 6260729306902596197
+    second: StartMenuButton_PostApocalypse_52
+  - first:
+      213: -7592858120191159945
+    second: StartMenuButton_PostApocalypse_53
+  - first:
+      213: 6586262618626376466
+    second: StartMenuButton_PostApocalypse_54
+  - first:
+      213: -7493340861453852151
+    second: StartMenuButton_PostApocalypse_55
+  - first:
+      213: 4347851715765697383
+    second: StartMenuButton_PostApocalypse_56
+  - first:
+      213: 5154641666894414622
+    second: StartMenuButton_PostApocalypse_57
+  - first:
+      213: 2520246501688860876
+    second: StartMenuButton_PostApocalypse_58
+  - first:
+      213: 8696685741410340081
+    second: StartMenuButton_PostApocalypse_59
+  - first:
+      213: 1159984129948758816
+    second: StartMenuButton_PostApocalypse_60
+  - first:
+      213: -9123904353703065600
+    second: StartMenuButton_PostApocalypse_61
+  - first:
+      213: 5482279578289775070
+    second: StartMenuButton_PostApocalypse_62
+  - first:
+      213: -1556208127956283822
+    second: StartMenuButton_PostApocalypse_63
+  - first:
+      213: -1616961003003112354
+    second: StartMenuButton_PostApocalypse_64
+  - first:
+      213: -665666960127605608
+    second: StartMenuButton_PostApocalypse_65
+  - first:
+      213: 5361237729069246369
+    second: StartMenuButton_PostApocalypse_66
+  - first:
+      213: 7567010675733476172
+    second: StartMenuButton_PostApocalypse_67
+  - first:
+      213: 3078581090184634767
+    second: StartMenuButton_PostApocalypse_68
+  - first:
+      213: -1160840297797623401
+    second: StartMenuButton_PostApocalypse_69
+  - first:
+      213: -5857142769300283494
+    second: StartMenuButton_PostApocalypse_70
+  - first:
+      213: 5400204679705680312
+    second: StartMenuButton_PostApocalypse_71
+  - first:
+      213: -5874619733708093092
+    second: StartMenuButton_PostApocalypse_72
+  - first:
+      213: -6784435884011588261
+    second: StartMenuButton_PostApocalypse_73
+  - first:
+      213: 1419133583693833625
+    second: StartMenuButton_PostApocalypse_74
+  - first:
+      213: 8561408225546599194
+    second: StartMenuButton_PostApocalypse_75
+  - first:
+      213: 565683571067552791
+    second: StartMenuButton_PostApocalypse_76
+  - first:
+      213: 6333171237772536195
+    second: StartMenuButton_PostApocalypse_77
+  - first:
+      213: 35171363842038022
+    second: StartMenuButton_PostApocalypse_78
+  - first:
+      213: 481950405147108298
+    second: StartMenuButton_PostApocalypse_79
+  - first:
+      213: 8458041590760758422
+    second: StartMenuButton_PostApocalypse_80
+  - first:
+      213: 7560672226277421980
+    second: StartMenuButton_PostApocalypse_81
+  - first:
+      213: -905075048994853588
+    second: StartMenuButton_PostApocalypse_82
+  - first:
+      213: -3847699487661394417
+    second: StartMenuButton_PostApocalypse_83
+  - first:
+      213: 7839721954273767356
+    second: StartMenuButton_PostApocalypse_84
+  - first:
+      213: 4792105997700173408
+    second: StartMenuButton_PostApocalypse_85
+  - first:
+      213: -3786814144337379459
+    second: StartMenuButton_PostApocalypse_86
+  - first:
+      213: 7548820267695903988
+    second: StartMenuButton_PostApocalypse_87
+  - first:
+      213: -5979406016872818569
+    second: StartMenuButton_PostApocalypse_88
+  - first:
+      213: -2956826558616118103
+    second: StartMenuButton_PostApocalypse_89
+  - first:
+      213: -3304387532885444150
+    second: StartMenuButton_PostApocalypse_90
+  - first:
+      213: 4486221699938898543
+    second: StartMenuButton_PostApocalypse_91
+  - first:
+      213: -2460125400037058318
+    second: StartMenuButton_PostApocalypse_92
+  - first:
+      213: 3895867688859526123
+    second: StartMenuButton_PostApocalypse_93
+  - first:
+      213: -7631985263217128585
+    second: StartMenuButton_PostApocalypse_94
+  - first:
+      213: 7502674402770909936
+    second: StartMenuButton_PostApocalypse_95
+  - first:
+      213: -4434824781297224049
+    second: StartMenuButton_PostApocalypse_96
+  - first:
+      213: 2462774140977989848
+    second: StartMenuButton_PostApocalypse_97
+  - first:
+      213: 3869760645195689228
+    second: StartMenuButton_PostApocalypse_98
+  - first:
+      213: -1762433514641758843
+    second: StartMenuButton_PostApocalypse_99
+  - first:
+      213: -8783060268203834771
+    second: StartMenuButton_PostApocalypse_100
+  - first:
+      213: 4009094437582194257
+    second: StartMenuButton_PostApocalypse_101
+  - first:
+      213: -6549091163378453992
+    second: StartMenuButton_PostApocalypse_102
+  - first:
+      213: -7613766183791650827
+    second: StartMenuButton_PostApocalypse_103
+  - first:
+      213: -5606179786751230021
+    second: StartMenuButton_PostApocalypse_104
+  - first:
+      213: 319813985532640739
+    second: StartMenuButton_PostApocalypse_105
+  - first:
+      213: -5426668491374437298
+    second: StartMenuButton_PostApocalypse_106
+  - first:
+      213: 5845216950097852986
+    second: StartMenuButton_PostApocalypse_107
+  - first:
+      213: 8175394893630498276
+    second: StartMenuButton_PostApocalypse_108
+  - first:
+      213: 8478197115354291313
+    second: StartMenuButton_PostApocalypse_109
+  - first:
+      213: -7375376239338917917
+    second: StartMenuButton_PostApocalypse_110
+  - first:
+      213: -7052736568974081906
+    second: StartMenuButton_PostApocalypse_111
+  - first:
+      213: 7309301845923399531
+    second: StartMenuButton_PostApocalypse_112
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 31
+        width: 2132
+        height: 679
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 888692d2807e02410800000000000000
+      internalID: 1450413102316742792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 696
+        width: 168
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 264e837c9e5585d80800000000000000
+      internalID: -8261759053853039518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_2
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 705
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ae6411260c2ac390800000000000000
+      internalID: -7797371400002179415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_3
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 713
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39a4b9e6eed23e940800000000000000
+      internalID: 5324149686563195539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_4
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 721
+        width: 27
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96fd0a3043c994500800000000000000
+      internalID: 381007390702624617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_5
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 673
+        width: 83
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aab6231b61cc649a0800000000000000
+      internalID: -6249083035095766102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_6
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 705
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a601a83af3ee771a0800000000000000
+      internalID: -6811713954280501142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_7
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 707
+        width: 21
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d23dfd1a7900d61a0800000000000000
+      internalID: -6814790009885830355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_8
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 705
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d1368addb58c8940800000000000000
+      internalID: 5299757911969771989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_9
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 689
+        width: 32
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 039ab74218f3c0ad0800000000000000
+      internalID: -2734741049825318608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_10
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 705
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81d7a9c0707716610800000000000000
+      internalID: 1612701013735275800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_11
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 705
+        width: 138
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839a1f479984ae680800000000000000
+      internalID: -8725081504147723976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_12
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 688
+        width: 121
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f3b360493125d3d0800000000000000
+      internalID: -3182601031890258953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_13
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 721
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 912077a80a1746f60800000000000000
+      internalID: 8026665370212827673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_14
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 703
+        width: 23
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84a6b5647a9ff1820800000000000000
+      internalID: 2891303982630398536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_15
+      rect:
+        serializedVersion: 2
+        x: 1264
+        y: 705
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da33ceb68765ea900800000000000000
+      internalID: 697590067495711661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 711
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: def51bda3d4b87420800000000000000
+      internalID: 2628049203815866349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_17
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 717
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d8f6e65a494c6b50800000000000000
+      internalID: 6587720938570578134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_18
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 705
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e995d4aedc003940800000000000000
+      internalID: 5273729314038585831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_19
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 708
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d56f313a1c70702d0800000000000000
+      internalID: -3312670472661633443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_20
+      rect:
+        serializedVersion: 2
+        x: 1338
+        y: 709
+        width: 26
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 625fde15d013f4df0800000000000000
+      internalID: -193882325674756826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_21
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 703
+        width: 34
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 724e9e548c4a48430800000000000000
+      internalID: 3784330766971429927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_22
+      rect:
+        serializedVersion: 2
+        x: 1461
+        y: 705
+        width: 95
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b27957048930af20800000000000000
+      internalID: 3431806155278086837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_23
+      rect:
+        serializedVersion: 2
+        x: 1465
+        y: 689
+        width: 37
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dac206af5127838f0800000000000000
+      internalID: -560572714887140179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_24
+      rect:
+        serializedVersion: 2
+        x: 1667
+        y: 705
+        width: 160
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e79332ce444bfa40800000000000000
+      internalID: 5402987283017340902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_25
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 673
+        width: 25
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7f117160935f23b0800000000000000
+      internalID: -5535113537439850630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_26
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 689
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb51ef173b2a89cb0800000000000000
+      internalID: -4856953306523757122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_27
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 689
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ef9e6b4371314b60800000000000000
+      internalID: 7728512806801022951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_28
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 689
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 939ba8aca7f74d7d0800000000000000
+      internalID: -2894548495131559623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_29
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 689
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01914625c05a10f60800000000000000
+      internalID: 7998855885527193872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_30
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 143
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 494b77c20565829a0800000000000000
+      internalID: -6257656779887889260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_31
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 129
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34b44bf82c22261a0800000000000000
+      internalID: -6817848666855552189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_32
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 115
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0702388833d30a0800000000000000
+      internalID: -6900302392653221668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_33
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 115
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23118fb101b459e0800000000000000
+      internalID: -1633486143762656470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_34
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 115
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b36f2d9275b9360800000000000000
+      internalID: 7177426268289645325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_35
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 114
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37130f7208902d0f0800000000000000
+      internalID: -1093801313467092621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_36
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 97
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f9ee8ac8c2302ca0800000000000000
+      internalID: -6043774861957993996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_37
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 97
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff4cca80759d6e80800000000000000
+      internalID: -8183720637264801794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_38
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 79
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8078e1b55071ac4d0800000000000000
+      internalID: -3113650880602274040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_39
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 77
+        width: 47
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6f0fdb656376ab70800000000000000
+      internalID: 8909935792237776746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_40
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 101
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1336d23868da6250800000000000000
+      internalID: 5938797000682517279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_41
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 103
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 584c751907df0b830800000000000000
+      internalID: 4085043521941652613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_42
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 103
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ae7084995e7c2170800000000000000
+      internalID: 8155031948469763749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_43
+      rect:
+        serializedVersion: 2
+        x: 1234
+        y: 97
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a2f66c125161d870800000000000000
+      internalID: 8705846559975600801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_44
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 94
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30c7dad42a330bc30800000000000000
+      internalID: 4373052010357685251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_45
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 95
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea696edf14e7612a0800000000000000
+      internalID: -6767082568179870034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_46
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 57
+        width: 39
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cac0d89bd2a200490800000000000000
+      internalID: -7782173780221293396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_47
+      rect:
+        serializedVersion: 2
+        x: 1787
+        y: 95
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07bdf12391d2e21a0800000000000000
+      internalID: -6832473998436082832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_48
+      rect:
+        serializedVersion: 2
+        x: 2025
+        y: 103
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 853e02f23c312d8b0800000000000000
+      internalID: -5129015296591338664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_49
+      rect:
+        serializedVersion: 2
+        x: 2028
+        y: 97
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e41b67be41cfd890800000000000000
+      internalID: -7431008316309170975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_50
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 76
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 887e525d0d0bb4af0800000000000000
+      internalID: -411040529998551160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_51
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 79
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06ba19c53ceff9c70800000000000000
+      internalID: 8980176297025186656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_52
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 81
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56a8ec4422492e650800000000000000
+      internalID: 6260729306902596197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_53
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 73
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771d014b4cfb0a690800000000000000
+      internalID: -7592858120191159945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_54
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 65
+        width: 45
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 213c8a4c4fa176b50800000000000000
+      internalID: 6586262618626376466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_55
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 63
+        width: 33
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 902af1c103e420890800000000000000
+      internalID: -7493340861453852151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_56
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 79
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76b794e791ca65c30800000000000000
+      internalID: 4347851715765697383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_57
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 79
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e134bab1947f88740800000000000000
+      internalID: 5154641666894414622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_58
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 81
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc0e59727d6b9f220800000000000000
+      internalID: 2520246501688860876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_59
+      rect:
+        serializedVersion: 2
+        x: 986
+        y: 65
+        width: 7
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fcc7f3da95d0b870800000000000000
+      internalID: 8696685741410340081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_60
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 66
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 023bfaa9b67191010800000000000000
+      internalID: 1159984129948758816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_61
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 77
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00883e0b451616180800000000000000
+      internalID: -9123904353703065600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_62
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 77
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed12757ea38f41c40800000000000000
+      internalID: 5482279578289775070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_63
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 61
+        width: 23
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25e0798e3fc376ae0800000000000000
+      internalID: -1556208127956283822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_64
+      rect:
+        serializedVersion: 2
+        x: 1511
+        y: 83
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e541758e8866f89e0800000000000000
+      internalID: -1616961003003112354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_65
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 61
+        width: 43
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89441e63d6313c6f0800000000000000
+      internalID: -665666960127605608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_66
+      rect:
+        serializedVersion: 2
+        x: 1789
+        y: 77
+        width: 30
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a7289d3f41f66a40800000000000000
+      internalID: 5361237729069246369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_67
+      rect:
+        serializedVersion: 2
+        x: 1817
+        y: 77
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c43beaa2e1c630960800000000000000
+      internalID: 7567010675733476172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_68
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 55
+        width: 44
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f81a0b4c03159ba20800000000000000
+      internalID: 3078581090184634767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_69
+      rect:
+        serializedVersion: 2
+        x: 1946
+        y: 69
+        width: 9
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79160d846edd3efe0800000000000000
+      internalID: -1160840297797623401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_70
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 49
+        width: 40
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9fdb1d0faf37bea0800000000000000
+      internalID: -5857142769300283494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_71
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 63
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b952407b8161fa40800000000000000
+      internalID: 5400204679705680312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_72
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 63
+        width: 29
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5944dd2a78297ea0800000000000000
+      internalID: -5874619733708093092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_73
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 43
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b55731c4287d8d1a0800000000000000
+      internalID: -6784435884011588261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_74
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 45
+        width: 64
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 995e5e8b976c1b310800000000000000
+      internalID: 1419133583693833625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_75
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 67
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1bffccbb6b30d670800000000000000
+      internalID: 8561408225546599194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_76
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 67
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71481c4f536b9d700800000000000000
+      internalID: 565683571067552791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_77
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 63
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3892729afa1f3e750800000000000000
+      internalID: 6333171237772536195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_78
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 67
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60912184b24fc7000800000000000000
+      internalID: 35171363842038022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_79
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 63
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac3262a075b30b600800000000000000
+      internalID: 481950405147108298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_80
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 49
+        width: 36
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69c56c0a300016570800000000000000
+      internalID: 8458041590760758422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_81
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 47
+        width: 9
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c937d66e457ece860800000000000000
+      internalID: 7560672226277421980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_82
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 61
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2da799c9078073f0800000000000000
+      internalID: -905075048994853588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_83
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 61
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f067d73b3b93a9ac0800000000000000
+      internalID: -3847699487661394417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_84
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 65
+        width: 19
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbfa15ea4994ccc60800000000000000
+      internalID: 7839721954273767356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_85
+      rect:
+        serializedVersion: 2
+        x: 1058
+        y: 65
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06e00f6e30bf08240800000000000000
+      internalID: 4792105997700173408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_86
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 43
+        width: 46
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7f78506998827bc0800000000000000
+      internalID: -3786814144337379459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_87
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 69
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f49841c90cc2c860800000000000000
+      internalID: 7548820267695903988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_88
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 63
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 778567c68e1e40da0800000000000000
+      internalID: -5979406016872818569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_89
+      rect:
+        serializedVersion: 2
+        x: 1276
+        y: 55
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9acde3f29ed37f6d0800000000000000
+      internalID: -2956826558616118103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_90
+      rect:
+        serializedVersion: 2
+        x: 1322
+        y: 47
+        width: 46
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac93226db057422d0800000000000000
+      internalID: -3304387532885444150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_91
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 65
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f62d188fdd2424e30800000000000000
+      internalID: 4486221699938898543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_92
+      rect:
+        serializedVersion: 2
+        x: 1443
+        y: 66
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f810e3abf0ebddd0800000000000000
+      internalID: -2460125400037058318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_93
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 63
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be3e4669507e01630800000000000000
+      internalID: 3895867688859526123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_94
+      rect:
+        serializedVersion: 2
+        x: 1537
+        y: 60
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77b4deec6ddb51690800000000000000
+      internalID: -7631985263217128585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_95
+      rect:
+        serializedVersion: 2
+        x: 1707
+        y: 65
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fa73925e9ade1860800000000000000
+      internalID: 7502674402770909936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_96
+      rect:
+        serializedVersion: 2
+        x: 1811
+        y: 63
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f86fdadab565472c0800000000000000
+      internalID: -4434824781297224049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_97
+      rect:
+        serializedVersion: 2
+        x: 1857
+        y: 47
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d8c20b68088d2220800000000000000
+      internalID: 2462774140977989848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_98
+      rect:
+        serializedVersion: 2
+        x: 1940
+        y: 65
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0decaecdc624b530800000000000000
+      internalID: 3869760645195689228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_99
+      rect:
+        serializedVersion: 2
+        x: 1986
+        y: 47
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 585e8836e049a87e0800000000000000
+      internalID: -1762433514641758843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_100
+      rect:
+        serializedVersion: 2
+        x: 2054
+        y: 62
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d620dd0883d4c1680800000000000000
+      internalID: -8783060268203834771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_101
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 55
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 156c41f562a23a730800000000000000
+      internalID: 4009094437582194257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_102
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 53
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8127d251944fc15a0800000000000000
+      internalID: -6549091163378453992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_103
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 60
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f7973ccef7765690800000000000000
+      internalID: -7613766183791650827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_104
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 57
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbfb7bfcf29d232b0800000000000000
+      internalID: -5606179786751230021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_105
+      rect:
+        serializedVersion: 2
+        x: 2042
+        y: 47
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3edffd91025307400800000000000000
+      internalID: 319813985532640739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_106
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 51
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4c52d142c990b4b0800000000000000
+      internalID: -5426668491374437298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_107
+      rect:
+        serializedVersion: 2
+        x: 1592
+        y: 47
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3abca9c8d16e1150800000000000000
+      internalID: 5845216950097852986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_108
+      rect:
+        serializedVersion: 2
+        x: 2020
+        y: 47
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e563653756d47170800000000000000
+      internalID: 8175394893630498276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_109
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 43
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17c1f646b5b98a570800000000000000
+      internalID: 8478197115354291313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_110
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 29
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3efe851036665a990800000000000000
+      internalID: -7375376239338917917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_111
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 36
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8084ef1575af1e90800000000000000
+      internalID: -7052736568974081906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StartMenuButton_PostApocalypse_112
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 41
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b670f527d4bdf6560800000000000000
+      internalID: 7309301845923399531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      StartMenuButton_PostApocalypse_0: 1450413102316742792
+      StartMenuButton_PostApocalypse_1: -8261759053853039518
+      StartMenuButton_PostApocalypse_10: 1612701013735275800
+      StartMenuButton_PostApocalypse_100: -8783060268203834771
+      StartMenuButton_PostApocalypse_101: 4009094437582194257
+      StartMenuButton_PostApocalypse_102: -6549091163378453992
+      StartMenuButton_PostApocalypse_103: -7613766183791650827
+      StartMenuButton_PostApocalypse_104: -5606179786751230021
+      StartMenuButton_PostApocalypse_105: 319813985532640739
+      StartMenuButton_PostApocalypse_106: -5426668491374437298
+      StartMenuButton_PostApocalypse_107: 5845216950097852986
+      StartMenuButton_PostApocalypse_108: 8175394893630498276
+      StartMenuButton_PostApocalypse_109: 8478197115354291313
+      StartMenuButton_PostApocalypse_11: -8725081504147723976
+      StartMenuButton_PostApocalypse_110: -7375376239338917917
+      StartMenuButton_PostApocalypse_111: -7052736568974081906
+      StartMenuButton_PostApocalypse_112: 7309301845923399531
+      StartMenuButton_PostApocalypse_12: -3182601031890258953
+      StartMenuButton_PostApocalypse_13: 8026665370212827673
+      StartMenuButton_PostApocalypse_14: 2891303982630398536
+      StartMenuButton_PostApocalypse_15: 697590067495711661
+      StartMenuButton_PostApocalypse_16: 2628049203815866349
+      StartMenuButton_PostApocalypse_17: 6587720938570578134
+      StartMenuButton_PostApocalypse_18: 5273729314038585831
+      StartMenuButton_PostApocalypse_19: -3312670472661633443
+      StartMenuButton_PostApocalypse_2: -7797371400002179415
+      StartMenuButton_PostApocalypse_20: -193882325674756826
+      StartMenuButton_PostApocalypse_21: 3784330766971429927
+      StartMenuButton_PostApocalypse_22: 3431806155278086837
+      StartMenuButton_PostApocalypse_23: -560572714887140179
+      StartMenuButton_PostApocalypse_24: 5402987283017340902
+      StartMenuButton_PostApocalypse_25: -5535113537439850630
+      StartMenuButton_PostApocalypse_26: -4856953306523757122
+      StartMenuButton_PostApocalypse_27: 7728512806801022951
+      StartMenuButton_PostApocalypse_28: -2894548495131559623
+      StartMenuButton_PostApocalypse_29: 7998855885527193872
+      StartMenuButton_PostApocalypse_3: 5324149686563195539
+      StartMenuButton_PostApocalypse_30: -6257656779887889260
+      StartMenuButton_PostApocalypse_31: -6817848666855552189
+      StartMenuButton_PostApocalypse_32: -6900302392653221668
+      StartMenuButton_PostApocalypse_33: -1633486143762656470
+      StartMenuButton_PostApocalypse_34: 7177426268289645325
+      StartMenuButton_PostApocalypse_35: -1093801313467092621
+      StartMenuButton_PostApocalypse_36: -6043774861957993996
+      StartMenuButton_PostApocalypse_37: -8183720637264801794
+      StartMenuButton_PostApocalypse_38: -3113650880602274040
+      StartMenuButton_PostApocalypse_39: 8909935792237776746
+      StartMenuButton_PostApocalypse_4: 381007390702624617
+      StartMenuButton_PostApocalypse_40: 5938797000682517279
+      StartMenuButton_PostApocalypse_41: 4085043521941652613
+      StartMenuButton_PostApocalypse_42: 8155031948469763749
+      StartMenuButton_PostApocalypse_43: 8705846559975600801
+      StartMenuButton_PostApocalypse_44: 4373052010357685251
+      StartMenuButton_PostApocalypse_45: -6767082568179870034
+      StartMenuButton_PostApocalypse_46: -7782173780221293396
+      StartMenuButton_PostApocalypse_47: -6832473998436082832
+      StartMenuButton_PostApocalypse_48: -5129015296591338664
+      StartMenuButton_PostApocalypse_49: -7431008316309170975
+      StartMenuButton_PostApocalypse_5: -6249083035095766102
+      StartMenuButton_PostApocalypse_50: -411040529998551160
+      StartMenuButton_PostApocalypse_51: 8980176297025186656
+      StartMenuButton_PostApocalypse_52: 6260729306902596197
+      StartMenuButton_PostApocalypse_53: -7592858120191159945
+      StartMenuButton_PostApocalypse_54: 6586262618626376466
+      StartMenuButton_PostApocalypse_55: -7493340861453852151
+      StartMenuButton_PostApocalypse_56: 4347851715765697383
+      StartMenuButton_PostApocalypse_57: 5154641666894414622
+      StartMenuButton_PostApocalypse_58: 2520246501688860876
+      StartMenuButton_PostApocalypse_59: 8696685741410340081
+      StartMenuButton_PostApocalypse_6: -6811713954280501142
+      StartMenuButton_PostApocalypse_60: 1159984129948758816
+      StartMenuButton_PostApocalypse_61: -9123904353703065600
+      StartMenuButton_PostApocalypse_62: 5482279578289775070
+      StartMenuButton_PostApocalypse_63: -1556208127956283822
+      StartMenuButton_PostApocalypse_64: -1616961003003112354
+      StartMenuButton_PostApocalypse_65: -665666960127605608
+      StartMenuButton_PostApocalypse_66: 5361237729069246369
+      StartMenuButton_PostApocalypse_67: 7567010675733476172
+      StartMenuButton_PostApocalypse_68: 3078581090184634767
+      StartMenuButton_PostApocalypse_69: -1160840297797623401
+      StartMenuButton_PostApocalypse_7: -6814790009885830355
+      StartMenuButton_PostApocalypse_70: -5857142769300283494
+      StartMenuButton_PostApocalypse_71: 5400204679705680312
+      StartMenuButton_PostApocalypse_72: -5874619733708093092
+      StartMenuButton_PostApocalypse_73: -6784435884011588261
+      StartMenuButton_PostApocalypse_74: 1419133583693833625
+      StartMenuButton_PostApocalypse_75: 8561408225546599194
+      StartMenuButton_PostApocalypse_76: 565683571067552791
+      StartMenuButton_PostApocalypse_77: 6333171237772536195
+      StartMenuButton_PostApocalypse_78: 35171363842038022
+      StartMenuButton_PostApocalypse_79: 481950405147108298
+      StartMenuButton_PostApocalypse_8: 5299757911969771989
+      StartMenuButton_PostApocalypse_80: 8458041590760758422
+      StartMenuButton_PostApocalypse_81: 7560672226277421980
+      StartMenuButton_PostApocalypse_82: -905075048994853588
+      StartMenuButton_PostApocalypse_83: -3847699487661394417
+      StartMenuButton_PostApocalypse_84: 7839721954273767356
+      StartMenuButton_PostApocalypse_85: 4792105997700173408
+      StartMenuButton_PostApocalypse_86: -3786814144337379459
+      StartMenuButton_PostApocalypse_87: 7548820267695903988
+      StartMenuButton_PostApocalypse_88: -5979406016872818569
+      StartMenuButton_PostApocalypse_89: -2956826558616118103
+      StartMenuButton_PostApocalypse_9: -2734741049825318608
+      StartMenuButton_PostApocalypse_90: -3304387532885444150
+      StartMenuButton_PostApocalypse_91: 4486221699938898543
+      StartMenuButton_PostApocalypse_92: -2460125400037058318
+      StartMenuButton_PostApocalypse_93: 3895867688859526123
+      StartMenuButton_PostApocalypse_94: -7631985263217128585
+      StartMenuButton_PostApocalypse_95: 7502674402770909936
+      StartMenuButton_PostApocalypse_96: -4434824781297224049
+      StartMenuButton_PostApocalypse_97: 2462774140977989848
+      StartMenuButton_PostApocalypse_98: 3869760645195689228
+      StartMenuButton_PostApocalypse_99: -1762433514641758843
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

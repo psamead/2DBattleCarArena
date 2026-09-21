@@ -12,7 +12,7 @@ The Start Menu is intentionally asset-independent. It creates a complete uGUI la
 
 ## Bake the editable hierarchy into the scene
 
-With `StartMenu.unity` open, use:
+With `Assets/_Project/Scenes/StartMenu.unity` open, use:
 
 `Tools > 2D Battle Car Arena > Build Start Menu Template`
 
