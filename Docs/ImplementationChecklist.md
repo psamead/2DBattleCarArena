@@ -2,13 +2,16 @@
 
 This checklist tracks verified work from [ImplementationPlan.md](ImplementationPlan.md). Check an item only after its implementation has been validated in Unity.
 
-Last updated: 2026-09-22
+Last updated: 2026-09-24
 
 ## Project organization
 
 - [x] Keep project-owned scenes under `Assets/_Project/Scenes`.
 - [x] Keep source fonts under `Assets/_Project/Art/Fonts`.
 - [x] Keep music under `Assets/_Project/Audio/Music`.
+- [x] Keep Start Menu artwork under `Assets/_Project/Art/UI/StartMenu`.
+- [x] Keep Start Menu and Garage Hub theme assets in their respective `Assets/_Project/Data/UI` subfolders.
+- [x] Keep feature scripts in `Assets/_Project/Scripts/UI/StartMenu` and `Assets/_Project/Scripts/UI/GarageHub`.
 
 ## Phase 1 — Foundation and progression
 
@@ -42,12 +45,19 @@ Last updated: 2026-09-22
 - [x] Center the menu panel.
 - [x] Wire Start Game to the future `GarageHub` scene.
 - [x] Wire Quit Game for Editor and player builds.
+- [x] Store replaceable Start Menu art, font, and music in `Data/UI/StartMenu/DefaultStartMenuTheme.asset`.
 
 ### Garage
 
 - [x] Create the `GarageHub` prototype layout scene and add it to Build Settings.
-- [x] Add replaceable background, car preview, upgrade-card art, and button slots.
+- [x] Add a Garage Hub theme asset with replaceable background, logo, car preview, upgrade-card art, panel, button, font, and music slots.
+- [x] Crossfade the two Garage Hub background sprites with adjustable cycle time.
+- [x] Add a subtle flicker overlay with adjustable frequency, interval range, duration, strength, and random seed.
+- [x] Loop `Under_The_Chassis.mp3` as Garage Hub background music.
+- [x] Add an AudioListener to the Garage Hub Main Camera.
+- [x] Rename `BatteryPanel` to `EnergyPanel` and its displayed label to `ENERGY`.
 - [x] Verify the Start Game action loads `GarageHub` in Play Mode.
+- [x] Document Garage Hub setup and asset swapping in [GarageHubTemplate.md](GarageHubTemplate.md).
 - [ ] Display credits, score, and rank.
 - [ ] Create engine, weapon, and armor upgrade cards.
 - [ ] Display current value, next value, and upgrade cost.

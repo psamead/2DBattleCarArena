@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c326082bddc9d474a8397e78997db6f1, type: 3}
+  m_Name: DefaultGarageHubTheme
+  m_EditorClassIdentifier: Assembly-CSharp::BattleCarArena.UI.GarageHubTheme
+  neutralBackground: {fileID: 536786474350017815, guid: 9683e5fcbd7e8d14aa0165090b84d589, type: 3}
+  alternateBackground: {fileID: 8847015352329366086, guid: c9afcc5325719404c95d89b76a689279, type: 3}
+  titleLogo: {fileID: 0}
+  carPreview: {fileID: 0}
+  upgradeIcon: {fileID: 0}
+  panel: {fileID: 0}
+  button: {fileID: 0}
+  titleFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  backgroundMusic: {fileID: 8300000, guid: c4522dcd45f19d141bfad7e3b87f99dd, type: 3}
+  breathingCycleSeconds: 8
+  flickerIntervalMinimum: 4
+  flickerIntervalMaximum: 8
+  flickerDuration: 0.25
+  flickerFrequencyHz: 4
+  flickerStrength: 0.02
+  randomSeed: 10
+  musicVolume: 0.45

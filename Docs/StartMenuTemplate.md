@@ -16,9 +16,9 @@ With `Assets/_Project/Scenes/StartMenu.unity` open, use:
 
 `Tools > 2D Battle Car Arena > Build Start Menu Template`
 
-This creates `StartMenuTemplate` in the scene, saves the scene, and creates a default theme asset at:
+This creates `StartMenuTemplate` in the scene and saves it. The default theme asset is stored at:
 
-`Assets/_Project/Data/UI/DefaultStartMenuTheme.asset`
+`Assets/_Project/Data/UI/StartMenu/DefaultStartMenuTheme.asset`
 
 The runtime generator detects the baked controller and will not create a duplicate.
 
@@ -32,6 +32,10 @@ Select `DefaultStartMenuTheme.asset` and assign:
 - Menu Music
 - Background, panel, accent, text, muted text, and button colors
 
-The background is the `BackgroundPanel` Image in the scene and can also be swapped directly in the Inspector. The title and both selection-bar labels remain editable TextMeshPro objects.
+The current Start Menu sprites are grouped under `Assets/_Project/Art/UI/StartMenu`. The theme asset is the main place to swap the background, button, logo, font, and music. The title and both selection-bar labels remain editable TextMeshPro objects.
 
 For generation without a baked hierarchy, create a `StartMenuTheme` asset at `Assets/Resources/UI/StartMenuTheme.asset`; the runtime bootstrap loads that conventional path automatically.
+
+## Porting
+
+Use Unity 6000.3.24f1 on another laptop. Copy or clone the whole project while preserving every `.meta` file, `Packages`, `ProjectSettings`, `Docs`, and the Git LFS content for art and audio. Unity can regenerate the local `Library` folder after opening the project.

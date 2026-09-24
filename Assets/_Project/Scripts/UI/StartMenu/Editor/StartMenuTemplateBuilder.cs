@@ -9,7 +9,7 @@ namespace BattleCarArena.UI.Editor
     internal static class StartMenuTemplateBuilder
     {
         private const string ScenePath = "Assets/_Project/Scenes/StartMenu.unity";
-        private const string ThemeFolder = "Assets/_Project/Data/UI";
+        private const string ThemeFolder = "Assets/_Project/Data/UI/StartMenu";
         private const string ThemePath = ThemeFolder + "/DefaultStartMenuTheme.asset";
 
         [MenuItem("Tools/2D Battle Car Arena/Build Start Menu Template")]
@@ -55,6 +55,7 @@ namespace BattleCarArena.UI.Editor
 
             EnsureFolder("Assets/_Project", "Data");
             EnsureFolder("Assets/_Project/Data", "UI");
+            EnsureFolder("Assets/_Project/Data/UI", "StartMenu");
             theme = ScriptableObject.CreateInstance<StartMenuTheme>();
             AssetDatabase.CreateAsset(theme, ThemePath);
             AssetDatabase.SaveAssets();
