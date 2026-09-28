@@ -15,7 +15,7 @@ MonoBehaviour:
   neutralBackground: {fileID: 536786474350017815, guid: 9683e5fcbd7e8d14aa0165090b84d589, type: 3}
   alternateBackground: {fileID: 8847015352329366086, guid: c9afcc5325719404c95d89b76a689279, type: 3}
   titleLogo: {fileID: 0}
-  carPreview: {fileID: 0}
+  carPreview: {fileID: 21300000, guid: b36341b817f47b04180cc0d7532d8506, type: 3}
   upgradeIcon: {fileID: 0}
   panel: {fileID: 0}
   button: {fileID: 0}
@@ -24,8 +24,8 @@ MonoBehaviour:
   breathingCycleSeconds: 8
   flickerIntervalMinimum: 4
   flickerIntervalMaximum: 8
-  flickerDuration: 0.25
-  flickerFrequencyHz: 4
+  flickerDuration: 0.3
+  flickerFrequencyHz: 50
   flickerStrength: 0.02
   randomSeed: 10
   musicVolume: 0.45

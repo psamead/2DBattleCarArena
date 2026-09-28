@@ -11,7 +11,8 @@
 - The Main Camera has an AudioListener so Unity can hear the Garage Hub AudioSource.
 - The energy panel is named `EnergyPanel` and its label reads `ENERGY`.
 - The title currently uses the ordinary `LiberationSans SDF` font.
-- Placeholder panels and art slots remain in place until final sprites are ready.
+- The Machine panel shows the front-view pixel-art car (see Car preview below).
+- Placeholder panels and the upgrade-card art slots remain in place until final sprites are ready.
 
 ## Swap assets
 
@@ -25,6 +26,15 @@ Select `Assets/_Project/Data/UI/GarageHub/DefaultGarageHubTheme.asset`. Its repl
 - Background Music
 
 The scene's `GarageHubPresentation` component references that theme. Leave an optional sprite field empty to keep the corresponding prototype placeholder. The default title font is the ordinary Liberation Sans SDF; assign another TMP font asset later to change the Garage Hub typography.
+
+## Car preview
+
+- Sprite: `Assets/_Project/Art/UI/GarageHub/GarageCarPreview_Front.png` (1567×960, transparent background, trimmed and padded to the slot's aspect). It is the only file in that folder.
+- It is assigned in two places: the theme's `Car Preview` field, and directly on `GarageHubTemplate/Canvas/Content/CarPreviewPanel/CarPreviewArtSlot` so it is visible in Edit Mode.
+- `CarPreviewArtSlot` was resized to 813×498 (anchored position y = -128.46) with Preserve Aspect enabled.
+- Import settings match the Start Menu car sprite (Sprite, no mipmaps, same filter mode and compression).
+- The `ArtSlotLabel` child ("CAR ART SLOT") is still active and draws over the grille; disable it when the art is final.
+- To swap the car, import the new sprite into `Art/UI/GarageHub`, then assign it to both the theme field and the slot's Image. Keep the art near a 1.63:1 aspect ratio or rely on Preserve Aspect.
 
 ## Adjust background motion
 
@@ -48,6 +58,7 @@ The current short duration and low strength are subtle starting values. Increase
 ```text
 Assets/_Project/
   Art/UI/StartMenu/       Start Menu logo, button, and foreground sprites
+  Art/UI/GarageHub/       Garage Hub car preview sprite
   Data/UI/StartMenu/      Start Menu theme asset
   Data/UI/GarageHub/      Garage Hub theme asset
   Scripts/UI/StartMenu/   Start Menu behavior and template builder
