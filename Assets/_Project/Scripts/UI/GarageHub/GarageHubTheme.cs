@@ -13,7 +13,7 @@ namespace BattleCarArena.UI
         [SerializeField] private Sprite carPreview;
         [SerializeField] private Sprite alternateCarPreview;
         [SerializeField, ColorUsage(false)] private Color carPreviewTint = new(1f, 0.93f, 0.84f, 1f);
-        [SerializeField, ColorUsage(false)] private Color alternateCarPreviewTint = new(0.78f, 0.92f, 1f, 1f);
+        [SerializeField, ColorUsage(false)] private Color alternateCarPreviewTint = new(0.96f, 0.44f, 0.15f, 0.6f);
         [SerializeField] private Sprite engineUpgradeIcon;
         [SerializeField] private Sprite weaponUpgradeIcon;
         [SerializeField] private Sprite armorUpgradeIcon;
@@ -22,7 +22,9 @@ namespace BattleCarArena.UI
         [SerializeField] private Sprite panel;
         [SerializeField] private Sprite button;
         [SerializeField] private Sprite slotFrame;
+        [SerializeField] private Sprite actionButtonFrame;
         [SerializeField] private TMP_FontAsset titleFont;
+        [SerializeField] private TMP_FontAsset actionButtonFont;
         [SerializeField] private AudioClip backgroundMusic;
 
         [Header("Background Motion")]
@@ -53,7 +55,9 @@ namespace BattleCarArena.UI
         public Sprite Panel => panel;
         public Sprite Button => button;
         public Sprite SlotFrame => slotFrame;
+        public Sprite ActionButtonFrame => actionButtonFrame;
         public TMP_FontAsset TitleFont => titleFont;
+        public TMP_FontAsset ActionButtonFont => actionButtonFont;
         public AudioClip BackgroundMusic => backgroundMusic;
         public float BreathingCycleSeconds => breathingCycleSeconds;
         public float FlickerIntervalMinimum => flickerIntervalMinimum;

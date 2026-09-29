@@ -15,6 +15,8 @@
 - In Play Mode, the neutral and warm car sprites crossfade with the background images using the same breathing cycle and blend value. The warm variant is toned down by its theme tint. Separate matching car overlays follow the background flicker's pulse timing and strength.
 - The Engine, Weapon, and Armor cards are still presentation placeholders for upgrade values and purchase behavior. Each has its own assigned transparent icon sprite, replaceable from the Garage Hub theme.
 - The Engine, Weapon, Armor, Energy, Credits, Score, and Rank panels use the shared sliced rusted-steel frame at `Assets/_Project/Art/UI/GarageHub/GarageHubPanelFrame_RustedSteel.png`. Replace the `Slot Frame` field on `DefaultGarageHubTheme` to swap it for another frame; its nine-slice border preserves the corners when each panel scales.
+- The `GoToMissionButton` and `BackToMenuButton` use the full `StartMenuButton_PostApocalypse.png` sprite from the Start Menu and the special 04B pixel font. The action-button sprite and font are theme fields, so both can be replaced without changing the presentation code. The sprite is rendered as a simple stretched image (not nine-sliced); adjust each button's RectTransform to change its size.
+- These two buttons currently have their visual styling only. The mission flow and Back to Menu action still need to be connected to gameplay/navigation.
 
 ## Swap assets
 
@@ -24,10 +26,12 @@ Select `Assets/_Project/Data/UI/GarageHub/DefaultGarageHubTheme.asset`. Its repl
 - Title Logo
 - Car Preview and the separate Engine Upgrade Icon, Weapon Upgrade Icon, and Armor Upgrade Icon fields
 - Panel and Button sprites
+- Action Button Frame (the Start Menu button sprite used by Go to Mission and Back to Menu)
 - Title Font (applied to the Garage Hub TextMeshPro elements)
+- Action Button Font (applied to the Go to Mission and Back to Menu labels)
 - Background Music
 
-The scene's `GarageHubPresentation` component references that theme. Leave an optional sprite field empty to keep the corresponding prototype placeholder. The default title font is the ordinary Liberation Sans SDF; assign another TMP font asset later to change the Garage Hub typography.
+The scene's `GarageHubPresentation` component references that theme. Leave an optional sprite field empty to keep the corresponding prototype placeholder. Assign another TMP font asset to the Title Font or Action Button Font field to change those text styles independently.
 
 ## Upgrade icons
 

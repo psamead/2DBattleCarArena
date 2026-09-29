@@ -22,12 +22,17 @@ namespace BattleCarArena.UI
         [SerializeField] private Image[] upgradeIconImages;
         [SerializeField] private Image[] panelImages;
         [SerializeField] private Image[] buttonImages;
-        [SerializeField] private TMP_Text titleText;
         [SerializeField] private TMP_Text carPreviewPlaceholder;
         [SerializeField] private TMP_Text[] upgradeIconPlaceholders;
         [SerializeField] private AudioSource musicSource;
 
+        [Header("Neon UI Motion")]
+        [SerializeField, Min(0.1f)] private float neonPulseCycleSeconds = 2.4f;
+        [SerializeField, Range(0f, 0.05f)] private float neonGrowAmplitude = 0.035f;
+        [SerializeField, Range(0f, 1f)] private float neonGlowMinimum = 0.65f;
+
         private TMP_Text[] textElements;
+        private NeonPulseTarget[] neonPulseTargets;
         private System.Random flickerRandom;
         private float breathingTime;
         private float flickerCooldown;
@@ -38,6 +43,7 @@ namespace BattleCarArena.UI
         private void OnEnable()
         {
             textElements = GetComponentsInChildren<TMP_Text>(true);
+            CacheNeonPulseTargets();
             InitializeFlickerRandom();
             ApplyTheme();
             ScheduleNextFlicker();
@@ -46,6 +52,7 @@ namespace BattleCarArena.UI
         private void OnDisable()
         {
             ApplyCarFlicker(0f);
+            ResetNeonPulseTargets();
 
             if (flickerOverlayImage != null)
             {
@@ -60,6 +67,8 @@ namespace BattleCarArena.UI
 
         private void Update()
         {
+            UpdateNeonPulseTargets();
+
             if (theme == null)
             {
                 return;
@@ -72,16 +81,134 @@ namespace BattleCarArena.UI
             // Ease between the neutral and alternate sprites, then back again.
             float blend = 0.5f - 0.5f * Mathf.Cos(breathingTime * Mathf.PI * 2f);
             carBackgroundBlend = blend;
+            if (carPreviewImage != null)
+            {
+                Color neutralColor = carPreviewImage.color;
+                neutralColor.a = Mathf.Lerp(1f, 0.9f, blend);
+                carPreviewImage.color = neutralColor;
+            }
             if (alternateBackgroundImage != null)
             {
                 SetAlpha(alternateBackgroundImage, blend);
             }
             if (alternateCarPreviewImage != null)
             {
-                SetAlpha(alternateCarPreviewImage, blend);
+                SetAlpha(alternateCarPreviewImage, blend * theme.AlternateCarPreviewTint.a);
             }
 
             UpdateFlicker(deltaTime);
+        }
+
+        private void CacheNeonPulseTargets()
+        {
+            RectTransform[] rectTransforms = GetComponentsInChildren<RectTransform>(true);
+            System.Collections.Generic.List<NeonPulseTarget> targets = new();
+
+            foreach (RectTransform rectTransform in rectTransforms)
+            {
+                if (rectTransform.name != "NeonFrame")
+                {
+                    continue;
+                }
+
+                System.Collections.Generic.List<Image> glowImageList = new();
+                Transform pinkGlowTransform = rectTransform.Find("PinkGlow");
+                Transform blueGlowTransform = rectTransform.Find("BlueGlow");
+                if (pinkGlowTransform != null)
+                {
+                    glowImageList.AddRange(pinkGlowTransform.GetComponentsInChildren<Image>(true));
+                }
+                if (blueGlowTransform != null)
+                {
+                    glowImageList.AddRange(blueGlowTransform.GetComponentsInChildren<Image>(true));
+                }
+
+                Image[] glowImages = glowImageList.ToArray();
+                Color[] originalColors = new Color[glowImages.Length];
+                for (int i = 0; i < glowImages.Length; i++)
+                {
+                    originalColors[i] = glowImages[i].color;
+                }
+
+                targets.Add(new NeonPulseTarget(rectTransform, rectTransform.localScale, glowImages, originalColors));
+            }
+
+            neonPulseTargets = targets.ToArray();
+        }
+
+        private void UpdateNeonPulseTargets()
+        {
+            if (neonPulseTargets == null || neonPulseTargets.Length == 0)
+            {
+                return;
+            }
+
+            float cycleSeconds = Mathf.Max(0.1f, neonPulseCycleSeconds);
+            float cycle = Time.unscaledTime * (Mathf.PI * 2f / cycleSeconds);
+            for (int i = 0; i < neonPulseTargets.Length; i++)
+            {
+                NeonPulseTarget target = neonPulseTargets[i];
+                if (target.Frame == null)
+                {
+                    continue;
+                }
+
+                float pulse = 0.5f - 0.5f * Mathf.Cos(cycle + i * 0.37f);
+                target.Frame.localScale = target.BaseScale * (1f + neonGrowAmplitude * pulse);
+                float glow = Mathf.Lerp(neonGlowMinimum, 1f, pulse);
+                for (int imageIndex = 0; imageIndex < target.GlowImages.Length; imageIndex++)
+                {
+                    Image image = target.GlowImages[imageIndex];
+                    if (image == null)
+                    {
+                        continue;
+                    }
+
+                    Color color = target.OriginalColors[imageIndex];
+                    color.a *= glow;
+                    image.color = color;
+                }
+            }
+        }
+
+        private void ResetNeonPulseTargets()
+        {
+            if (neonPulseTargets == null)
+            {
+                return;
+            }
+
+            foreach (NeonPulseTarget target in neonPulseTargets)
+            {
+                if (target.Frame != null)
+                {
+                    target.Frame.localScale = target.BaseScale;
+                }
+
+                for (int i = 0; i < target.GlowImages.Length; i++)
+                {
+                    if (target.GlowImages[i] != null)
+                    {
+                        target.GlowImages[i].color = target.OriginalColors[i];
+                    }
+                }
+            }
+        }
+
+        private readonly struct NeonPulseTarget
+        {
+            public readonly RectTransform Frame;
+            public readonly Vector3 BaseScale;
+            public readonly Image[] GlowImages;
+            public readonly Color[] OriginalColors;
+
+            public NeonPulseTarget(RectTransform frame, Vector3 baseScale, Image[] glowImages, Color[] originalColors)
+            {
+                Frame = frame;
+                BaseScale = baseScale;
+                GlowImages = glowImages;
+                OriginalColors = originalColors;
+            }
         }
 
         private void ApplyTheme()
@@ -108,21 +235,19 @@ namespace BattleCarArena.UI
                 SetAlpha(flickerOverlayImage, 0f);
             }
 
-            ApplyOptionalSprite(titleLogoImage, theme.TitleLogo, true);
-            if (titleLogoImage != null)
+            // The logo is a scene-authored image so its manually adjusted RectTransform stays authoritative.
+            // Update only its sprite; never activate another logo slot or toggle a second title object.
+            if (titleLogoImage != null && theme.TitleLogo != null)
             {
-                titleLogoImage.gameObject.SetActive(theme.TitleLogo != null);
-            }
-
-            if (titleText != null && titleLogoImage != null)
-            {
-                titleText.gameObject.SetActive(theme.TitleLogo == null);
+                ApplyOptionalSprite(titleLogoImage, theme.TitleLogo, true);
             }
 
             ApplyOptionalSprite(carPreviewImage, theme.CarPreview, true);
             if (carPreviewImage != null && theme.CarPreview != null)
             {
-                carPreviewImage.color = theme.CarPreviewTint;
+                Color neutralTint = theme.CarPreviewTint;
+                neutralTint.a = 1f;
+                carPreviewImage.color = neutralTint;
             }
             ApplyOptionalSprite(alternateCarPreviewImage, theme.AlternateCarPreview, true);
             if (alternateCarPreviewImage != null)
@@ -163,6 +288,8 @@ namespace BattleCarArena.UI
                 }
             }
 
+            ApplyActionButtonTheme();
+
             if (musicSource != null)
             {
                 musicSource.Stop();
@@ -196,7 +323,8 @@ namespace BattleCarArena.UI
                 image.sprite = theme.SlotFrame;
                 image.type = Image.Type.Sliced;
                 image.preserveAspect = false;
-                image.color = Color.white;
+                bool isUpgradeCard = image.gameObject.name == "ENGINEUpgradeCard" || image.gameObject.name == "WEAPONUpgradeCard" || image.gameObject.name == "ARMORUpgradeCard";
+                image.color = isUpgradeCard ? new Color(0.075f, 0.095f, 0.13f, 0.25f) : Color.white;
                 image.raycastTarget = false;
             }
         }
@@ -224,6 +352,41 @@ namespace BattleCarArena.UI
                 if (i < placeholderCount)
                 {
                     SetPlaceholderActive(upgradeIconPlaceholders[i], icon == null);
+                }
+            }
+        }
+
+        private void ApplyActionButtonTheme()
+        {
+            if (buttonImages == null)
+            {
+                return;
+            }
+
+            foreach (Image image in buttonImages)
+            {
+                if (image == null
+                    || (image.gameObject.name != "GoToMissionButton" && image.gameObject.name != "BackToMenuButton"))
+                {
+                    continue;
+                }
+
+                if (theme.ActionButtonFrame != null)
+                {
+                    image.sprite = theme.ActionButtonFrame;
+                    image.type = Image.Type.Simple;
+                    image.preserveAspect = false;
+                    image.color = Color.white;
+                    image.raycastTarget = true;
+                }
+
+                if (theme.ActionButtonFont != null)
+                {
+                    TMP_Text label = image.GetComponentInChildren<TMP_Text>(true);
+                    if (label != null)
+                    {
+                        label.font = theme.ActionButtonFont;
+                    }
                 }
             }
         }

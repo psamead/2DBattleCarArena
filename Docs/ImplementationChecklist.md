@@ -55,6 +55,7 @@ Last updated: 2026-09-30
 - [x] Add a subtle flicker overlay with adjustable frequency, interval range, duration, strength, and random seed.
 - [ ] Visually verify the neutral and warm car crossfade and flicker sync with the backgrounds in Play Mode.
 - [x] Add a reusable sliced Garage Hub frame for the Engine, Weapon, Armor, Energy, Credits, Score, and Rank panels.
+- [x] Style the Go to Mission and Back to Menu buttons with the Start Menu frame sprite and special font through Garage Hub theme fields.
 - [x] Create and assign separate replaceable Engine, Weapon, and Armor upgrade icons.
 - [x] Loop `Under_The_Chassis.mp3` as Garage Hub background music.
 - [x] Add an AudioListener to the Garage Hub Main Camera.
@@ -65,7 +66,8 @@ Last updated: 2026-09-30
 - [ ] Implement engine, weapon, and armor upgrade card values and purchase controls.
 - [ ] Display current value, next value, and upgrade cost.
 - [ ] Disable purchases when credits are insufficient.
-- [ ] Add the Go to Mission action.
+- [ ] Connect the Go to Mission button to a mission/battle flow.
+- [ ] Connect the Back to Menu button to return to the Start Menu.
 - [ ] Refresh the UI immediately after purchases.
 
 ## Phase 3 — Battle Arena prototype
