@@ -62,17 +62,20 @@ Last updated: 2026-09-30
 - [x] Rename `BatteryPanel` to `EnergyPanel` and its displayed label to `ENERGY`.
 - [x] Verify the Start Game action loads `GarageHub` in Play Mode.
 - [x] Document Garage Hub setup and asset swapping in [GarageHubTemplate.md](GarageHubTemplate.md).
-- [ ] Display credits, score, and rank.
-- [ ] Implement engine, weapon, and armor upgrade card values and purchase controls.
-- [ ] Display current value, next value, and upgrade cost.
-- [ ] Disable purchases when credits are insufficient.
-- [ ] Connect the Go to Mission button to a mission/battle flow.
-- [ ] Connect the Back to Menu button to return to the Start Menu.
-- [ ] Refresh the UI immediately after purchases.
+- [x] Display credits, score, and rank.
+- [x] Implement engine, weapon, and armor upgrade values and purchase controls.
+- [x] Display current value, next value, and upgrade cost.
+- [x] Disable purchases when credits are insufficient.
+- [x] Connect the Go to Mission button to the BattleArena placeholder scene.
+- [x] Connect the Back to Menu button to return to the Start Menu.
+- [x] Refresh the UI immediately after purchases.
+- [x] Verify upgrade buttons receive UI raycasts and a Play Mode purchase updates Credits, Score, and the matching stat.
 
 ## Phase 3 — Battle Arena prototype
 
-- [ ] Create the `BattleArena` scene and battle-state flow.
+- [x] Create an empty `BattleArena` placeholder scene and add it to Build Settings.
+- [x] Document the planned arena structure and battle flow in [BattleArenaTemplate.md](BattleArenaTemplate.md).
+- [ ] Implement the BattleArena battle-state flow.
 - [ ] Implement `BattleController`, `CarMotor2D`, and `CrashReporter`.
 - [ ] Implement deterministic `BattleResolver` logic.
 - [ ] Implement `EnemyFactory` and `BattleResultView`.

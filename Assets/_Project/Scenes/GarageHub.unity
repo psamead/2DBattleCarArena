@@ -18157,6 +18157,7 @@ GameObject:
   - component: {fileID: 2119262018}
   - component: {fileID: 2119262020}
   - component: {fileID: 2119262019}
+  - component: {fileID: 2119262021}
   m_Layer: 0
   m_Name: GarageHubTemplate
   m_TagString: Untagged
@@ -18329,6 +18330,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2119262021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119262017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317a01feaed1dc14f9d722d41106c1f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleCarArena.UI.GarageHubController
+  engineUpgradeButton: {fileID: 258703412}
+  weaponUpgradeButton: {fileID: 2063010911}
+  armorUpgradeButton: {fileID: 557164724}
+  goToMissionButton: {fileID: 1999746202}
+  backToMenuButton: {fileID: 1893231904}
+  battleSceneName: BattleArena
+  startMenuSceneName: StartMenu
+  engineValueText: {fileID: 1391430848}
+  weaponValueText: {fileID: 541080072}
+  armorValueText: {fileID: 1161173243}
+  creditsValueText: {fileID: 1577008658}
+  scoreValueText: {fileID: 304008438}
 --- !u!1 &2126970613
 GameObject:
   m_ObjectHideFlags: 0

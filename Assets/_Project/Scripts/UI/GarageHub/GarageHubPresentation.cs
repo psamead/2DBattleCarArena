@@ -275,6 +275,7 @@ namespace BattleCarArena.UI
             ApplyUpgradeIcons();
             ApplyOptionalSprites(panelImages, theme.Panel, false);
             ApplyOptionalSprites(buttonImages, theme.Button, false);
+            RestoreButtonRaycastTargets();
             ApplySlotFrames();
 
             if (theme.TitleFont != null && textElements != null)
@@ -387,6 +388,28 @@ namespace BattleCarArena.UI
                     {
                         label.font = theme.ActionButtonFont;
                     }
+                }
+            }
+        }
+
+        private void RestoreButtonRaycastTargets()
+        {
+            if (buttonImages == null)
+            {
+                return;
+            }
+
+            foreach (Image image in buttonImages)
+            {
+                if (image == null)
+                {
+                    continue;
+                }
+
+                Button button = image.GetComponent<Button>();
+                if (button != null && button.targetGraphic == image)
+                {
+                    image.raycastTarget = true;
                 }
             }
         }

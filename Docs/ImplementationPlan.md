@@ -6,22 +6,25 @@ Source brief: [Google design document](https://docs.google.com/document/d/12c7xQ
 
 - Unity 6000.3.24f1 using URP 2D.
 - New Input System, uGUI, and Unity Test Framework are installed.
-- `Assets/_Project/Scenes/StartMenu.unity` and `Assets/_Project/Scenes/GarageHub.unity` are enabled build scenes.
-- The project does not yet contain gameplay code, prefabs, tests, or an established application architecture.
+- `Assets/_Project/Scenes/StartMenu.unity`, `Assets/_Project/Scenes/GarageHub.unity`, and the empty `Assets/_Project/Scenes/BattleArena.unity` placeholder are enabled build scenes.
+- The original planning baseline had no gameplay code, prefabs, tests, or established application architecture. The current prototype now includes the Start Menu and Garage Hub flows plus session-owned Garage upgrades; the battle systems, save persistence, and test coverage remain future work.
 
 ## Prototype status (2026-09-30)
 
 - The Start Menu to Garage Hub route and both scene layout prototypes exist. Their art and theme assets are kept in feature-named folders.
-- `GameSession` and scene navigation exist; the progression model, upgrade purchasing, persistence, and battle loop remain future work.
+- `GameSession` owns runtime Garage progress across scene changes. Upgrade purchasing and the Garage-to-menu/BattleArena placeholder navigation are implemented; save persistence and the battle loop remain future work.
 - Garage Hub now has a `GarageHubTheme` asset for its replaceable backgrounds, logo, car preview, upgrade art, panels, buttons, font, and music. The two current backgrounds crossfade slowly, with occasional adjustable flicker.
 - Garage Hub loops `Under_The_Chassis.mp3` and its Main Camera has an AudioListener.
 - Garage Hub crossfades the neutral and warm car sprites using the same breathing cycle and blend value as the two backgrounds. The warm car sprite is toned down in the theme; a matching flicker overlay follows the background pulse.
 - A reusable rusted-steel panel frame is assigned to the three upgrade cards and four stat panels. Its nine-slice border keeps the riveted corners and edges consistent across both panel sizes.
-- The Go to Mission and Back to Menu buttons use the Start Menu button sprite and special pixel font via replaceable Garage Hub theme fields. Their visuals are in place; mission and return navigation remain future work.
-- Garage Hub now includes separate transparent Engine, Weapon, and Armor icon sprites under `Art/UI/GarageHub/Upgrades/`, each assigned through its own replaceable field on `DefaultGarageHubTheme`. The card layout still needs upgrade values and purchase behavior.
+- The Go to Mission and Back to Menu buttons use the Start Menu button sprite and special pixel font via replaceable Garage Hub theme fields. Go to Mission loads an empty `BattleArena` placeholder scene; Back to Menu returns to `StartMenu`.
+- Engine, Weapon, and Armor purchases spend their displayed costs and add their displayed upgrade amount to that stat and Score; the cards disable when remaining Credits cannot cover the cost. Progress currently resets on a new application run because save persistence is still future work.
+- In Play Mode, upgrade-button raycasts and the engine purchase callback were verified: the click changed Credits from 1000 to 750, Score from 100 to 245, Engine from 120 to 265, and refreshed the displayed values.
+- Garage Hub includes separate transparent Engine, Weapon, and Armor icon sprites under `Art/UI/GarageHub/Upgrades/`, each assigned through its own replaceable field on `DefaultGarageHubTheme`.
 - The Battery display is named `EnergyPanel` and reads `ENERGY`.
 - Garage Hub shows the front-view pixel-art car (`Art/UI/GarageHub/GarageCarPreview_Front.png`) in a resized `CarPreviewArtSlot` (813×498, Preserve Aspect).
 - See [ImplementationChecklist.md](ImplementationChecklist.md), [StartMenuTemplate.md](StartMenuTemplate.md), and [GarageHubTemplate.md](GarageHubTemplate.md) for verified setup and swap instructions.
+- See [BattleArenaTemplate.md](BattleArenaTemplate.md) for the planned battle scene, runtime flow, and acceptance criteria. The scene is still an empty placeholder; implementation has not started.
 
 ## Architecture
 

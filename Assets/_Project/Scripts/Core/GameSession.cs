@@ -17,13 +17,20 @@ namespace BattleCarArena.Core
                     instance = FindFirstObjectByType<GameSession>();
                 }
 
-                return instance != null ? instance : CreateInstance();
+                if (instance == null)
+                {
+                    instance = CreateInstance();
+                }
+
+                instance.EnsureInitialized();
+                return instance;
             }
         }
 
         public static bool HasInstance => instance != null;
 
         public SceneNavigator SceneNavigator { get; private set; }
+        public GarageProgress GarageProgress { get; private set; }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStaticState()
@@ -52,8 +59,14 @@ namespace BattleCarArena.Core
             }
 
             instance = this;
-            SceneNavigator = new SceneNavigator();
+            EnsureInitialized();
             DontDestroyOnLoad(gameObject);
+        }
+
+        private void EnsureInitialized()
+        {
+            SceneNavigator ??= new SceneNavigator();
+            GarageProgress ??= new GarageProgress();
         }
 
         private void OnDestroy()
