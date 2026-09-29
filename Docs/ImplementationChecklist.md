@@ -75,11 +75,13 @@ Last updated: 2026-09-30
 
 - [x] Create an empty `BattleArena` placeholder scene and add it to Build Settings.
 - [x] Document the planned arena structure and battle flow in [BattleArenaTemplate.md](BattleArenaTemplate.md).
-- [ ] Implement the BattleArena battle-state flow.
-- [ ] Implement `BattleController`, `CarMotor2D`, and `CrashReporter`.
-- [ ] Implement deterministic `BattleResolver` logic.
-- [ ] Implement `EnemyFactory` and `BattleResultView`.
-- [ ] Resolve and reward each battle exactly once.
+- [x] Build the plain blockout background, road, opposing cars, end walls, and health/name HUD.
+- [x] Show a `GET READY` cue before the single fight begins.
+- [x] Drive the cars toward each other and keep them from rolling.
+- [x] Apply contact damage and end the fight when either car's health reaches zero.
+- [x] End the fight when a car is pushed into an end wall.
+- [x] Show the winner and defeat reason once; keep the scene to one fight.
+- [x] Feed player engine, weapon, and armor stats into movement and health.
 
 ## Phase 4 — Results and rank progression
 

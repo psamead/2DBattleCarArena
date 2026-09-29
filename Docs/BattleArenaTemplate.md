@@ -1,81 +1,92 @@
 # Battle Arena Template
 
-`Assets/_Project/Scenes/BattleArena.unity` is currently an empty placeholder loaded by the Garage Hub's **Go to Mission** button. This document defines the next implementation phase. It is a design and handoff document; the battle scene and gameplay systems described here have not been implemented yet.
+`Assets/_Project/Scenes/BattleArena.unity` is the one-fight blockout loaded by the Garage Hub's **Go to Mission** button. It uses plain colored blocks and TextMeshPro UI so the scene layout and mechanics can be reviewed before final assets or a visual style are added. The named scene objects and serialized slots are the replacement points for later art.
 
 ## Prototype goal
 
-Build one complete, deterministic car-versus-enemy battle using the current Garage upgrades. The first pass should use replaceable placeholder visuals and resolve automatically after the cars approach and collide.
+Build one complete car-versus-challenger fight using the current Garage upgrades. Start with a plain blockout scene: a background, foreground road, two opposing block cars, and a wall at each end. Keep the visuals replaceable and leave the scene without a finished art style.
 
 The planned state flow is:
 
 ```text
-Preparing → Approaching → Collided → Resolving → Results
+Preparing → Approaching ⇄ Fighting → Results
 ```
 
-Each battle must transition forward once. Collision callbacks, animation callbacks, and UI input must not resolve or award the same battle more than once.
+Show a short `GET READY` cue before the cars start moving toward each other. This prototype contains exactly one fight and does not loop into another round. Collision and wall callbacks must end the fight only once.
 
-## Planned scene structure
+## Blockout scene structure
 
-Keep scene-owned objects under a clear root so a future arena presentation can be replaced without changing the battle rules:
+The saved blockout currently uses this scene hierarchy. Replace the presentation objects with final art as it becomes available, while keeping the controller and HUD references intact:
 
 ```text
 BattleArena
 ├── Main Camera
-├── BattleController
-├── ArenaPresentation
-│   ├── BackgroundSlot
-│   ├── PlayerCarSlot
-│   ├── EnemyCarSlot
-│   └── ResultPanel
-└── EventSystem
+├── Background
+├── ForegroundRoad
+├── RoadCenterMarking
+├── LeftBoundary
+├── RightBoundary
+├── PlayerCar
+├── ChallengerCar
+├── BattleArenaController
+└── BattleHUD
+    ├── PlayerName
+    ├── ChallengerName
+    ├── PlayerHealthBar
+    ├── ChallengerHealthBar
+    ├── StartCue
+    └── ResultPanel
 ```
 
 Use the existing `BattleArena` placeholder scene and keep it enabled in Build Settings. Add the smallest set of scene objects needed for the first playable battle. Keep backgrounds, car sprites, result-panel art, and fonts in named replaceable theme or Inspector slots where practical.
 
 ## Planned responsibilities
 
-- `BattleController` owns the state flow, creates a snapshot of the battle inputs, starts the approach, accepts the first collision, invokes resolution once, and presents the result.
-- `CarMotor2D` moves a car with `Rigidbody2D` velocity from `FixedUpdate`. Configure continuous collision detection for the moving cars.
-- `CrashReporter` reports a collision to the controller. A one-shot guard prevents duplicate resolution if multiple colliders or callbacks fire.
-- `BattleResolver` is plain C# with no scene or Unity object dependencies. Given the same input, it returns the same outcome and combat values.
-- `EnemyFactory` creates an enemy from an explicit battle configuration or deterministic input. Avoid hidden random state in the resolver.
-- `BattleResultView` presents the player and enemy values, the outcome, and any awarded Score or Credits.
+- `BattleArenaController` owns the single-fight state, initializes player stats from `GameSession.GarageProgress`, starts the countdown, applies contact damage, and stops both cars when the fight ends.
+- `CarMotor2D` pushes its car horizontally using engine power. Use `Rigidbody2D` and freeze rotation so the cars collide and push without rolling or flipping.
+- `CrashReporter` reports car contact and end-wall contact to the controller. A one-shot end guard prevents duplicate result presentation.
+- `BattleResolver` is plain C# and maps the defeat condition to the winner. It does not compare a single sum of car stats to decide the fight.
+- `BattleHudView` shows `PLAYER` and `CHALLENGER` names, current/max health bars, and the start cue. `BattleResultView` shows the winner and whether health or a wall ended the fight.
 
-Keep scene behavior in the controller and motors; keep combat calculations and result decisions in the resolver. Feed the resolver snapshots of the Garage stats and enemy configuration so mid-battle scene changes cannot change an in-progress calculation.
+Keep scene behavior in the controller and motors; keep the final outcome mapping in the resolver. Challenger stats are serialized blockout values on the controller so they can be tuned without changing code. Replace the blockout sprites and background through the scene's named visual slots when art is ready.
 
 ## Initial combat rule
 
-The current implementation plan starts from the source brief's power comparison:
+For this scene prototype, use a short health-based fight:
 
 ```text
-combat power = Horsepower + Damage + Armor
+maximum health = Armor
+damage per contact tick = opponent's Weapon damage
+push force = Engine power × configurable force scale
 ```
 
-Use the player's current Engine, Weapon, and Armor stats from `GameSession.GarageProgress`. Define the enemy's values in explicit configuration rather than scattering constants through scene scripts. Keep the inputs and returned result visible to tests and logs.
+Use the player's current Engine, Weapon, and Armor stats from `GameSession.GarageProgress`. Apply damage at a configurable interval while the cars remain in contact. Use continuous collision detection and horizontal movement only. The current challenger blockout defaults are Engine 220, Weapon 15, and Armor 140; contact damage ticks every 0.65 seconds, and each engine point supplies 0.18 units of push force with a 2.75 units/second speed cap. These values demonstrate the mechanic and remain tunable; they are not final balance.
 
-The original sample treats a tie as a player win. Preserve that rule for the first prototype unless the game design is updated. Keep the exact enemy setup and battle reward amounts configurable; this template does not assign values that have not been decided.
+Each end wall is a loss condition for the car that touches it. A health bar reaching zero is also a loss. Preserve the original sample's player-win tie rule if both health values reach zero on the same tick. There is one fight and no next round. This phase presents the outcome but does not award battle rewards or implement rank progression.
 
 ## Result and reward flow
 
-`BattleResolver` should return a result without directly editing UI or loading scenes. `BattleController` applies the result once through the progression owner, then asks `BattleResultView` to display it. The result should contain enough information to show both cars' combat power and the winner.
+`BattleResolver` returns a result without editing UI or loading scenes. `BattleArenaController` stops movement and asks `BattleResultView` to display the winner and the reason for the result.
 
 The first arena phase may present the outcome in place. The return and rank-up loop belongs to the Results and rank progression phase. When that phase is implemented, apply and save rewards before leaving the result screen, do not deduct Score on a loss unless the design changes, and trigger each newly crossed rank only once.
 
 ## Acceptance criteria
 
 - Go to Mission opens the `BattleArena` scene from the Garage Hub.
-- The battle enters `Preparing`, then both cars approach and collide automatically.
-- The first valid collision advances the battle once; duplicate collision notifications do not duplicate resolution or rewards.
-- `BattleResolver` is deterministic for identical player and enemy inputs.
-- The power comparison follows the configured rule, including the tie behavior.
-- The result view shows both sides and the outcome.
+- The scene shows two named cars, two health bars, a background, a foreground road, and walls at both ends using blockout visuals.
+- `GET READY` appears before the cars begin driving toward each other.
+- Both cars collide and push horizontally; their bodies do not roll or flip.
+- Contact damage lowers each health bar, and a car at zero health loses.
+- A car touching either end wall loses.
+- The first defeat condition ends the fight once, stops both cars, and shows the winner and defeat reason.
+- The fight does not restart or automatically advance to a second round. The result overlay shows the winner and `HEALTH DEPLETED` or `PUSHED INTO THE WALL`.
 - The player stats used by the battle come from the current Garage session.
 - Placeholder visuals can be swapped without changing battle calculations.
 
 ## Deferred work
 
-- Configure concrete enemy stats and the battle reward values.
 - Implement rank thresholds, save persistence, and return-to-Garage/rank-up routing.
+- Tune challenger stats and contact-damage timing after playtesting the blockout.
 - Add collision feedback, audio routing, camera shake, and effects.
 - Add EditMode coverage for deterministic battle calculations and PlayMode coverage for collision guards and result flow.
 - Validate controller/keyboard navigation, aspect ratios, and a Windows development build.
