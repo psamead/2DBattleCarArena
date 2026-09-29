@@ -16,7 +16,7 @@ MonoBehaviour:
   alternateBackground: {fileID: 8847015352329366086, guid: c9afcc5325719404c95d89b76a689279, type: 3}
   titleLogo: {fileID: 0}
   carPreview: {fileID: 21300000, guid: b36341b817f47b04180cc0d7532d8506, type: 3}
-  alternateCarPreview: {fileID: -9127160384322434051, guid: d31471a3c5560b146ab5a2f35071ffe2, type: 3}
+  alternateCarPreview: {fileID: 21300000, guid: d31471a3c5560b146ab5a2f35071ffe2, type: 3}
   carPreviewTint: {r: 1, g: 0.93, b: 0.84, a: 1}
   alternateCarPreviewTint: {r: 0.72, g: 0.91, b: 1, a: 1}
   engineUpgradeIcon: {fileID: 21300000, guid: 928a79adc5108ba4cae1aeeec1d2a5b4, type: 3}

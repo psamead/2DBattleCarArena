@@ -42,8 +42,8 @@ Replace the corresponding Engine, Weapon, or Armor Upgrade Icon field to swap on
 ## Car preview
 
 - Sprites: `Assets/_Project/Art/UI/GarageHub/GarageCarPreview_Front.png` (neutral base) and `Assets/_Project/Art/UI/GarageHub/GarageCarPreview_OrangeGlow.png` (warm alternate, toned down through the theme tint; transparent background).
-- It is assigned in two places: the theme's `Car Preview` field, and directly on `GarageHubTemplate/Canvas/Content/CarPreviewPanel/CarPreviewArtSlot` so it is visible in Edit Mode.
-- `CarPreviewArtSlot` was resized to 813×498 (anchored position y = -128.46) with Preserve Aspect enabled.
+- The neutral sprite is assigned to the theme's `Car Preview` field and directly to `GarageHubTemplate/Canvas/Content/CarPreviewPanel/CarPreviewArtSlot` so it is visible in Edit Mode. The warm sprite is assigned to `Alternate Car Preview` and to the sibling `CarPreviewAlternateArtSlot` Image for direct Canvas editing.
+- `CarPreviewArtSlot` is 813×498 (anchored position y = -128.46) with Preserve Aspect enabled. `CarPreviewAlternateArtSlot` uses the same anchors and size, with a small scale and position correction to align the visible car art. Select it in the Canvas hierarchy to adjust it further; in Play Mode the presentation script controls its alpha for the crossfade.
 - Import settings match the Start Menu car sprite (Sprite, no mipmaps, same filter mode and compression).
 - The `ArtSlotLabel` child ("CAR ART SLOT") is still active and draws over the grille; disable it when the art is final.
 - To swap the car, import the new sprite into `Art/UI/GarageHub`, then assign it to both the theme field and the slot's Image. Keep the art near a 1.63:1 aspect ratio or rely on Preserve Aspect.

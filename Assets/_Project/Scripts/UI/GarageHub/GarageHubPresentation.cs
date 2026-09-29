@@ -128,7 +128,6 @@ namespace BattleCarArena.UI
             if (alternateCarPreviewImage != null)
             {
                 alternateCarPreviewImage.color = theme.AlternateCarPreviewTint;
-                alternateCarPreviewImage.preserveAspect = false;
                 alternateCarPreviewImage.raycastTarget = false;
                 SetAlpha(alternateCarPreviewImage, 0f);
                 alternateCarPreviewImage.gameObject.SetActive(theme.AlternateCarPreview != null);
@@ -314,7 +313,7 @@ namespace BattleCarArena.UI
                 return;
             }
 
-            Transform sourceTransform = carPreviewImage.transform;
+            Transform sourceTransform = alternateCarPreviewImage.transform;
             Transform parent = sourceTransform.parent;
             if (parent == null)
             {
@@ -324,7 +323,7 @@ namespace BattleCarArena.UI
             GameObject overlayObject = new("AlternateCarFlickerOverlay", typeof(RectTransform), typeof(Image));
             overlayObject.transform.SetParent(parent, false);
 
-            RectTransform sourceRect = carPreviewImage.rectTransform;
+            RectTransform sourceRect = alternateCarPreviewImage.rectTransform;
             RectTransform overlayRect = (RectTransform)overlayObject.transform;
             overlayRect.anchorMin = sourceRect.anchorMin;
             overlayRect.anchorMax = sourceRect.anchorMax;
@@ -333,7 +332,7 @@ namespace BattleCarArena.UI
             overlayRect.sizeDelta = sourceRect.sizeDelta;
             overlayRect.localRotation = sourceRect.localRotation;
             overlayRect.localScale = sourceRect.localScale;
-            overlayRect.SetSiblingIndex(sourceTransform.GetSiblingIndex() + 3);
+            overlayRect.SetSiblingIndex(sourceTransform.GetSiblingIndex() + 2);
 
             alternateCarFlickerOverlayImage = overlayObject.GetComponent<Image>();
             alternateCarFlickerOverlayImage.raycastTarget = false;
