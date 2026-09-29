@@ -16,9 +16,16 @@ MonoBehaviour:
   alternateBackground: {fileID: 8847015352329366086, guid: c9afcc5325719404c95d89b76a689279, type: 3}
   titleLogo: {fileID: 0}
   carPreview: {fileID: 21300000, guid: b36341b817f47b04180cc0d7532d8506, type: 3}
+  alternateCarPreview: {fileID: -9127160384322434051, guid: d31471a3c5560b146ab5a2f35071ffe2, type: 3}
+  carPreviewTint: {r: 1, g: 0.93, b: 0.84, a: 1}
+  alternateCarPreviewTint: {r: 0.72, g: 0.91, b: 1, a: 1}
+  engineUpgradeIcon: {fileID: 21300000, guid: 928a79adc5108ba4cae1aeeec1d2a5b4, type: 3}
+  weaponUpgradeIcon: {fileID: 21300000, guid: f6dea14c47373c24bbaa9d61a8b4e705, type: 3}
+  armorUpgradeIcon: {fileID: 21300000, guid: 1bdc4a53619906d4abbfa7a9b4d9f171, type: 3}
   upgradeIcon: {fileID: 0}
   panel: {fileID: 0}
   button: {fileID: 0}
+  slotFrame: {fileID: 21300000, guid: 9d9ec4c150597ef42aaa0fb9f3230dd1, type: 3}
   titleFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   backgroundMusic: {fileID: 8300000, guid: c4522dcd45f19d141bfad7e3b87f99dd, type: 3}
   breathingCycleSeconds: 8
@@ -27,5 +34,7 @@ MonoBehaviour:
   flickerDuration: 0.3
   flickerFrequencyHz: 50
   flickerStrength: 0.02
+  carFlickerTint: {r: 1, g: 0.75, b: 0.55, a: 1}
+  carFlickerResponse: 0.42
   randomSeed: 10
   musicVolume: 0.45

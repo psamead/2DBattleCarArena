@@ -16,6 +16,9 @@ namespace BattleCarArena.UI
         [SerializeField] private Image flickerOverlayImage;
         [SerializeField] private Image titleLogoImage;
         [SerializeField] private Image carPreviewImage;
+        [SerializeField] private Image alternateCarPreviewImage;
+        [SerializeField] private Image carFlickerOverlayImage;
+        [SerializeField] private Image alternateCarFlickerOverlayImage;
         [SerializeField] private Image[] upgradeIconImages;
         [SerializeField] private Image[] panelImages;
         [SerializeField] private Image[] buttonImages;
@@ -30,6 +33,7 @@ namespace BattleCarArena.UI
         private float flickerCooldown;
         private float flickerTimeRemaining;
         private float activeFlickerStrength;
+        private float carBackgroundBlend;
 
         private void OnEnable()
         {
@@ -41,6 +45,8 @@ namespace BattleCarArena.UI
 
         private void OnDisable()
         {
+            ApplyCarFlicker(0f);
+
             if (flickerOverlayImage != null)
             {
                 SetAlpha(flickerOverlayImage, 0f);
@@ -65,9 +71,14 @@ namespace BattleCarArena.UI
 
             // Ease between the neutral and alternate sprites, then back again.
             float blend = 0.5f - 0.5f * Mathf.Cos(breathingTime * Mathf.PI * 2f);
+            carBackgroundBlend = blend;
             if (alternateBackgroundImage != null)
             {
                 SetAlpha(alternateBackgroundImage, blend);
+            }
+            if (alternateCarPreviewImage != null)
+            {
+                SetAlpha(alternateCarPreviewImage, blend);
             }
 
             UpdateFlicker(deltaTime);
@@ -80,6 +91,9 @@ namespace BattleCarArena.UI
                 return;
             }
 
+            EnsureAlternateCarPreview();
+            EnsureCarFlickerOverlay();
+            EnsureAlternateCarFlickerOverlay();
             ApplySprite(neutralBackgroundImage, theme.NeutralBackground);
             ApplySprite(alternateBackgroundImage, theme.AlternateBackground);
             if (alternateBackgroundImage != null)
@@ -106,11 +120,38 @@ namespace BattleCarArena.UI
             }
 
             ApplyOptionalSprite(carPreviewImage, theme.CarPreview, true);
+            if (carPreviewImage != null && theme.CarPreview != null)
+            {
+                carPreviewImage.color = theme.CarPreviewTint;
+            }
+            ApplyOptionalSprite(alternateCarPreviewImage, theme.AlternateCarPreview, true);
+            if (alternateCarPreviewImage != null)
+            {
+                alternateCarPreviewImage.color = theme.AlternateCarPreviewTint;
+                alternateCarPreviewImage.preserveAspect = false;
+                alternateCarPreviewImage.raycastTarget = false;
+                SetAlpha(alternateCarPreviewImage, 0f);
+                alternateCarPreviewImage.gameObject.SetActive(theme.AlternateCarPreview != null);
+            }
+            ApplyOptionalSprite(carFlickerOverlayImage, theme.CarPreview, true);
+            if (carFlickerOverlayImage != null)
+            {
+                carFlickerOverlayImage.raycastTarget = false;
+                SetAlpha(carFlickerOverlayImage, 0f);
+            }
+            ApplyOptionalSprite(alternateCarFlickerOverlayImage, theme.AlternateCarPreview, false);
+            if (alternateCarFlickerOverlayImage != null)
+            {
+                alternateCarFlickerOverlayImage.raycastTarget = false;
+                alternateCarFlickerOverlayImage.preserveAspect = false;
+                SetAlpha(alternateCarFlickerOverlayImage, 0f);
+                alternateCarFlickerOverlayImage.gameObject.SetActive(theme.AlternateCarPreview != null);
+            }
             SetPlaceholderActive(carPreviewPlaceholder, theme.CarPreview == null);
-            ApplyOptionalSprites(upgradeIconImages, theme.UpgradeIcon, true);
-            SetPlaceholdersActive(upgradeIconPlaceholders, theme.UpgradeIcon == null);
+            ApplyUpgradeIcons();
             ApplyOptionalSprites(panelImages, theme.Panel, false);
             ApplyOptionalSprites(buttonImages, theme.Button, false);
+            ApplySlotFrames();
 
             if (theme.TitleFont != null && textElements != null)
             {
@@ -139,6 +180,166 @@ namespace BattleCarArena.UI
             }
         }
 
+        private void ApplySlotFrames()
+        {
+            if (theme == null || theme.SlotFrame == null || panelImages == null)
+            {
+                return;
+            }
+
+            foreach (Image image in panelImages)
+            {
+                if (image == null || !UsesDedicatedSlotFrame(image.gameObject.name))
+                {
+                    continue;
+                }
+
+                image.sprite = theme.SlotFrame;
+                image.type = Image.Type.Sliced;
+                image.preserveAspect = false;
+                image.color = Color.white;
+                image.raycastTarget = false;
+            }
+        }
+
+        private void ApplyUpgradeIcons()
+        {
+            Sprite[] icons =
+            {
+                theme.EngineUpgradeIcon,
+                theme.WeaponUpgradeIcon,
+                theme.ArmorUpgradeIcon
+            };
+
+            int imageCount = upgradeIconImages != null ? upgradeIconImages.Length : 0;
+            int placeholderCount = upgradeIconPlaceholders != null ? upgradeIconPlaceholders.Length : 0;
+            int slotCount = Mathf.Max(imageCount, placeholderCount);
+            for (int i = 0; i < slotCount; i++)
+            {
+                Sprite icon = i < icons.Length ? icons[i] : null;
+                if (i < imageCount)
+                {
+                    ApplyOptionalSprite(upgradeIconImages[i], icon, true);
+                }
+
+                if (i < placeholderCount)
+                {
+                    SetPlaceholderActive(upgradeIconPlaceholders[i], icon == null);
+                }
+            }
+        }
+
+        private static bool UsesDedicatedSlotFrame(string objectName)
+        {
+            return objectName == "ENGINEUpgradeCard"
+                || objectName == "WEAPONUpgradeCard"
+                || objectName == "ARMORUpgradeCard"
+                || objectName == "EnergyPanel"
+                || objectName == "CreditsStat"
+                || objectName == "ScoreStat"
+                || objectName == "RankStat";
+        }
+
+        private void EnsureCarFlickerOverlay()
+        {
+            if (carFlickerOverlayImage != null || carPreviewImage == null || !Application.isPlaying)
+            {
+                return;
+            }
+
+            Transform sourceTransform = carPreviewImage.transform;
+            Transform parent = sourceTransform.parent;
+            if (parent == null)
+            {
+                return;
+            }
+
+            GameObject overlayObject = new("CarFlickerOverlay", typeof(RectTransform), typeof(Image));
+            overlayObject.transform.SetParent(parent, false);
+
+            RectTransform sourceRect = carPreviewImage.rectTransform;
+            RectTransform overlayRect = (RectTransform)overlayObject.transform;
+            overlayRect.anchorMin = sourceRect.anchorMin;
+            overlayRect.anchorMax = sourceRect.anchorMax;
+            overlayRect.pivot = sourceRect.pivot;
+            overlayRect.anchoredPosition = sourceRect.anchoredPosition;
+            overlayRect.sizeDelta = sourceRect.sizeDelta;
+            overlayRect.localRotation = sourceRect.localRotation;
+            overlayRect.localScale = sourceRect.localScale;
+            int overlayOrder = sourceTransform.GetSiblingIndex() + (alternateCarPreviewImage != null ? 2 : 1);
+            overlayRect.SetSiblingIndex(overlayOrder);
+
+            carFlickerOverlayImage = overlayObject.GetComponent<Image>();
+            carFlickerOverlayImage.raycastTarget = false;
+            carFlickerOverlayImage.maskable = true;
+        }
+
+        private void EnsureAlternateCarPreview()
+        {
+            if (alternateCarPreviewImage != null || carPreviewImage == null || !Application.isPlaying)
+            {
+                return;
+            }
+
+            Transform sourceTransform = carPreviewImage.transform;
+            Transform parent = sourceTransform.parent;
+            if (parent == null)
+            {
+                return;
+            }
+
+            GameObject overlayObject = new("AlternateCarPreview", typeof(RectTransform), typeof(Image));
+            overlayObject.transform.SetParent(parent, false);
+
+            RectTransform sourceRect = carPreviewImage.rectTransform;
+            RectTransform overlayRect = (RectTransform)overlayObject.transform;
+            overlayRect.anchorMin = sourceRect.anchorMin;
+            overlayRect.anchorMax = sourceRect.anchorMax;
+            overlayRect.pivot = sourceRect.pivot;
+            overlayRect.anchoredPosition = sourceRect.anchoredPosition;
+            overlayRect.sizeDelta = sourceRect.sizeDelta;
+            overlayRect.localRotation = sourceRect.localRotation;
+            overlayRect.localScale = sourceRect.localScale;
+            overlayRect.SetSiblingIndex(sourceTransform.GetSiblingIndex() + 1);
+
+            alternateCarPreviewImage = overlayObject.GetComponent<Image>();
+            alternateCarPreviewImage.raycastTarget = false;
+            alternateCarPreviewImage.maskable = true;
+        }
+
+        private void EnsureAlternateCarFlickerOverlay()
+        {
+            if (alternateCarFlickerOverlayImage != null || alternateCarPreviewImage == null || !Application.isPlaying)
+            {
+                return;
+            }
+
+            Transform sourceTransform = carPreviewImage.transform;
+            Transform parent = sourceTransform.parent;
+            if (parent == null)
+            {
+                return;
+            }
+
+            GameObject overlayObject = new("AlternateCarFlickerOverlay", typeof(RectTransform), typeof(Image));
+            overlayObject.transform.SetParent(parent, false);
+
+            RectTransform sourceRect = carPreviewImage.rectTransform;
+            RectTransform overlayRect = (RectTransform)overlayObject.transform;
+            overlayRect.anchorMin = sourceRect.anchorMin;
+            overlayRect.anchorMax = sourceRect.anchorMax;
+            overlayRect.pivot = sourceRect.pivot;
+            overlayRect.anchoredPosition = sourceRect.anchoredPosition;
+            overlayRect.sizeDelta = sourceRect.sizeDelta;
+            overlayRect.localRotation = sourceRect.localRotation;
+            overlayRect.localScale = sourceRect.localScale;
+            overlayRect.SetSiblingIndex(sourceTransform.GetSiblingIndex() + 3);
+
+            alternateCarFlickerOverlayImage = overlayObject.GetComponent<Image>();
+            alternateCarFlickerOverlayImage.raycastTarget = false;
+            alternateCarFlickerOverlayImage.maskable = true;
+        }
+
         private void UpdateFlicker(float deltaTime)
         {
             if (flickerOverlayImage == null || theme.FlickerStrength <= 0f)
@@ -156,10 +357,15 @@ namespace BattleCarArena.UI
                 float flickerElapsed = duration - flickerTimeRemaining;
                 float pulse = Mathf.Max(0f, Mathf.Sin(flickerElapsed * frequency * Mathf.PI * 2f));
                 SetAlpha(flickerOverlayImage, activeFlickerStrength * envelope * pulse);
+                float flickerScale = theme.FlickerStrength > 0f
+                    ? activeFlickerStrength / theme.FlickerStrength
+                    : 0f;
+                ApplyCarFlicker(envelope * pulse * flickerScale);
 
                 if (flickerTimeRemaining <= 0f)
                 {
                     SetAlpha(flickerOverlayImage, 0f);
+                    ApplyCarFlicker(0f);
                     ScheduleNextFlicker();
                 }
 
@@ -167,10 +373,28 @@ namespace BattleCarArena.UI
             }
 
             flickerCooldown -= deltaTime;
+            ApplyCarFlicker(0f);
             if (flickerCooldown <= 0f)
             {
                 flickerTimeRemaining = Mathf.Max(0.02f, theme.FlickerDuration);
                 activeFlickerStrength = NextRandomRange(theme.FlickerStrength * 0.45f, theme.FlickerStrength);
+            }
+        }
+
+        private void ApplyCarFlicker(float pulse)
+        {
+            if (carFlickerOverlayImage == null || theme == null)
+            {
+                return;
+            }
+
+            carFlickerOverlayImage.color = theme.CarFlickerTint;
+            float intensity = Mathf.Clamp01(pulse * theme.CarFlickerResponse);
+            SetAlpha(carFlickerOverlayImage, intensity * (1f - carBackgroundBlend));
+            if (alternateCarFlickerOverlayImage != null)
+            {
+                alternateCarFlickerOverlayImage.color = theme.CarFlickerTint;
+                SetAlpha(alternateCarFlickerOverlayImage, intensity * carBackgroundBlend);
             }
         }
 

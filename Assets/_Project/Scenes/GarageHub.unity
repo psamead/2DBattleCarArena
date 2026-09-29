@@ -8122,6 +8122,9 @@ MonoBehaviour:
   flickerOverlayImage: {fileID: 767601315}
   titleLogoImage: {fileID: 1454625715}
   carPreviewImage: {fileID: 1851176931}
+  alternateCarPreviewImage: {fileID: 0}
+  carFlickerOverlayImage: {fileID: 0}
+  alternateCarFlickerOverlayImage: {fileID: 0}
   upgradeIconImages:
   - {fileID: 1218134922}
   - {fileID: 1048119987}

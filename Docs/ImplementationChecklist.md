@@ -2,7 +2,7 @@
 
 This checklist tracks verified work from [ImplementationPlan.md](ImplementationPlan.md). Check an item only after its implementation has been validated in Unity.
 
-Last updated: 2026-09-24
+Last updated: 2026-09-30
 
 ## Project organization
 
@@ -53,13 +53,16 @@ Last updated: 2026-09-24
 - [x] Add a Garage Hub theme asset with replaceable background, logo, car preview, upgrade-card art, panel, button, font, and music slots.
 - [x] Crossfade the two Garage Hub background sprites with adjustable cycle time.
 - [x] Add a subtle flicker overlay with adjustable frequency, interval range, duration, strength, and random seed.
+- [ ] Visually verify the neutral and warm car crossfade and flicker sync with the backgrounds in Play Mode.
+- [x] Add a reusable sliced Garage Hub frame for the Engine, Weapon, Armor, Energy, Credits, Score, and Rank panels.
+- [x] Create and assign separate replaceable Engine, Weapon, and Armor upgrade icons.
 - [x] Loop `Under_The_Chassis.mp3` as Garage Hub background music.
 - [x] Add an AudioListener to the Garage Hub Main Camera.
 - [x] Rename `BatteryPanel` to `EnergyPanel` and its displayed label to `ENERGY`.
 - [x] Verify the Start Game action loads `GarageHub` in Play Mode.
 - [x] Document Garage Hub setup and asset swapping in [GarageHubTemplate.md](GarageHubTemplate.md).
 - [ ] Display credits, score, and rank.
-- [ ] Create engine, weapon, and armor upgrade cards.
+- [ ] Implement engine, weapon, and armor upgrade card values and purchase controls.
 - [ ] Display current value, next value, and upgrade cost.
 - [ ] Disable purchases when credits are insufficient.
 - [ ] Add the Go to Mission action.

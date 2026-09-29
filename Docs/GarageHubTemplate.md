@@ -12,7 +12,9 @@
 - The energy panel is named `EnergyPanel` and its label reads `ENERGY`.
 - The title currently uses the ordinary `LiberationSans SDF` font.
 - The Machine panel shows the front-view pixel-art car (see Car preview below).
-- Placeholder panels and the upgrade-card art slots remain in place until final sprites are ready.
+- In Play Mode, the neutral and warm car sprites crossfade with the background images using the same breathing cycle and blend value. The warm variant is toned down by its theme tint. Separate matching car overlays follow the background flicker's pulse timing and strength.
+- The Engine, Weapon, and Armor cards are still presentation placeholders for upgrade values and purchase behavior. Each has its own assigned transparent icon sprite, replaceable from the Garage Hub theme.
+- The Engine, Weapon, Armor, Energy, Credits, Score, and Rank panels use the shared sliced rusted-steel frame at `Assets/_Project/Art/UI/GarageHub/GarageHubPanelFrame_RustedSteel.png`. Replace the `Slot Frame` field on `DefaultGarageHubTheme` to swap it for another frame; its nine-slice border preserves the corners when each panel scales.
 
 ## Swap assets
 
@@ -20,16 +22,26 @@ Select `Assets/_Project/Data/UI/GarageHub/DefaultGarageHubTheme.asset`. Its repl
 
 - Neutral Background and Alternate Background
 - Title Logo
-- Car Preview and Upgrade Icon
+- Car Preview and the separate Engine Upgrade Icon, Weapon Upgrade Icon, and Armor Upgrade Icon fields
 - Panel and Button sprites
 - Title Font (applied to the Garage Hub TextMeshPro elements)
 - Background Music
 
 The scene's `GarageHubPresentation` component references that theme. Leave an optional sprite field empty to keep the corresponding prototype placeholder. The default title font is the ordinary Liberation Sans SDF; assign another TMP font asset later to change the Garage Hub typography.
 
+## Upgrade icons
+
+The three transparent PNGs are imported as single sprites and assigned separately in `DefaultGarageHubTheme`:
+
+- Engine: `Assets/_Project/Art/UI/GarageHub/Upgrades/Engine_Supercharger.png`
+- Weapon: `Assets/_Project/Art/UI/GarageHub/Upgrades/Weapon_HiddenMachineGun.png`
+- Armor: `Assets/_Project/Art/UI/GarageHub/Upgrades/Armor_FrontBumper.png`
+
+Replace the corresponding Engine, Weapon, or Armor Upgrade Icon field to swap one card's art. The machine gun is a standalone removable item; it does not alter the car preview. The legacy shared Upgrade Icon field remains available as a fallback when a dedicated icon is empty.
+
 ## Car preview
 
-- Sprite: `Assets/_Project/Art/UI/GarageHub/GarageCarPreview_Front.png` (1567×960, transparent background, trimmed and padded to the slot's aspect). It is the only file in that folder.
+- Sprites: `Assets/_Project/Art/UI/GarageHub/GarageCarPreview_Front.png` (neutral base) and `Assets/_Project/Art/UI/GarageHub/GarageCarPreview_OrangeGlow.png` (warm alternate, toned down through the theme tint; transparent background).
 - It is assigned in two places: the theme's `Car Preview` field, and directly on `GarageHubTemplate/Canvas/Content/CarPreviewPanel/CarPreviewArtSlot` so it is visible in Edit Mode.
 - `CarPreviewArtSlot` was resized to 813×498 (anchored position y = -128.46) with Preserve Aspect enabled.
 - Import settings match the Start Menu car sprite (Sprite, no mipmaps, same filter mode and compression).
@@ -42,8 +54,8 @@ On the same theme asset, tune the Background Motion fields:
 
 - `Breathing Cycle Seconds`: time for one full transition from neutral to alternate and back (currently 8 seconds).
 - `Flicker Interval Minimum` and `Flicker Interval Maximum`: randomized time between flicker bursts (currently 4–8 seconds).
-- `Flicker Duration`: length of each burst (currently 0.25 seconds).
-- `Flicker Frequency Hz`: how quickly the light pulses within a burst (currently 4 Hz).
+- `Flicker Duration`: length of each burst (currently 0.3 seconds).
+- `Flicker Frequency Hz`: how quickly the light pulses within a burst (currently 50 Hz).
 - `Flicker Strength`: maximum overlay opacity (currently 0.02).
 - `Random Seed`: zero chooses a different sequence each Play session; a nonzero seed makes the randomized intervals repeatable (currently 10).
 
@@ -58,7 +70,8 @@ The current short duration and low strength are subtle starting values. Increase
 ```text
 Assets/_Project/
   Art/UI/StartMenu/       Start Menu logo, button, and foreground sprites
-  Art/UI/GarageHub/       Garage Hub car preview sprite
+  Art/UI/GarageHub/       Garage Hub car preview, frame, and upgrade sprites
+    Upgrades/             Separate Engine, Weapon, and Armor icons
   Data/UI/StartMenu/      Start Menu theme asset
   Data/UI/GarageHub/      Garage Hub theme asset
   Scripts/UI/StartMenu/   Start Menu behavior and template builder

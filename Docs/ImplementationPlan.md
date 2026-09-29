@@ -9,12 +9,15 @@ Source brief: [Google design document](https://docs.google.com/document/d/12c7xQ
 - `Assets/_Project/Scenes/StartMenu.unity` and `Assets/_Project/Scenes/GarageHub.unity` are enabled build scenes.
 - The project does not yet contain gameplay code, prefabs, tests, or an established application architecture.
 
-## Prototype status (2026-09-29)
+## Prototype status (2026-09-30)
 
 - The Start Menu to Garage Hub route and both scene layout prototypes exist. Their art and theme assets are kept in feature-named folders.
 - `GameSession` and scene navigation exist; the progression model, upgrade purchasing, persistence, and battle loop remain future work.
 - Garage Hub now has a `GarageHubTheme` asset for its replaceable backgrounds, logo, car preview, upgrade art, panels, buttons, font, and music. The two current backgrounds crossfade slowly, with occasional adjustable flicker.
 - Garage Hub loops `Under_The_Chassis.mp3` and its Main Camera has an AudioListener.
+- Garage Hub crossfades the neutral and warm car sprites using the same breathing cycle and blend value as the two backgrounds. The warm car sprite is toned down in the theme; a matching flicker overlay follows the background pulse.
+- A reusable rusted-steel panel frame is assigned to the three upgrade cards and four stat panels. Its nine-slice border keeps the riveted corners and edges consistent across both panel sizes.
+- Garage Hub now includes separate transparent Engine, Weapon, and Armor icon sprites under `Art/UI/GarageHub/Upgrades/`, each assigned through its own replaceable field on `DefaultGarageHubTheme`. The card layout still needs upgrade values and purchase behavior.
 - The Battery display is named `EnergyPanel` and reads `ENERGY`.
 - Garage Hub shows the front-view pixel-art car (`Art/UI/GarageHub/GarageCarPreview_Front.png`) in a resized `CarPreviewArtSlot` (813×498, Preserve Aspect).
 - See [ImplementationChecklist.md](ImplementationChecklist.md), [StartMenuTemplate.md](StartMenuTemplate.md), and [GarageHubTemplate.md](GarageHubTemplate.md) for verified setup and swap instructions.

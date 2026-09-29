@@ -11,9 +11,17 @@ namespace BattleCarArena.UI
         [SerializeField] private Sprite alternateBackground;
         [SerializeField] private Sprite titleLogo;
         [SerializeField] private Sprite carPreview;
+        [SerializeField] private Sprite alternateCarPreview;
+        [SerializeField, ColorUsage(false)] private Color carPreviewTint = new(1f, 0.93f, 0.84f, 1f);
+        [SerializeField, ColorUsage(false)] private Color alternateCarPreviewTint = new(0.78f, 0.92f, 1f, 1f);
+        [SerializeField] private Sprite engineUpgradeIcon;
+        [SerializeField] private Sprite weaponUpgradeIcon;
+        [SerializeField] private Sprite armorUpgradeIcon;
+        [Tooltip("Legacy shared icon used when a dedicated upgrade icon is not assigned.")]
         [SerializeField] private Sprite upgradeIcon;
         [SerializeField] private Sprite panel;
         [SerializeField] private Sprite button;
+        [SerializeField] private Sprite slotFrame;
         [SerializeField] private TMP_FontAsset titleFont;
         [SerializeField] private AudioClip backgroundMusic;
 
@@ -24,6 +32,8 @@ namespace BattleCarArena.UI
         [SerializeField, Min(0.02f)] private float flickerDuration = 0.45f;
         [SerializeField, Min(0.1f)] private float flickerFrequencyHz = 4f;
         [SerializeField, Range(0f, 0.25f)] private float flickerStrength = 0.08f;
+        [SerializeField, ColorUsage(false)] private Color carFlickerTint = new(1f, 0.75f, 0.55f, 1f);
+        [SerializeField, Range(0f, 1f)] private float carFlickerResponse = 0.42f;
         [SerializeField, Tooltip("Zero chooses a different random sequence each play session; a nonzero seed makes timing repeatable.")]
         private int randomSeed;
 
@@ -34,9 +44,15 @@ namespace BattleCarArena.UI
         public Sprite AlternateBackground => alternateBackground;
         public Sprite TitleLogo => titleLogo;
         public Sprite CarPreview => carPreview;
-        public Sprite UpgradeIcon => upgradeIcon;
+        public Sprite AlternateCarPreview => alternateCarPreview;
+        public Color CarPreviewTint => carPreviewTint;
+        public Color AlternateCarPreviewTint => alternateCarPreviewTint;
+        public Sprite EngineUpgradeIcon => engineUpgradeIcon != null ? engineUpgradeIcon : upgradeIcon;
+        public Sprite WeaponUpgradeIcon => weaponUpgradeIcon != null ? weaponUpgradeIcon : upgradeIcon;
+        public Sprite ArmorUpgradeIcon => armorUpgradeIcon != null ? armorUpgradeIcon : upgradeIcon;
         public Sprite Panel => panel;
         public Sprite Button => button;
+        public Sprite SlotFrame => slotFrame;
         public TMP_FontAsset TitleFont => titleFont;
         public AudioClip BackgroundMusic => backgroundMusic;
         public float BreathingCycleSeconds => breathingCycleSeconds;
@@ -45,6 +61,8 @@ namespace BattleCarArena.UI
         public float FlickerDuration => flickerDuration;
         public float FlickerFrequencyHz => flickerFrequencyHz;
         public float FlickerStrength => flickerStrength;
+        public Color CarFlickerTint => carFlickerTint;
+        public float CarFlickerResponse => carFlickerResponse;
         public int RandomSeed => randomSeed;
         public float MusicVolume => musicVolume;
     }
