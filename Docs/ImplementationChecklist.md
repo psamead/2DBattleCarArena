@@ -82,12 +82,13 @@ Last updated: 2026-09-30
 - [x] End the fight when a car is pushed into an end wall.
 - [x] Show the winner and defeat reason once; keep the scene to one fight.
 - [x] Feed player engine, weapon, and armor stats into movement and health.
+- [x] Return to `GarageHub` after briefly showing the result for either outcome.
 
 ## Phase 4 — Results and rank progression
 
 - [ ] Apply and save battle rewards before leaving results.
 - [ ] Implement configured rank tiers and one-time rank-up handling.
-- [ ] Complete the Garage to Battle to Results return loop.
+- [ ] Add rank-up handling to the Garage to Battle to Garage loop.
 
 ## Phase 5 — Polish and validation
 

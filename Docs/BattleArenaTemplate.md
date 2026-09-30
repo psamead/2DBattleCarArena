@@ -68,7 +68,7 @@ Each end wall is a loss condition for the car that touches it. A health bar reac
 
 `BattleResolver` returns a result without editing UI or loading scenes. `BattleArenaController` stops movement and asks `BattleResultView` to display the winner and the reason for the result.
 
-The first arena phase may present the outcome in place. The return and rank-up loop belongs to the Results and rank progression phase. When that phase is implemented, apply and save rewards before leaving the result screen, do not deduct Score on a loss unless the design changes, and trigger each newly crossed rank only once.
+The result overlay remains visible briefly, then the game returns to `GarageHub` after either a win or a loss. The return delay is configurable on `BattleArenaController`. Rank-up routing belongs to the Results and rank progression phase. When that phase is implemented, apply and save rewards before leaving the result screen, do not deduct Score on a loss unless the design changes, and trigger each newly crossed rank only once.
 
 ## Acceptance criteria
 
@@ -79,13 +79,14 @@ The first arena phase may present the outcome in place. The return and rank-up l
 - Contact damage lowers each health bar, and a car at zero health loses.
 - A car touching either end wall loses.
 - The first defeat condition ends the fight once, stops both cars, and shows the winner and defeat reason.
+- After showing the result briefly, both wins and losses return to `GarageHub`.
 - The fight does not restart or automatically advance to a second round. The result overlay shows the winner and `HEALTH DEPLETED` or `PUSHED INTO THE WALL`.
 - The player stats used by the battle come from the current Garage session.
 - Placeholder visuals can be swapped without changing battle calculations.
 
 ## Deferred work
 
-- Implement rank thresholds, save persistence, and return-to-Garage/rank-up routing.
+- Implement rank thresholds, save persistence, and rank-up routing.
 - Tune challenger stats and contact-damage timing after playtesting the blockout.
 - Add collision feedback, audio routing, camera shake, and effects.
 - Add EditMode coverage for deterministic battle calculations and PlayMode coverage for collision guards and result flow.

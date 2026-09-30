@@ -24,7 +24,7 @@ Source brief: [Google design document](https://docs.google.com/document/d/12c7xQ
 - The Battery display is named `EnergyPanel` and reads `ENERGY`.
 - Garage Hub shows the front-view pixel-art car (`Art/UI/GarageHub/GarageCarPreview_Front.png`) in a resized `CarPreviewArtSlot` (813×498, Preserve Aspect).
 - See [ImplementationChecklist.md](ImplementationChecklist.md), [StartMenuTemplate.md](StartMenuTemplate.md), and [GarageHubTemplate.md](GarageHubTemplate.md) for verified setup and swap instructions.
-- The BattleArena blockout now has one health-based, physics-driven fight with opposing cars, no rolling, contact damage, two loss walls, and a single result overlay. Player stats come from Garage progress; challenger values are exposed for tuning. Health depletion and a natural pushed-to-wall finish were verified in Play Mode. Final assets, art style, rewards, and rank return flow remain future work.
+- The BattleArena blockout now has one health-based, physics-driven fight with opposing cars, no rolling, contact damage, two loss walls, and a single result overlay. Player stats come from Garage progress; challenger values are exposed for tuning. Health depletion and a natural pushed-to-wall finish were verified in Play Mode. Either result returns to GarageHub after a brief display; final assets, art style, rewards, and rank-up flow remain future work.
 - See [BattleArenaTemplate.md](BattleArenaTemplate.md) for the blockout layout, default tuning values, mechanics, and acceptance criteria.
 
 ## Architecture
@@ -114,7 +114,7 @@ Key components:
 - `BattleHudView`
 - `BattleResultView`
 
-Cars use `Rigidbody2D` force in `FixedUpdate`, continuous collision detection, and frozen rotation. Armor sets health, weapon stats apply contact damage, and engine stats drive the push. Reaching zero health or touching an end wall loses the single fight. The result is shown in-scene; rewards and rank progression belong to Phase 4. See [BattleArenaTemplate.md](BattleArenaTemplate.md) for blockout tuning values and detailed acceptance criteria.
+Cars use `Rigidbody2D` force in `FixedUpdate`, continuous collision detection, and frozen rotation. Armor sets health, weapon stats apply contact damage, and engine stats drive the push. Reaching zero health or touching an end wall loses the single fight. The result is shown briefly before both outcomes return to GarageHub; rewards and rank progression belong to Phase 4. See [BattleArenaTemplate.md](BattleArenaTemplate.md) for blockout tuning values and detailed acceptance criteria.
 
 Acceptance criteria:
 
@@ -123,6 +123,7 @@ Acceptance criteria:
 - [x] Cars collide and push horizontally without rolling.
 - [x] Health depletion and end-wall contact each finish the fight once.
 - [x] The result overlay shows the winner and defeat reason.
+- [x] Both outcomes return to GarageHub after the result display.
 - [ ] Apply and save rewards exactly once as part of Phase 4.
 
 ## Phase 4 — Results and rank progression
