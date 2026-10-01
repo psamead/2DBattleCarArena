@@ -7,7 +7,7 @@ Source brief: [Google design document](https://docs.google.com/document/d/12c7xQ
 - Unity 6000.3.24f1 using URP 2D.
 - New Input System, uGUI, and Unity Test Framework are installed.
 - `Assets/_Project/Scenes/StartMenu.unity`, `Assets/_Project/Scenes/GarageHub.unity`, and the empty `Assets/_Project/Scenes/BattleArena.unity` placeholder are enabled build scenes.
-- The original planning baseline had no gameplay code, prefabs, tests, or established application architecture. The current prototype now includes the Start Menu and Garage Hub flows plus session-owned Garage upgrades; the battle systems, save persistence, and test coverage remain future work.
+- The original planning baseline had no gameplay code, prefabs, tests, or established application architecture. The current prototype includes the Start Menu, Garage Hub, session-owned Garage upgrades, and a battle scene; save persistence and planned automated test coverage remain future work.
 
 ## Prototype status (2026-09-30)
 
@@ -24,8 +24,8 @@ Source brief: [Google design document](https://docs.google.com/document/d/12c7xQ
 - The Battery display is named `EnergyPanel` and reads `ENERGY`.
 - Garage Hub shows the front-view pixel-art car (`Art/UI/GarageHub/GarageCarPreview_Front.png`) in a resized `CarPreviewArtSlot` (813×498, Preserve Aspect).
 - See [ImplementationChecklist.md](ImplementationChecklist.md), [StartMenuTemplate.md](StartMenuTemplate.md), and [GarageHubTemplate.md](GarageHubTemplate.md) for verified setup and swap instructions.
-- The BattleArena blockout now has one health-based, physics-driven fight with opposing cars, no rolling, contact damage, two loss walls, and a single result overlay. Player stats come from Garage progress; challenger values are exposed for tuning. Health depletion and a natural pushed-to-wall finish were verified in Play Mode. Either result returns to GarageHub after a brief display; final assets, art style, rewards, and rank-up flow remain future work.
-- See [BattleArenaTemplate.md](BattleArenaTemplate.md) for the blockout layout, default tuning values, mechanics, and acceptance criteria.
+- BattleArena now uses player and challenger side-view car prefabs, rectangular health bars, timed contact damage and push surges, solid rebound walls, a 60-second timeout, impact camera shake, wheel rotation and dust, and a looping battle music asset. A Play Mode smoke check confirmed music playback and active dust systems at about 14.6 seconds; a full fight, both result/return paths, music-seam listening check, and development build still need validation.
+- See [BattleArenaTemplate.md](BattleArenaTemplate.md) and [ArmoredCarArt.md](ArmoredCarArt.md) for current battle setup, replaceable art/effect/audio assets, and validation limits.
 
 ## Architecture
 

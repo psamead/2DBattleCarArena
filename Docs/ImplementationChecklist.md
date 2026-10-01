@@ -2,7 +2,7 @@
 
 This checklist tracks verified work from [ImplementationPlan.md](ImplementationPlan.md). Check an item only after its implementation has been validated in Unity.
 
-Last updated: 2026-09-30
+Last updated: 2026-10-02
 
 ## Project organization
 
@@ -83,6 +83,15 @@ Last updated: 2026-09-30
 - [x] Show the winner and defeat reason once; keep the scene to one fight.
 - [x] Feed player engine, weapon, and armor stats into movement and health.
 - [x] Return to `GarageHub` after briefly showing the result for either outcome.
+- [x] Replace the blockout cars with player and challenger side-view visual prefabs.
+- [x] Align both vehicle bodies and expose separate wheel transforms and dust anchors.
+- [x] Use rectangular health bars with the challenger fill progressing from the right.
+- [x] Add a 60-second battle limit, alternating push surges, wall rebounds, and time-limit health comparison.
+- [x] Add fast wheel rotation, contact recoil, wheel dust texture/material, and impact camera shake; smoke-checked in Play Mode.
+- [x] Add and start a looping 60-second battle music asset derived from `Locked_At_Redline.mp3`.
+- [x] Record battle art slots, effect assets, loop construction, and current verification limits in [BattleArenaTemplate.md](BattleArenaTemplate.md) and [ArmoredCarArt.md](ArmoredCarArt.md).
+- [ ] Play through a complete fight and verify both result paths return to `GarageHub`.
+- [ ] Listen to the battle loop seam in-game and tune dust presentation after reviewing the full battle.
 
 ## Phase 4 — Results and rank progression
 
@@ -93,7 +102,7 @@ Last updated: 2026-09-30
 ## Phase 5 — Polish and validation
 
 - [ ] Route music and sound effects through mixer groups.
-- [ ] Add collision feedback, particles, camera shake, and button feedback.
+- [ ] Add button feedback and route music and sound effects through mixer groups.
 - [ ] Validate common aspect ratios and supported input devices.
 - [ ] Add the planned EditMode and PlayMode test coverage.
 - [ ] Produce and launch a Windows x86_64 development build.

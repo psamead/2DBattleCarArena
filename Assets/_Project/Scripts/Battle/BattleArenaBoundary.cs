@@ -9,15 +9,5 @@ namespace BattleCarArena.Battle
             other.GetComponent<CrashReporter>()?.ReportBoundaryHit();
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            CrashReporter reporter = collision.collider.GetComponent<CrashReporter>();
-            if (reporter == null)
-            {
-                reporter = collision.otherCollider.GetComponent<CrashReporter>();
-            }
-
-            reporter?.ReportBoundaryHit();
-        }
     }
 }

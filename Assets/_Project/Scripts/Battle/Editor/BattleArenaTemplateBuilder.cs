@@ -11,6 +11,9 @@ namespace BattleCarArena.Battle.Editor
     public static class BattleArenaTemplateBuilder
     {
         private const string ScenePath = "Assets/_Project/Scenes/BattleArena.unity";
+        private const string ArenaBackgroundPath = "Assets/_Project/Art/BattleArena/battle_arena_background_open_floor.png";
+        private const string HealthBarSpritePath = "Assets/_Project/Art/BattleArena/HealthBarSquare.png";
+        private const string BattleMusicPath = "Assets/_Project/Audio/Music/Locked_At_Redline_BattleLoop.wav";
         private static readonly Color SkyColor = new(0.42f, 0.47f, 0.52f, 1f);
         private static readonly Color RoadColor = new(0.28f, 0.3f, 0.32f, 1f);
         private static readonly Color WallColor = new(0.48f, 0.5f, 0.52f, 1f);
@@ -45,20 +48,29 @@ namespace BattleCarArena.Battle.Editor
                 return;
             }
 
-            CreateCamera();
-            CreateBackdrop(square);
+            Camera camera = CreateCamera();
+            Sprite arenaBackground = AssetDatabase.LoadAssetAtPath<Sprite>(ArenaBackgroundPath);
+            CreateBackdrop(square, arenaBackground);
             CreateWalls(square);
 
             GameObject controllerObject = new("BattleArenaController");
             BattleArenaController controller = controllerObject.AddComponent<BattleArenaController>();
+            AudioSource battleMusic = controllerObject.AddComponent<AudioSource>();
+            battleMusic.clip = AssetDatabase.LoadAssetAtPath<AudioClip>(BattleMusicPath);
+            battleMusic.loop = true;
+            battleMusic.playOnAwake = false;
+            battleMusic.spatialBlend = 0f;
+            battleMusic.volume = 0.55f;
 
             (CarMotor2D playerMotor, CrashReporter playerCrash) = CreateCar(
-                square, "PlayerCar", new Vector2(-4.5f, -2.08f), new Color(0.27f, 0.62f, 0.78f), true);
+                "PlayerCar", new Vector2(-4.5f, -1.77f), "Assets/_Project/Prefabs/Battle/ArmoredCarVisual.prefab");
             (CarMotor2D challengerMotor, CrashReporter challengerCrash) = CreateCar(
-                square, "ChallengerCar", new Vector2(4.5f, -2.08f), new Color(0.82f, 0.53f, 0.25f), false);
+                "ChallengerCar", new Vector2(4.5f, -1.65f), "Assets/_Project/Prefabs/Battle/ChallengerCarVisual.prefab");
 
-            (BattleHudView hud, BattleResultView resultView) = CreateHud(square);
-            SetControllerReferences(controller, playerMotor, challengerMotor, playerCrash, challengerCrash, hud);
+            (BattleHudView hud, BattleResultView resultView) = CreateHud(LoadHealthBarSprite(square));
+            BattleArenaCameraRig cameraRig = camera.GetComponent<BattleArenaCameraRig>();
+            SetCameraTargets(cameraRig, playerMotor.transform, challengerMotor.transform);
+            SetControllerReferences(controller, playerMotor, challengerMotor, playerCrash, challengerCrash, hud, cameraRig);
             SetHudReferences(hud, resultView);
 
             EditorSceneManager.MarkSceneDirty(scene);
@@ -66,7 +78,31 @@ namespace BattleCarArena.Battle.Editor
             Debug.Log("Created the Battle Arena blockout at " + ScenePath);
         }
 
-        private static void CreateCamera()
+        private static Sprite LoadHealthBarSprite(Sprite fallback)
+        {
+            Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(HealthBarSpritePath);
+            if (sprite != null) return sprite;
+            string absolutePath = System.IO.Path.GetFullPath(HealthBarSpritePath);
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(absolutePath));
+            Texture2D pixel = new(2, 2, TextureFormat.RGBA32, false);
+            pixel.SetPixels(new[] { Color.white, Color.white, Color.white, Color.white });
+            pixel.Apply();
+            System.IO.File.WriteAllBytes(absolutePath, pixel.EncodeToPNG());
+            Object.DestroyImmediate(pixel);
+            AssetDatabase.ImportAsset(HealthBarSpritePath, ImportAssetOptions.ForceSynchronousImport);
+            TextureImporter importer = AssetImporter.GetAtPath(HealthBarSpritePath) as TextureImporter;
+            if (importer != null)
+            {
+                importer.textureType = TextureImporterType.Sprite;
+                importer.spriteImportMode = SpriteImportMode.Single;
+                importer.filterMode = FilterMode.Point;
+                importer.mipmapEnabled = false;
+                importer.SaveAndReimport();
+            }
+            return AssetDatabase.LoadAssetAtPath<Sprite>(HealthBarSpritePath) ?? fallback;
+        }
+
+        private static Camera CreateCamera()
         {
             GameObject cameraObject = new("Main Camera");
             cameraObject.tag = "MainCamera";
@@ -79,11 +115,27 @@ namespace BattleCarArena.Battle.Editor
             camera.nearClipPlane = 0.1f;
             camera.farClipPlane = 100f;
             cameraObject.AddComponent<AudioListener>();
+            cameraObject.AddComponent<BattleArenaCameraRig>();
+            return camera;
         }
 
-        private static void CreateBackdrop(Sprite square)
+        private static void CreateBackdrop(Sprite square, Sprite arenaBackground)
         {
-            CreateWorldBlock(square, "Background", null, new Vector3(0f, 1.7f, 5f), new Vector2(20f, 7.4f), SkyColor, 0);
+            if (arenaBackground != null)
+            {
+                GameObject background = new("BattleArenaBackground");
+                background.transform.position = new Vector3(0f, 0f, 1f);
+                // Overscan the arena art so camera tracking and zooming never expose the clear color.
+                background.transform.localScale = Vector3.one * 1.28f;
+                SpriteRenderer renderer = background.AddComponent<SpriteRenderer>();
+                renderer.sprite = arenaBackground;
+                renderer.sortingOrder = -10;
+            }
+            else
+            {
+                CreateWorldBlock(square, "Background", null, new Vector3(0f, 1.7f, 5f), new Vector2(20f, 7.4f), SkyColor, 0);
+            }
+
             CreateWorldBlock(square, "ForegroundRoad", null, new Vector3(0f, -3.65f, 0f), new Vector2(20f, 2.1f), RoadColor, 1);
             CreateWorldBlock(square, "RoadCenterMarking", null, new Vector3(0f, -3.61f, -0.1f), new Vector2(17.2f, 0.035f), new Color(0.72f, 0.72f, 0.69f), 2);
         }
@@ -99,12 +151,12 @@ namespace BattleCarArena.Battle.Editor
             GameObject wall = CreateWorldBlock(square, name, null, new Vector3(x, -0.28f, -0.25f), new Vector2(0.48f, 4.74f), WallColor, 4);
             BoxCollider2D wallCollider = wall.AddComponent<BoxCollider2D>();
             wallCollider.size = Vector2.one;
-            wallCollider.isTrigger = true;
+            wallCollider.isTrigger = false;
             wall.AddComponent<BattleArenaBoundary>();
         }
 
         private static (CarMotor2D motor, CrashReporter crash) CreateCar(
-            Sprite square, string name, Vector2 position, Color bodyColor, bool facingRight)
+            string name, Vector2 position, string visualPrefabPath)
         {
             GameObject car = new(name);
             car.transform.position = new Vector3(position.x, position.y, -0.4f);
@@ -120,14 +172,19 @@ namespace BattleCarArena.Battle.Editor
             body.constraints = RigidbodyConstraints2D.FreezeRotation;
 
             BoxCollider2D collider = car.AddComponent<BoxCollider2D>();
-            collider.size = new Vector2(2.25f, 0.82f);
+            collider.size = new Vector2(4.3f, 1.2f);
+            collider.offset = new Vector2(0f, -0.05f);
 
-            float facingSign = facingRight ? 1f : -1f;
-            CreateWorldBlock(square, "BodyBlock", car.transform, new Vector3(0f, 0f, 0f), new Vector2(2.25f, 0.78f), bodyColor, 6);
-            CreateWorldBlock(square, "CabBlock", car.transform, new Vector3(-0.12f * facingSign, 0.48f, -0.02f), new Vector2(1.1f, 0.36f), Color.Lerp(bodyColor, Color.white, 0.22f), 7);
-            CreateWorldBlock(square, "FrontBumperBlock", car.transform, new Vector3(1.18f * facingSign, -0.1f, -0.03f), new Vector2(0.22f, 0.28f), new Color(0.2f, 0.21f, 0.22f), 8);
-            CreateWorldBlock(square, "FrontWheelBlock", car.transform, new Vector3(0.67f, -0.46f, -0.04f), new Vector2(0.42f, 0.32f), new Color(0.16f, 0.17f, 0.18f), 8);
-            CreateWorldBlock(square, "RearWheelBlock", car.transform, new Vector3(-0.67f, -0.46f, -0.04f), new Vector2(0.42f, 0.32f), new Color(0.16f, 0.17f, 0.18f), 8);
+            GameObject visualPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(visualPrefabPath);
+            if (visualPrefab == null)
+            {
+                Debug.LogError("Car visual prefab not found: " + visualPrefabPath);
+                Object.DestroyImmediate(car);
+                return (null, null);
+            }
+
+            GameObject visual = PrefabUtility.InstantiatePrefab(visualPrefab) as GameObject;
+            visual.transform.SetParent(car.transform, false);
 
             CarMotor2D motor = car.AddComponent<CarMotor2D>();
             SerializedObject motorObject = new(motor);
@@ -142,20 +199,34 @@ namespace BattleCarArena.Battle.Editor
         {
             GameObject canvasObject = new("BattleHUD", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             Canvas canvas = canvasObject.GetComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.renderMode = RenderMode.ScreenSpaceCamera;
+            canvas.worldCamera = Camera.main;
+            canvas.planeDistance = 5f;
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 100;
             CanvasScaler scaler = canvasObject.GetComponent<CanvasScaler>();
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             scaler.referenceResolution = new Vector2(1920f, 1080f);
             scaler.matchWidthOrHeight = 0.5f;
 
             TMP_FontAsset font = TMP_Settings.defaultFontAsset;
-            TMP_Text playerName = CreateText("PlayerName", canvasObject.transform, font, 48f, new Vector2(-485f, -34f), new Vector2(520f, 68f), TextAlignmentOptions.MidlineLeft);
-            TMP_Text challengerName = CreateText("ChallengerName", canvasObject.transform, font, 48f, new Vector2(485f, -34f), new Vector2(520f, 68f), TextAlignmentOptions.MidlineRight);
-            TMP_Text playerHealthLabel = CreateText("PlayerHealthValue", canvasObject.transform, font, 28f, new Vector2(-485f, -144f), new Vector2(520f, 42f), TextAlignmentOptions.MidlineLeft);
-            TMP_Text challengerHealthLabel = CreateText("ChallengerHealthValue", canvasObject.transform, font, 28f, new Vector2(485f, -144f), new Vector2(520f, 42f), TextAlignmentOptions.MidlineRight);
-            Image playerHealthFill = CreateHealthBar(square, canvasObject.transform, "PlayerHealthBar", -485f, true, new Color(0.32f, 0.78f, 0.44f));
-            Image challengerHealthFill = CreateHealthBar(square, canvasObject.transform, "ChallengerHealthBar", 485f, false, new Color(0.88f, 0.42f, 0.3f));
-            TMP_Text cue = CreateText("StartCue", canvasObject.transform, font, 72f, new Vector2(0f, 185f), new Vector2(760f, 110f), TextAlignmentOptions.Center);
+            TMP_Text playerName = CreateText("PlayerName", canvasObject.transform, font, 36f, Vector2.zero, new Vector2(520f, 48f), TextAlignmentOptions.MidlineLeft);
+            TMP_Text challengerName = CreateText("ChallengerName", canvasObject.transform, font, 36f, Vector2.zero, new Vector2(520f, 48f), TextAlignmentOptions.MidlineRight);
+            TMP_Text playerHealthLabel = CreateText("PlayerHealthValue", canvasObject.transform, font, 24f, Vector2.zero, new Vector2(520f, 36f), TextAlignmentOptions.MidlineLeft);
+            TMP_Text challengerHealthLabel = CreateText("ChallengerHealthValue", canvasObject.transform, font, 24f, Vector2.zero, new Vector2(520f, 36f), TextAlignmentOptions.MidlineRight);
+            ConfigureHudRect(playerName.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, -82f), new Vector2(520f, 48f));
+            ConfigureHudRect(challengerName.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-56f, -82f), new Vector2(520f, 48f));
+            ConfigureHudRect(playerHealthLabel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, -132f), new Vector2(520f, 36f));
+            ConfigureHudRect(challengerHealthLabel.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-56f, -132f), new Vector2(520f, 36f));
+            playerName.text = "PLAYER";
+            challengerName.text = "CHALLENGER";
+            playerHealthLabel.text = "65 / 65";
+            challengerHealthLabel.text = "140 / 140";
+            Image playerHealthFill = CreateHealthBar(square, canvasObject.transform, "PlayerHealthBar", true, new Color(0.32f, 0.78f, 0.44f));
+            Image challengerHealthFill = CreateHealthBar(square, canvasObject.transform, "ChallengerHealthBar", false, new Color(0.88f, 0.42f, 0.3f));
+            TMP_Text cue = CreateText("StartCue", canvasObject.transform, font, 54f, Vector2.zero, new Vector2(520f, 82f), TextAlignmentOptions.Center);
+            ConfigureHudRect(cue.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -44f), new Vector2(520f, 82f));
+            cue.text = "GET READY";
 
             GameObject resultPanel = CreateUiImage(square, "ResultPanel", canvasObject.transform, new Vector2(0f, 10f), new Vector2(820f, 300f), new Color(0.1f, 0.12f, 0.14f, 0.94f));
             TMP_Text resultText = CreateText("ResultText", resultPanel.transform, font, 64f, new Vector2(0f, 42f), new Vector2(780f, 112f), TextAlignmentOptions.Center);
@@ -184,15 +255,20 @@ namespace BattleCarArena.Battle.Editor
             return (hud, result);
         }
 
-        private static Image CreateHealthBar(Sprite square, Transform parent, string name, float x, bool fillFromLeft, Color fillColor)
+        private static Image CreateHealthBar(Sprite square, Transform parent, string name, bool fillFromLeft, Color fillColor)
         {
-            GameObject track = CreateUiImage(square, name, parent, new Vector2(x, -98f), new Vector2(620f, 30f), new Color(0.18f, 0.19f, 0.2f, 0.9f));
+            GameObject track = CreateUiImage(square, name, parent, Vector2.zero, new Vector2(570f, 26f), new Color(0.18f, 0.19f, 0.2f, 0.9f));
+            RectTransform trackRect = track.GetComponent<RectTransform>();
+            Vector2 topAnchor = fillFromLeft ? new Vector2(0f, 1f) : new Vector2(1f, 1f);
+            Vector2 topPivot = topAnchor;
+            Vector2 offset = fillFromLeft ? new Vector2(56f, -46f) : new Vector2(-56f, -46f);
+            ConfigureHudRect(trackRect, topAnchor, topPivot, offset, new Vector2(570f, 26f));
             RectTransform fillRect = CreateRect("Fill", track.transform);
-            fillRect.anchorMin = fillFromLeft ? Vector2.zero : new Vector2(1f, 0f);
-            fillRect.anchorMax = fillFromLeft ? Vector2.one : new Vector2(0f, 1f);
+            fillRect.anchorMin = Vector2.zero;
+            fillRect.anchorMax = Vector2.one;
             fillRect.pivot = fillFromLeft ? new Vector2(0f, 0.5f) : new Vector2(1f, 0.5f);
-            fillRect.offsetMin = Vector2.zero;
-            fillRect.offsetMax = Vector2.zero;
+            fillRect.offsetMin = new Vector2(2f, 2f);
+            fillRect.offsetMax = new Vector2(-2f, -2f);
             Image fill = fillRect.gameObject.AddComponent<Image>();
             fill.sprite = square;
             fill.color = fillColor;
@@ -235,6 +311,15 @@ namespace BattleCarArena.Battle.Editor
             return text;
         }
 
+        private static void ConfigureHudRect(RectTransform rect, Vector2 anchor, Vector2 pivot, Vector2 position, Vector2 size)
+        {
+            rect.anchorMin = anchor;
+            rect.anchorMax = anchor;
+            rect.pivot = pivot;
+            rect.anchoredPosition = position;
+            rect.sizeDelta = size;
+        }
+
         private static GameObject CreateWorldBlock(Sprite square, string name, Transform parent, Vector3 position, Vector2 size, Color color, int sortingOrder)
         {
             GameObject block = new(name);
@@ -266,7 +351,8 @@ namespace BattleCarArena.Battle.Editor
             CarMotor2D challengerMotor,
             CrashReporter playerCrash,
             CrashReporter challengerCrash,
-            BattleHudView hud)
+            BattleHudView hud,
+            BattleArenaCameraRig cameraRig)
         {
             SerializedObject serialized = new(controller);
             serialized.FindProperty("playerMotor").objectReferenceValue = playerMotor;
@@ -274,10 +360,22 @@ namespace BattleCarArena.Battle.Editor
             serialized.FindProperty("playerCrashReporter").objectReferenceValue = playerCrash;
             serialized.FindProperty("challengerCrashReporter").objectReferenceValue = challengerCrash;
             serialized.FindProperty("hud").objectReferenceValue = hud;
+            serialized.FindProperty("cameraRig").objectReferenceValue = cameraRig;
             serialized.FindProperty("challengerEnginePower").intValue = 220;
-            serialized.FindProperty("challengerWeaponDamage").intValue = 15;
+            serialized.FindProperty("challengerWeaponDamage").intValue = 6;
             serialized.FindProperty("challengerArmorDurability").intValue = 140;
-            serialized.FindProperty("contactDamageInterval").floatValue = 0.65f;
+            serialized.FindProperty("contactDamageInterval").floatValue = 5.5f;
+            serialized.FindProperty("battleDurationSeconds").floatValue = 60f;
+            serialized.FindProperty("boundaryCrashDamage").intValue = 2;
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static void SetCameraTargets(BattleArenaCameraRig rig, Transform player, Transform challenger)
+        {
+            SerializedObject serialized = new(rig);
+            serialized.FindProperty("targetCamera").objectReferenceValue = rig.GetComponent<Camera>();
+            serialized.FindProperty("playerTarget").objectReferenceValue = player;
+            serialized.FindProperty("challengerTarget").objectReferenceValue = challenger;
             serialized.ApplyModifiedPropertiesWithoutUndo();
         }
 

@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: 1066f4a011cfc624699b7194bea899a4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4785499093484847905
+    second: ChallengerCar_Wheel_0
+  - first:
+      213: -5138391360792646594
+    second: ChallengerCar_Wheel_1
+  - first:
+      213: 3075407595429125451
+    second: ChallengerCar_Wheel_2
+  - first:
+      213: 1135325705848129562
+    second: ChallengerCar_Wheel_3
+  - first:
+      213: -5394245559424909725
+    second: ChallengerCar_Wheel_4
+  - first:
+      213: 4673925948767939343
+    second: ChallengerCar_Wheel_5
+  - first:
+      213: -5571893306589696443
+    second: ChallengerCar_Wheel_6
+  - first:
+      213: -8005539286944621542
+    second: ChallengerCar_Wheel_7
+  - first:
+      213: 6090681712395571682
+    second: ChallengerCar_Wheel_8
+  - first:
+      213: -1624813638239127844
+    second: ChallengerCar_Wheel_9
+  - first:
+      213: -6633046537459134149
+    second: ChallengerCar_Wheel_10
+  - first:
+      213: 6813646478260262656
+    second: ChallengerCar_Wheel_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 400
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 1250
+        height: 1150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdcb1ebdded769db0800000000000000
+      internalID: -4785499093484847905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 404
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3ca40f1844c0b8b0800000000000000
+      internalID: -5138391360792646594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_2
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 56
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4d5711f9ea0eaa20800000000000000
+      internalID: 3075407595429125451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_3
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 64
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a188279d6bc71cf00800000000000000
+      internalID: 1135325705848129562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_4
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 52
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36eff3f5e3ac325b0800000000000000
+      internalID: -5394245559424909725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_5
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 29
+        width: 22
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0b2bca03ee1dd040800000000000000
+      internalID: 4673925948767939343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_6
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 15
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54e285e0f88aca2b0800000000000000
+      internalID: -5571893306589696443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_7
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 22
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1c5b360f6c96e090800000000000000
+      internalID: -8005539286944621542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_8
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 15
+        width: 27
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e15e436fb2768450800000000000000
+      internalID: 6090681712395571682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_9
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 15
+        width: 8
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd6fb8aca908379e0800000000000000
+      internalID: -1624813638239127844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_10
+      rect:
+        serializedVersion: 2
+        x: 467
+        y: 15
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b311d1c415fa2f3a0800000000000000
+      internalID: -6633046537459134149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_Wheel_11
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 15
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0075bc92f5fee8e50800000000000000
+      internalID: 6813646478260262656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ChallengerCar_Wheel_0: -4785499093484847905
+      ChallengerCar_Wheel_1: -5138391360792646594
+      ChallengerCar_Wheel_10: -6633046537459134149
+      ChallengerCar_Wheel_11: 6813646478260262656
+      ChallengerCar_Wheel_2: 3075407595429125451
+      ChallengerCar_Wheel_3: 1135325705848129562
+      ChallengerCar_Wheel_4: -5394245559424909725
+      ChallengerCar_Wheel_5: 4673925948767939343
+      ChallengerCar_Wheel_6: -5571893306589696443
+      ChallengerCar_Wheel_7: -8005539286944621542
+      ChallengerCar_Wheel_8: 6090681712395571682
+      ChallengerCar_Wheel_9: -1624813638239127844
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

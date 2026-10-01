@@ -1,0 +1,715 @@
+fileFormatVersion: 2
+guid: 10337d0e3b900dd4ca8aa9df7b77b1ca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5999256813373547034
+    second: ChallengerCar_SideBody_0
+  - first:
+      213: -4490896568332795922
+    second: ChallengerCar_SideBody_1
+  - first:
+      213: -1840259907092876325
+    second: ChallengerCar_SideBody_2
+  - first:
+      213: 8202541186379589337
+    second: ChallengerCar_SideBody_3
+  - first:
+      213: 686174681830970108
+    second: ChallengerCar_SideBody_4
+  - first:
+      213: 3727342412282487868
+    second: ChallengerCar_SideBody_5
+  - first:
+      213: -2214963018863378346
+    second: ChallengerCar_SideBody_6
+  - first:
+      213: 8664654723334645593
+    second: ChallengerCar_SideBody_7
+  - first:
+      213: 2218029143568232648
+    second: ChallengerCar_SideBody_8
+  - first:
+      213: 6019211207524427611
+    second: ChallengerCar_SideBody_9
+  - first:
+      213: -7845584309545385001
+    second: ChallengerCar_SideBody_10
+  - first:
+      213: -626200426174473676
+    second: ChallengerCar_SideBody_11
+  - first:
+      213: -8790568965465860388
+    second: ChallengerCar_SideBody_12
+  - first:
+      213: 7942498880398182449
+    second: ChallengerCar_SideBody_13
+  - first:
+      213: 7608963421000960855
+    second: ChallengerCar_SideBody_14
+  - first:
+      213: -7915850907257323666
+    second: ChallengerCar_SideBody_15
+  - first:
+      213: 578692591855723214
+    second: ChallengerCar_SideBody_16
+  - first:
+      213: -1282563121451090901
+    second: ChallengerCar_SideBody_17
+  - first:
+      213: -8393806059864829726
+    second: ChallengerCar_SideBody_18
+  - first:
+      213: 3490870474526269663
+    second: ChallengerCar_SideBody_19
+  - first:
+      213: 7228838608542422285
+    second: ChallengerCar_SideBody_20
+  - first:
+      213: -5896461631266351313
+    second: ChallengerCar_SideBody_21
+  - first:
+      213: 6370894695229523314
+    second: ChallengerCar_SideBody_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 400
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1761
+        height: 879
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ed1782b6bb5ebca0800000000000000
+      internalID: -5999256813373547034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 716
+        width: 5
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eefb0896d512da1c0800000000000000
+      internalID: -4490896568332795922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 681
+        width: 5
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd3f5575d551676e0800000000000000
+      internalID: -1840259907092876325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_3
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 80
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d6aaa500c745d170800000000000000
+      internalID: 8202541186379589337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_4
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 74
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf2d664dc38c58900800000000000000
+      internalID: 686174681830970108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_5
+      rect:
+        serializedVersion: 2
+        x: 1334
+        y: 80
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c346858fc2e2ab330800000000000000
+      internalID: 3727342412282487868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_6
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 55
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6508506aeded241e0800000000000000
+      internalID: -2214963018863378346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_7
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 53
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 957a5c540990f3870800000000000000
+      internalID: 8664654723334645593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_8
+      rect:
+        serializedVersion: 2
+        x: 1338
+        y: 63
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c039d321c508ce10800000000000000
+      internalID: 2218029143568232648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_9
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 48
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b572b8cb3b8888350800000000000000
+      internalID: 6019211207524427611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_10
+      rect:
+        serializedVersion: 2
+        x: 1449
+        y: 55
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d34b2e53a2ee1390800000000000000
+      internalID: -7845584309545385001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_11
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 53
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43a1ca7b70a4f47f0800000000000000
+      internalID: -626200426174473676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_12
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 39
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd695dfa910a10680800000000000000
+      internalID: -8790568965465860388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_13
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 31
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 138421b86ac693e60800000000000000
+      internalID: 7942498880398182449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_14
+      rect:
+        serializedVersion: 2
+        x: 978
+        y: 23
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75b04b9dae7789960800000000000000
+      internalID: 7608963421000960855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_15
+      rect:
+        serializedVersion: 2
+        x: 1086
+        y: 31
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6f39f13a8f352290800000000000000
+      internalID: -7915850907257323666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_16
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 17
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec2e5b3a8dde70800800000000000000
+      internalID: 578692591855723214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_17
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 17
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c34e7e2ab633ee0800000000000000
+      internalID: -1282563121451090901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_18
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 17
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e05c306cd5338b80800000000000000
+      internalID: -8393806059864829726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_19
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 7
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd0a90f7330127030800000000000000
+      internalID: 3490870474526269663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_20
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 23
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d05dcc81a6ef15460800000000000000
+      internalID: 7228838608542422285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_21
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 21
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2716ac136f8b2ea0800000000000000
+      internalID: -5896461631266351313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChallengerCar_SideBody_22
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 15
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 275839a88f6f96850800000000000000
+      internalID: 6370894695229523314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ChallengerCar_SideBody_0: -5999256813373547034
+      ChallengerCar_SideBody_1: -4490896568332795922
+      ChallengerCar_SideBody_10: -7845584309545385001
+      ChallengerCar_SideBody_11: -626200426174473676
+      ChallengerCar_SideBody_12: -8790568965465860388
+      ChallengerCar_SideBody_13: 7942498880398182449
+      ChallengerCar_SideBody_14: 7608963421000960855
+      ChallengerCar_SideBody_15: -7915850907257323666
+      ChallengerCar_SideBody_16: 578692591855723214
+      ChallengerCar_SideBody_17: -1282563121451090901
+      ChallengerCar_SideBody_18: -8393806059864829726
+      ChallengerCar_SideBody_19: 3490870474526269663
+      ChallengerCar_SideBody_2: -1840259907092876325
+      ChallengerCar_SideBody_20: 7228838608542422285
+      ChallengerCar_SideBody_21: -5896461631266351313
+      ChallengerCar_SideBody_22: 6370894695229523314
+      ChallengerCar_SideBody_3: 8202541186379589337
+      ChallengerCar_SideBody_4: 686174681830970108
+      ChallengerCar_SideBody_5: 3727342412282487868
+      ChallengerCar_SideBody_6: -2214963018863378346
+      ChallengerCar_SideBody_7: 8664654723334645593
+      ChallengerCar_SideBody_8: 2218029143568232648
+      ChallengerCar_SideBody_9: 6019211207524427611
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

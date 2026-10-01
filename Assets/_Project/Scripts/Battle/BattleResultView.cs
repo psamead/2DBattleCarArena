@@ -24,9 +24,12 @@ namespace BattleCarArena.Battle
 
             if (reasonText != null)
             {
-                reasonText.text = resolution.Reason == BattleEndReason.BoundaryHit
-                    ? "PUSHED INTO THE WALL"
-                    : "HEALTH DEPLETED";
+                reasonText.text = resolution.Reason switch
+                {
+                    BattleEndReason.BoundaryHit => "PUSHED INTO THE WALL",
+                    BattleEndReason.TimeLimit => "TIME LIMIT - HEALTH LEAD",
+                    _ => "HEALTH DEPLETED"
+                };
             }
         }
 

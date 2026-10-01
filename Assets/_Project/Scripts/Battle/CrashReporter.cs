@@ -25,6 +25,12 @@ namespace BattleCarArena.Battle
 
         private void OnCollisionStay2D(Collision2D collision)
         {
+            // Wall impacts are damage events; do not apply that damage every physics frame.
+            if (FindBoundary(collision.collider, collision.otherCollider) != null)
+            {
+                return;
+            }
+
             HandleColliders(collision.collider, collision.otherCollider);
         }
 
@@ -33,14 +39,6 @@ namespace BattleCarArena.Battle
             if (FindCrashReporter(collision.collider, collision.otherCollider) != null)
             {
                 controller?.SetCarsInContact(false);
-            }
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.GetComponent<BattleArenaBoundary>() != null)
-            {
-                ReportBoundaryHit();
             }
         }
 
