@@ -149,6 +149,24 @@ namespace BattleCarArena.UI
                 }
             }
             AddTransitionGraphics(buttonImages, 2, seen);
+            ExcludeTransitionGraphicTree(carPreviewImage);
+            ExcludeTransitionGraphicTree(alternateCarPreviewImage);
+            ExcludeTransitionGraphicTree(carFlickerOverlayImage);
+            ExcludeTransitionGraphicTree(alternateCarFlickerOverlayImage);
+        }
+
+        private void ExcludeTransitionGraphicTree(Graphic root)
+        {
+            if (root == null) return;
+            Graphic[] graphics = root.GetComponentsInChildren<Graphic>(true);
+            for (int graphicIndex = graphics.Length - 1; graphicIndex >= 0; graphicIndex--)
+            {
+                int transitionIndex = transitionGraphics.IndexOf(graphics[graphicIndex]);
+                if (transitionIndex < 0) continue;
+                transitionGraphics.RemoveAt(transitionIndex);
+                transitionBaseColors.RemoveAt(transitionIndex);
+                transitionPhases.RemoveAt(transitionIndex);
+            }
         }
 
         private void CreateEntranceDarknessOverlay()
