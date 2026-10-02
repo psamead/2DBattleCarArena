@@ -18,7 +18,10 @@
 - The Engine, Weapon, Armor, Energy, Credits, Score, and Rank panels use the shared sliced rusted-steel frame at `Assets/_Project/Art/UI/GarageHub/GarageHubPanelFrame_RustedSteel.png`. Replace the `Slot Frame` field on `DefaultGarageHubTheme` to swap it for another frame; its nine-slice border preserves the corners when each panel scales.
 - The `GoToMissionButton` uses the replaceable `Go To Mission Button Frame` theme slot, currently assigned to `Assets/_Project/Art/UI/GarageHub/GoToMissionFrame_RustedSteel.png`; the transparent padding was trimmed to fit the current 470×86 button. `BackToMenuButton` keeps the shared action-button frame. Both buttons use the special 04B pixel font. The frame and font are theme fields, so they can be replaced without changing the presentation code. The sprites are rendered as simple stretched images (not nine-sliced); adjust each button's RectTransform to change its size.
 - Confirming `GoToMissionButton` plays the Garage Hub theme's shared low-metal UI confirmation cue through the persistent `GameSession` audio source, so the cue continues across the scene change.
-- Go to Mission loads the `BattleArena` scene. See [BattleArenaTemplate.md](BattleArenaTemplate.md) for battle rules. Back to Menu loads `StartMenu`. The session remains alive across either scene change, so the garage Credits, Score, Energy, and upgraded stats are retained when returning to the Garage during the same play session.
+- After the first battle victory, confirming the result loads `GarageTransit`, opens its separate garage door panel, reveals the garage interior, then returns to this scene. The GarageHub title, upgrade cards, stat panels, and buttons fade in in sequence. Initial Start Game still enters GarageHub directly before the player has won a battle.
+- Leaving GarageHub first fades out its title, panels, and buttons, then loads `GarageTransit` to close the door before continuing to `BattleArena` or `StartMenu`. The door frame and moving panel are separate sprites and can be replaced through `DefaultGarageDoorTransitionTheme`.
+- Go to Mission routes to `BattleArena`; Back to Menu routes to `StartMenu`. See [BattleArenaTemplate.md](BattleArenaTemplate.md) for battle rules. The session remains alive across scene changes, so garage Credits, Score, Energy, and upgraded stats are retained during the same play session.
+- The first-winner garage entrance and door transition paths are implemented, but their timing and visual alignment still need Play Mode verification.
 
 ## Swap assets
 
@@ -79,10 +82,13 @@ Assets/_Project/
   Art/UI/StartMenu/       Start Menu logo, button, and foreground sprites
   Art/UI/GarageHub/       Garage Hub car preview, frame, and upgrade sprites
     Upgrades/             Separate Engine, Weapon, and Armor icons
+  Art/UI/GarageDoor/      Separate fixed garage frame and moving shutter sprites
   Data/UI/StartMenu/      Start Menu theme asset
   Data/UI/GarageHub/      Garage Hub theme asset
+  Data/UI/GarageDoor/     Replaceable garage door transition theme
   Scripts/UI/StartMenu/   Start Menu behavior and template builder
   Scripts/UI/GarageHub/   Garage Hub theme and presentation behavior
+  Scripts/UI/GarageDoor/  Transit behavior and editor scene builder
 ```
 
 ## Porting to another laptop

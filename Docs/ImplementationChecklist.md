@@ -11,6 +11,7 @@ Last updated: 2026-10-03
 - [x] Keep music under `Assets/_Project/Audio/Music`.
 - [x] Keep Start Menu artwork under `Assets/_Project/Art/UI/StartMenu`.
 - [x] Keep Start Menu and Garage Hub theme assets in their respective `Assets/_Project/Data/UI` subfolders.
+- [x] Keep Garage Door transition art and theme in feature-named folders.
 - [x] Keep feature scripts in `Assets/_Project/Scripts/UI/StartMenu` and `Assets/_Project/Scripts/UI/GarageHub`.
 
 ## Phase 1 — Foundation and progression
@@ -81,11 +82,15 @@ Last updated: 2026-10-03
 - [x] Apply contact damage and end the fight when either car's health reaches zero.
 - [x] End the fight when a car is pushed into an end wall.
 - [x] Show the battle winner and result confirmation once; keep the scene to one fight.
-- [ ] Feed Engine, Weapon, and Armor upgrade values into movement, attacks, and defense.
-- [ ] Link player health to the starting Garage Score of 500 and randomize challenger health and each power within ±20% of the player.
-- [ ] Apply Engine power on car hits and Weapon power every 5 seconds, with separate 3-hit/3-shot Armor counters.
-- [ ] Deduct 20% Energy per completed round, restore 20% after every third round, and award 5% Score on victory.
+- [x] Feed Engine, Weapon, and Armor upgrade values into movement, attacks, and defense.
+- [x] Link player health to the starting Garage Score of 500 and randomize challenger health and each power within ±20% of the player.
+- [x] Apply Engine power on car hits and Weapon power every 5 seconds, with separate 3-hit/3-shot Armor counters.
+- [x] Deduct 20% Energy per completed round, restore 20% after every third round, and award 5% Score on victory.
 - [ ] Verify the new battle rules, Garage Energy readout, and win reward in Play Mode.
+- [x] Create separate fixed garage-frame and moving door-panel sprites in the Garage Door theme folder.
+- [x] Build and enable the `GarageTransit` scene with opening and closing door animations.
+- [x] Route first-victory entry through the garage door scene and animate GarageHub UI arrival and departure.
+- [ ] Verify first-win opening, GarageHub reveal, and both GarageHub closing routes in Play Mode.
 - [x] Return to `GarageHub` after the player confirms either result.
 - [x] Replace the blockout cars with player and challenger side-view visual prefabs.
 - [x] Align both vehicle bodies and expose separate wheel transforms and dust anchors.

@@ -76,14 +76,13 @@ namespace BattleCarArena.UI
 
         private void StartGame()
         {
-            if (!GameSession.Instance.SceneNavigator.CanLoad(garageSceneName))
+            if (!GameSession.Instance.SceneNavigator.EnterGarage(garageSceneName))
             {
-                Debug.LogWarning($"Cannot open '{garageSceneName}' yet. Create the scene and add it to Build Settings first.", this);
+                Debug.LogWarning($"Cannot open '{garageSceneName}'. Confirm the scene and GarageTransit are enabled in Build Settings.", this);
                 return;
             }
 
             view.StartButton.interactable = false;
-            GameSession.Instance.SceneNavigator.TryLoad(garageSceneName);
         }
 
         private static void ExitGame()

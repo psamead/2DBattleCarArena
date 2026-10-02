@@ -23,6 +23,7 @@ namespace BattleCarArena.Core
         public int ArmorPower { get; private set; } = 100;
         public int EnergyPercent { get; private set; } = MaximumEnergyPercent;
         public int CompletedRounds { get; private set; }
+        public bool HasWonBattle { get; private set; }
 
         public int GetUpgradeCost(GarageUpgradeType upgradeType)
         {
@@ -91,6 +92,7 @@ namespace BattleCarArena.Core
 
             if (playerWon)
             {
+                HasWonBattle = true;
                 Score += System.Math.Max(1, (Score * VictoryScoreRewardPercent + 99) / 100);
             }
         }

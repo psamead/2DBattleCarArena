@@ -1,5 +1,7 @@
 using TMPro;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +41,20 @@ namespace BattleCarArena.UI
         private float flickerTimeRemaining;
         private float activeFlickerStrength;
         private float carBackgroundBlend;
+        private readonly List<Graphic> transitionGraphics = new();
+        private readonly List<Color> transitionBaseColors = new();
+        private readonly List<int> transitionPhases = new();
+        private bool transitionRunning;
+
+        private void Start()
+        {
+            if (BattleCarArena.Core.GameSession.Instance.ConsumeGarageEntrancePresentationPending())
+            {
+                CacheTransitionGraphics();
+                SetTransitionAlpha(0f);
+                StartCoroutine(PlayEntranceAnimation());
+            }
+        }
 
         public void PlaySelectionConfirmSound()
         {
@@ -46,6 +62,131 @@ namespace BattleCarArena.UI
             {
                 BattleCarArena.Core.GameSession.Instance.PlayUiSound(theme.SelectionConfirmSound);
             }
+        }
+
+        public void PlayExitAnimation(Action onComplete)
+        {
+            if (transitionRunning)
+            {
+                return;
+            }
+
+            CacheTransitionGraphics();
+            Button[] buttons = GetComponentsInChildren<Button>(true);
+            foreach (Button button in buttons)
+            {
+                button.interactable = false;
+            }
+
+            StartCoroutine(PlayExitAnimationRoutine(onComplete));
+        }
+
+        private IEnumerator PlayEntranceAnimation()
+        {
+            transitionRunning = true;
+            float elapsed = 0f;
+            const float duration = 1.05f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float t = Mathf.Clamp01(elapsed / duration);
+                SetEntranceProgress(t);
+                yield return null;
+            }
+
+            SetTransitionAlpha(1f);
+            transitionRunning = false;
+        }
+
+        private IEnumerator PlayExitAnimationRoutine(Action onComplete)
+        {
+            transitionRunning = true;
+            float elapsed = 0f;
+            const float duration = 0.55f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float t = Mathf.Clamp01(elapsed / duration);
+                for (int i = 0; i < transitionGraphics.Count; i++)
+                {
+                    float phaseStart = transitionPhases[i] * 0.12f;
+                    float local = Mathf.Clamp01((t - phaseStart) / Mathf.Max(0.01f, 1f - phaseStart));
+                    SetGraphicAlpha(transitionGraphics[i], transitionBaseColors[i], 1f - local);
+                }
+
+                yield return null;
+            }
+
+            SetTransitionAlpha(0f);
+            transitionRunning = false;
+            onComplete?.Invoke();
+        }
+
+        private void CacheTransitionGraphics()
+        {
+            transitionGraphics.Clear();
+            transitionBaseColors.Clear();
+            transitionPhases.Clear();
+            HashSet<Graphic> seen = new();
+            AddTransitionGraphic(titleLogoImage, 0, seen);
+            AddTransitionGraphics(panelImages, 1, seen);
+            AddTransitionGraphics(upgradeIconImages, 1, seen);
+            if (textElements != null)
+            {
+                foreach (TMP_Text text in textElements)
+                {
+                    AddTransitionGraphic(text, 1, seen);
+                }
+            }
+            AddTransitionGraphics(buttonImages, 2, seen);
+        }
+
+        private void AddTransitionGraphics(IEnumerable<Image> images, int phase, HashSet<Graphic> seen)
+        {
+            if (images == null) return;
+            foreach (Image image in images) AddTransitionGraphic(image, phase, seen);
+        }
+
+        private void AddTransitionGraphic(Graphic graphic, int phase, HashSet<Graphic> seen)
+        {
+            if (graphic == null || !seen.Add(graphic)) return;
+            transitionGraphics.Add(graphic);
+            transitionBaseColors.Add(graphic.color);
+            transitionPhases.Add(phase);
+
+            foreach (Graphic childGraphic in graphic.GetComponentsInChildren<Graphic>(true))
+            {
+                if (childGraphic == graphic || !seen.Add(childGraphic)) continue;
+                transitionGraphics.Add(childGraphic);
+                transitionBaseColors.Add(childGraphic.color);
+                transitionPhases.Add(phase);
+            }
+        }
+
+        private void SetEntranceProgress(float progress)
+        {
+            for (int i = 0; i < transitionGraphics.Count; i++)
+            {
+                float phaseStart = transitionPhases[i] * 0.18f;
+                float local = Mathf.Clamp01((progress - phaseStart) / Mathf.Max(0.01f, 1f - phaseStart));
+                SetGraphicAlpha(transitionGraphics[i], transitionBaseColors[i], local);
+            }
+        }
+
+        private void SetTransitionAlpha(float alpha)
+        {
+            for (int i = 0; i < transitionGraphics.Count; i++)
+            {
+                SetGraphicAlpha(transitionGraphics[i], transitionBaseColors[i], alpha);
+            }
+        }
+
+        private static void SetGraphicAlpha(Graphic graphic, Color baseColor, float alpha)
+        {
+            if (graphic == null) return;
+            Color color = baseColor;
+            color.a *= alpha;
+            graphic.color = color;
         }
 
         private void OnEnable()
@@ -75,7 +216,10 @@ namespace BattleCarArena.UI
 
         private void Update()
         {
-            UpdateNeonPulseTargets();
+            if (!transitionRunning)
+            {
+                UpdateNeonPulseTargets();
+            }
 
             if (theme == null)
             {

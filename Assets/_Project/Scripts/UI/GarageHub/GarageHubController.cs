@@ -26,6 +26,8 @@ namespace BattleCarArena.UI
         [SerializeField] private TMP_Text scoreValueText;
         [SerializeField] private TMP_Text energyValueText;
 
+        private bool isLeavingGarage;
+
         private void OnEnable()
         {
             AddListeners();
@@ -85,21 +87,33 @@ namespace BattleCarArena.UI
 
         private void GoToMission()
         {
-            GetComponent<GarageHubPresentation>()?.PlaySelectionConfirmSound();
-            LoadScene(battleSceneName);
+            LeaveGarage(battleSceneName);
         }
 
         private void BackToMenu()
         {
-            LoadScene(startMenuSceneName);
+            LeaveGarage(startMenuSceneName);
         }
 
-        private void LoadScene(string sceneName)
+        private void LeaveGarage(string sceneName)
         {
-            if (!GameSession.Instance.SceneNavigator.TryLoad(sceneName))
+            if (isLeavingGarage) return;
+            isLeavingGarage = true;
+            GarageHubPresentation presentation = GetComponent<GarageHubPresentation>();
+            presentation?.PlaySelectionConfirmSound();
+
+            void LoadDestination()
             {
-                Debug.LogWarning($"Cannot load '{sceneName}'. Check that its scene is present in Build Settings.", this);
+                if (!GameSession.Instance.SceneNavigator.ExitGarage(sceneName)
+                    && !GameSession.Instance.SceneNavigator.TryLoad(sceneName))
+                {
+                    isLeavingGarage = false;
+                    Debug.LogWarning($"Cannot load '{sceneName}'. Check that its scene is present in Build Settings.", this);
+                }
             }
+
+            if (presentation != null) presentation.PlayExitAnimation(LoadDestination);
+            else LoadDestination();
         }
     }
 }

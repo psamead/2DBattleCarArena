@@ -8,6 +8,9 @@ namespace BattleCarArena.Core
         private const string ObjectName = "GameSession";
         private static GameSession instance;
         private AudioSource uiAudioSource;
+        private string pendingGarageTransitDestination;
+        private bool pendingGarageTransitOpening;
+        private bool garageEntrancePresentationPending;
 
         public static GameSession Instance
         {
@@ -50,6 +53,39 @@ namespace BattleCarArena.Core
             }
 
             uiAudioSource.PlayOneShot(clip);
+        }
+
+        public void SetPendingGarageTransit(string destinationSceneName, bool opening)
+        {
+            pendingGarageTransitDestination = destinationSceneName;
+            pendingGarageTransitOpening = opening;
+        }
+
+        public bool TryConsumeGarageTransit(out string destinationSceneName, out bool opening)
+        {
+            destinationSceneName = pendingGarageTransitDestination;
+            opening = pendingGarageTransitOpening;
+            pendingGarageTransitDestination = null;
+            pendingGarageTransitOpening = false;
+            return !string.IsNullOrWhiteSpace(destinationSceneName);
+        }
+
+        public void ClearPendingGarageTransit()
+        {
+            pendingGarageTransitDestination = null;
+            pendingGarageTransitOpening = false;
+        }
+
+        public void MarkGarageEntrancePresentationPending()
+        {
+            garageEntrancePresentationPending = true;
+        }
+
+        public bool ConsumeGarageEntrancePresentationPending()
+        {
+            bool pending = garageEntrancePresentationPending;
+            garageEntrancePresentationPending = false;
+            return pending;
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
