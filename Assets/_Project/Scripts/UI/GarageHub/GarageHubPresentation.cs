@@ -45,12 +45,15 @@ namespace BattleCarArena.UI
         private readonly List<Color> transitionBaseColors = new();
         private readonly List<int> transitionPhases = new();
         private bool transitionRunning;
+        private Image entranceDarknessOverlay;
+        [SerializeField, Range(0f, 1f)] private float arrivalStartingDarkness = 0.2f;
 
         private void Start()
         {
             if (BattleCarArena.Core.GameSession.Instance.ConsumeGarageEntrancePresentationPending())
             {
                 CacheTransitionGraphics();
+                CreateEntranceDarknessOverlay();
                 SetTransitionAlpha(0f);
                 StartCoroutine(PlayEntranceAnimation());
             }
@@ -85,16 +88,23 @@ namespace BattleCarArena.UI
         {
             transitionRunning = true;
             float elapsed = 0f;
-            const float duration = 1.05f;
+            const float duration = 1f;
             while (elapsed < duration)
             {
                 elapsed += Time.unscaledDeltaTime;
                 float t = Mathf.Clamp01(elapsed / duration);
                 SetEntranceProgress(t);
+                SetEntranceDarkness(Mathf.Lerp(arrivalStartingDarkness, 0f, t));
                 yield return null;
             }
 
             SetTransitionAlpha(1f);
+            SetEntranceDarkness(0f);
+            if (entranceDarknessOverlay != null)
+            {
+                Destroy(entranceDarknessOverlay.gameObject);
+                entranceDarknessOverlay = null;
+            }
             transitionRunning = false;
         }
 
@@ -102,7 +112,7 @@ namespace BattleCarArena.UI
         {
             transitionRunning = true;
             float elapsed = 0f;
-            const float duration = 0.55f;
+            const float duration = 0.45f;
             while (elapsed < duration)
             {
                 elapsed += Time.unscaledDeltaTime;
@@ -139,6 +149,32 @@ namespace BattleCarArena.UI
                 }
             }
             AddTransitionGraphics(buttonImages, 2, seen);
+        }
+
+        private void CreateEntranceDarknessOverlay()
+        {
+            Canvas canvas = GetComponentInChildren<Canvas>(true);
+            if (canvas == null) return;
+
+            GameObject overlayObject = new("GarageArrivalDarkness", typeof(RectTransform), typeof(Image));
+            overlayObject.transform.SetParent(canvas.transform, false);
+            RectTransform rect = (RectTransform)overlayObject.transform;
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+            entranceDarknessOverlay = overlayObject.GetComponent<Image>();
+            entranceDarknessOverlay.color = new Color(0f, 0f, 0f, arrivalStartingDarkness);
+            entranceDarknessOverlay.raycastTarget = false;
+            rect.SetAsLastSibling();
+        }
+
+        private void SetEntranceDarkness(float alpha)
+        {
+            if (entranceDarknessOverlay == null) return;
+            Color color = entranceDarknessOverlay.color;
+            color.a = alpha;
+            entranceDarknessOverlay.color = color;
         }
 
         private void AddTransitionGraphics(IEnumerable<Image> images, int phase, HashSet<Graphic> seen)

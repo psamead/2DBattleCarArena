@@ -14,8 +14,10 @@ namespace BattleCarArena.UI
         [SerializeField] private Image interiorDarknessImage;
         [SerializeField] private Image doorPanelImage;
         [SerializeField] private Image doorFrameImage;
-        [SerializeField, Min(0.1f)] private float animationDuration = 0.85f;
-        [SerializeField, Range(0f, 1f)] private float closedInteriorDarkness = 0.58f;
+        [SerializeField, Min(0.1f)] private float openingAnimationDuration = 2f;
+        [SerializeField, Min(0.1f)] private float closingAnimationDuration = 2.55f;
+        [SerializeField, Range(0f, 1f)] private float closedInteriorDarkness = 0.85f;
+        [SerializeField, Range(0f, 1f)] private float openInteriorDarkness = 0.2f;
         private Vector2 closedPanelPosition;
         [SerializeField] private float panelOpenTravel = 730f;
 
@@ -79,23 +81,23 @@ namespace BattleCarArena.UI
                     : closedPanelPosition + Vector2.up * panelOpenTravel;
             }
 
-            SetDarkness(opening ? closedInteriorDarkness : 0f);
+            SetDarkness(opening ? closedInteriorDarkness : openInteriorDarkness);
         }
 
         private IEnumerator OpenGarage()
         {
-            yield return AnimateDoor(closedPanelPosition, closedPanelPosition + Vector2.up * panelOpenTravel, true);
+            yield return AnimateDoor(closedPanelPosition, closedPanelPosition + Vector2.up * panelOpenTravel, true, openingAnimationDuration);
             GameSession.Instance.MarkGarageEntrancePresentationPending();
             LoadDestination();
         }
 
         private IEnumerator CloseGarage()
         {
-            yield return AnimateDoor(closedPanelPosition + Vector2.up * panelOpenTravel, closedPanelPosition, false);
+            yield return AnimateDoor(closedPanelPosition + Vector2.up * panelOpenTravel, closedPanelPosition, false, closingAnimationDuration);
             LoadDestination();
         }
 
-        private IEnumerator AnimateDoor(Vector2 startPosition, Vector2 endPosition, bool openingDoor)
+        private IEnumerator AnimateDoor(Vector2 startPosition, Vector2 endPosition, bool openingDoor, float duration)
         {
             if (doorPanelImage == null || interiorDarknessImage == null)
             {
@@ -104,12 +106,12 @@ namespace BattleCarArena.UI
             }
 
             float elapsed = 0f;
-            float startDarkness = openingDoor ? closedInteriorDarkness : 0f;
-            float endDarkness = openingDoor ? 0f : closedInteriorDarkness;
-            while (elapsed < animationDuration)
+            float startDarkness = openingDoor ? closedInteriorDarkness : openInteriorDarkness;
+            float endDarkness = openingDoor ? openInteriorDarkness : closedInteriorDarkness;
+            while (elapsed < duration)
             {
                 elapsed += Time.unscaledDeltaTime;
-                float linear = Mathf.Clamp01(elapsed / animationDuration);
+                float linear = Mathf.Clamp01(elapsed / duration);
                 float eased = linear * linear * (3f - 2f * linear);
                 doorPanelImage.rectTransform.anchoredPosition = Vector2.LerpUnclamped(startPosition, endPosition, eased);
                 SetDarkness(Mathf.Lerp(startDarkness, endDarkness, eased));
