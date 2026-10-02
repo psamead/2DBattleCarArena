@@ -15,6 +15,7 @@ namespace BattleCarArena.Core
         private const int EnergyRecoveryInterval = 3;
         private const int EnergyRecoveryPercent = 20;
         private const int VictoryScoreRewardPercent = 5;
+        private const int VictoryCreditReward = 200;
 
         public int Credits { get; private set; } = 1000;
         public int Score { get; private set; } = 500;
@@ -93,6 +94,7 @@ namespace BattleCarArena.Core
             if (playerWon)
             {
                 HasWonBattle = true;
+                Credits += VictoryCreditReward;
                 Score += System.Math.Max(1, (Score * VictoryScoreRewardPercent + 99) / 100);
             }
         }

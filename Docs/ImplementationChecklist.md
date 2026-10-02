@@ -85,7 +85,7 @@ Last updated: 2026-10-03
 - [x] Feed Engine, Weapon, and Armor upgrade values into movement, attacks, and defense.
 - [x] Link player health to the starting Garage Score of 500 and randomize challenger health and each power within ±20% of the player.
 - [x] Apply Engine power on car hits and Weapon power every 5 seconds, with separate 3-hit/3-shot Armor counters.
-- [x] Deduct 20% Energy per completed round, restore 20% after every third round, and award 5% Score on victory.
+- [x] Deduct 20% Energy per completed round, restore 20% after every third round, and award 5% Score plus 200 Credits on victory.
 - [ ] Verify the new battle rules, Garage Energy readout, and win reward in Play Mode.
 - [x] Create separate fixed garage-frame and moving door-panel sprites in the Garage Door theme folder.
 - [x] Build and enable the `GarageTransit` scene with opening and closing door animations.
