@@ -142,7 +142,10 @@ namespace BattleCarArena.UI
 
         public void PlayOptionConfirmSound()
         {
-            PlayUiSound(optionConfirmSound);
+            if (optionConfirmSound != null)
+            {
+                BattleCarArena.Core.GameSession.Instance.PlayUiSound(optionConfirmSound);
+            }
         }
 
         public void EnsureOptionHoverFeedback()

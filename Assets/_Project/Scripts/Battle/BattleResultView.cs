@@ -1,4 +1,5 @@
 using System;
+using BattleCarArena.Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ namespace BattleCarArena.Battle
         [SerializeField] private TMP_Text resultText;
         [SerializeField] private TMP_Text reasonText;
         [SerializeField] private Button confirmButton;
+        [SerializeField] private AudioClip confirmSound;
 
         public event Action Confirmed;
 
@@ -77,6 +79,7 @@ namespace BattleCarArena.Battle
         {
             if (resultPanel != null && resultPanel.activeInHierarchy)
             {
+                GameSession.Instance.PlayUiSound(confirmSound);
                 Confirmed?.Invoke();
             }
         }

@@ -27,6 +27,7 @@ namespace BattleCarArena.UI
         [SerializeField] private TMP_FontAsset titleFont;
         [SerializeField] private TMP_FontAsset actionButtonFont;
         [SerializeField] private AudioClip backgroundMusic;
+        [SerializeField] private AudioClip selectionConfirmSound;
 
         [Header("Background Motion")]
         [SerializeField, Min(1f)] private float breathingCycleSeconds = 18f;
@@ -61,6 +62,7 @@ namespace BattleCarArena.UI
         public TMP_FontAsset TitleFont => titleFont;
         public TMP_FontAsset ActionButtonFont => actionButtonFont;
         public AudioClip BackgroundMusic => backgroundMusic;
+        public AudioClip SelectionConfirmSound => selectionConfirmSound;
         public float BreathingCycleSeconds => breathingCycleSeconds;
         public float FlickerIntervalMinimum => flickerIntervalMinimum;
         public float FlickerIntervalMaximum => flickerIntervalMaximum;

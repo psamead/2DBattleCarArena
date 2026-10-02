@@ -31,6 +31,7 @@ MonoBehaviour:
   titleFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   actionButtonFont: {fileID: 11400000, guid: e847f2595900640419b886f274120735, type: 2}
   backgroundMusic: {fileID: 8300000, guid: c4522dcd45f19d141bfad7e3b87f99dd, type: 3}
+  selectionConfirmSound: {fileID: 8300000, guid: 207dba58ae9f5b644b64ed210eb08c4d, type: 3}
   breathingCycleSeconds: 8
   flickerIntervalMinimum: 4
   flickerIntervalMaximum: 8

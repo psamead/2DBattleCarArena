@@ -8,7 +8,7 @@ The Start Menu is intentionally asset-independent. It creates a complete uGUI la
 - Start loads `GarageHub` when that scene is present in Build Settings.
 - Exit quits a player build and stops Play Mode in the Editor.
 - The first button is selected for keyboard/controller navigation.
-- Moving the pointer over either option plays the theme's hover sound. Clicking an option or activating it with keyboard/controller plays its confirmation sound.
+- Moving the pointer over either option plays the theme's hover sound. Clicking an option or activating it with keyboard/controller plays its confirmation sound through the persistent session audio source, so it can continue through scene changes.
 - Canvas scaling uses a 1920×1080 reference resolution with a balanced width/height match.
 
 ## Bake the editable hierarchy into the scene

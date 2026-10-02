@@ -85,6 +85,7 @@ namespace BattleCarArena.UI
 
         private void GoToMission()
         {
+            GetComponent<GarageHubPresentation>()?.PlaySelectionConfirmSound();
             LoadScene(battleSceneName);
         }
 

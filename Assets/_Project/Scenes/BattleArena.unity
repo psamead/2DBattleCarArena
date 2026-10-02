@@ -908,6 +908,7 @@ MonoBehaviour:
   resultText: {fileID: 1668690165}
   reasonText: {fileID: 1536716086}
   confirmButton: {fileID: 1249908750}
+  confirmSound: {fileID: 8300000, guid: 207dba58ae9f5b644b64ed210eb08c4d, type: 3}
 --- !u!114 &421603635
 MonoBehaviour:
   m_ObjectHideFlags: 0

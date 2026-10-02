@@ -7,6 +7,7 @@ namespace BattleCarArena.Core
     {
         private const string ObjectName = "GameSession";
         private static GameSession instance;
+        private AudioSource uiAudioSource;
 
         public static GameSession Instance
         {
@@ -31,6 +32,25 @@ namespace BattleCarArena.Core
 
         public SceneNavigator SceneNavigator { get; private set; }
         public GarageProgress GarageProgress { get; private set; }
+
+        public void PlayUiSound(AudioClip clip)
+        {
+            if (clip == null)
+            {
+                return;
+            }
+
+            if (uiAudioSource == null)
+            {
+                uiAudioSource = gameObject.AddComponent<AudioSource>();
+                uiAudioSource.playOnAwake = false;
+                uiAudioSource.loop = false;
+                uiAudioSource.spatialBlend = 0f;
+                uiAudioSource.volume = 1f;
+            }
+
+            uiAudioSource.PlayOneShot(clip);
+        }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStaticState()

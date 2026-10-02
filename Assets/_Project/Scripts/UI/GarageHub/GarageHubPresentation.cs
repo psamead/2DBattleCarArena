@@ -40,6 +40,14 @@ namespace BattleCarArena.UI
         private float activeFlickerStrength;
         private float carBackgroundBlend;
 
+        public void PlaySelectionConfirmSound()
+        {
+            if (theme != null && theme.SelectionConfirmSound != null)
+            {
+                BattleCarArena.Core.GameSession.Instance.PlayUiSound(theme.SelectionConfirmSound);
+            }
+        }
+
         private void OnEnable()
         {
             textElements = GetComponentsInChildren<TMP_Text>(true);
