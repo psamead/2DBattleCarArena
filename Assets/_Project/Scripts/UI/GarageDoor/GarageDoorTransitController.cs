@@ -92,7 +92,10 @@ namespace BattleCarArena.UI
                 ? missionOpeningAnimationDuration
                 : openingAnimationDuration;
             yield return AnimateDoor(closedPanelPosition, closedPanelPosition + Vector2.up * panelOpenTravel, true, duration);
-            GameSession.Instance.MarkGarageEntrancePresentationPending();
+            if (destinationSceneName == "GarageHub")
+            {
+                GameSession.Instance.MarkGarageEntrancePresentationPending();
+            }
             LoadDestination();
         }
 
@@ -141,10 +144,100 @@ namespace BattleCarArena.UI
 
         private void LoadDestination()
         {
+            if (opening && destinationSceneName == "GarageHub")
+            {
+                StartCoroutine(CrossfadeIntoGarageHub());
+                return;
+            }
+
             if (!GameSession.Instance.SceneNavigator.TryLoad(destinationSceneName))
             {
                 Debug.LogError($"Could not load '{destinationSceneName}' after the garage-door transition.", this);
             }
+        }
+
+        private IEnumerator CrossfadeIntoGarageHub()
+        {
+            if (!GameSession.Instance.SceneNavigator.CanLoad(destinationSceneName))
+            {
+                Debug.LogError($"Could not load '{destinationSceneName}' after the garage-door transition.", this);
+                yield break;
+            }
+
+            AudioListener transitAudioListener = GetComponentInChildren<AudioListener>(true);
+            if (transitAudioListener != null)
+            {
+                transitAudioListener.enabled = false;
+            }
+
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(destinationSceneName, LoadSceneMode.Additive);
+            if (loadOperation == null)
+            {
+                if (transitAudioListener != null) transitAudioListener.enabled = true;
+                Debug.LogError($"Could not begin loading '{destinationSceneName}' additively.", this);
+                yield break;
+            }
+
+            while (!loadOperation.isDone)
+            {
+                yield return null;
+            }
+
+            Scene garageScene = SceneManager.GetSceneByName(destinationSceneName);
+            if (!garageScene.IsValid() || !garageScene.isLoaded)
+            {
+                if (transitAudioListener != null) transitAudioListener.enabled = true;
+                Debug.LogError($"'{destinationSceneName}' did not finish loading for the garage crossfade.", this);
+                yield break;
+            }
+
+            SceneManager.SetActiveScene(garageScene);
+            // Let GarageHub's Start method initialize its background, car, and UI at zero alpha.
+            yield return null;
+
+            Image[] transitLayers =
+            {
+                garageBackgroundImage,
+                garageCarImage,
+                interiorDarknessImage,
+                doorPanelImage,
+                doorFrameImage
+            };
+            Color[] originalColors = new Color[transitLayers.Length];
+            for (int i = 0; i < transitLayers.Length; i++)
+            {
+                originalColors[i] = transitLayers[i] != null ? transitLayers[i].color : Color.clear;
+            }
+
+            float elapsed = 0f;
+            const float duration = 1f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float progress = Mathf.Clamp01(elapsed / duration);
+                float eased = progress * progress * (3f - 2f * progress);
+                for (int i = 0; i < transitLayers.Length; i++)
+                {
+                    SetLayerAlpha(transitLayers[i], originalColors[i], 1f - eased);
+                }
+
+                yield return null;
+            }
+
+            for (int i = 0; i < transitLayers.Length; i++)
+            {
+                SetLayerAlpha(transitLayers[i], originalColors[i], 0f);
+            }
+
+            SceneManager.UnloadSceneAsync(gameObject.scene);
+        }
+
+        private static void SetLayerAlpha(Image image, Color originalColor, float alpha)
+        {
+            if (image == null) return;
+            Color color = originalColor;
+            color.a *= alpha;
+            image.color = color;
         }
     }
 }

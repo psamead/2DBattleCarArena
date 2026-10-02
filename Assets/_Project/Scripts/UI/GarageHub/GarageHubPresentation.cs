@@ -47,6 +47,7 @@ namespace BattleCarArena.UI
         private bool transitionRunning;
         private Image entranceDarknessOverlay;
         [SerializeField, Range(0f, 1f)] private float arrivalStartingDarkness = 0.2f;
+        private float arrivalVisualAlpha = 1f;
 
         private void Start()
         {
@@ -54,6 +55,7 @@ namespace BattleCarArena.UI
             {
                 CacheTransitionGraphics();
                 CreateEntranceDarknessOverlay();
+                arrivalVisualAlpha = 0f;
                 SetTransitionAlpha(0f);
                 StartCoroutine(PlayEntranceAnimation());
             }
@@ -94,11 +96,13 @@ namespace BattleCarArena.UI
                 elapsed += Time.unscaledDeltaTime;
                 float t = Mathf.Clamp01(elapsed / duration);
                 SetEntranceProgress(t);
+                arrivalVisualAlpha = t;
                 SetEntranceDarkness(Mathf.Lerp(arrivalStartingDarkness, 0f, t));
                 yield return null;
             }
 
             SetTransitionAlpha(1f);
+            arrivalVisualAlpha = 1f;
             SetEntranceDarkness(0f);
             if (entranceDarknessOverlay != null)
             {
@@ -287,19 +291,23 @@ namespace BattleCarArena.UI
             // Ease between the neutral and alternate sprites, then back again.
             float blend = 0.5f - 0.5f * Mathf.Cos(breathingTime * Mathf.PI * 2f);
             carBackgroundBlend = blend;
+            if (neutralBackgroundImage != null)
+            {
+                SetAlpha(neutralBackgroundImage, arrivalVisualAlpha);
+            }
             if (carPreviewImage != null)
             {
                 Color neutralColor = carPreviewImage.color;
-                neutralColor.a = Mathf.Lerp(1f, 0.9f, blend);
+                neutralColor.a = Mathf.Lerp(1f, 0.9f, blend) * arrivalVisualAlpha;
                 carPreviewImage.color = neutralColor;
             }
             if (alternateBackgroundImage != null)
             {
-                SetAlpha(alternateBackgroundImage, blend);
+                SetAlpha(alternateBackgroundImage, blend * arrivalVisualAlpha);
             }
             if (alternateCarPreviewImage != null)
             {
-                SetAlpha(alternateCarPreviewImage, blend * theme.AlternateCarPreviewTint.a);
+                SetAlpha(alternateCarPreviewImage, blend * theme.AlternateCarPreviewTint.a * arrivalVisualAlpha);
             }
 
             UpdateFlicker(deltaTime);
@@ -750,7 +758,7 @@ namespace BattleCarArena.UI
                 float frequency = Mathf.Max(0.1f, theme.FlickerFrequencyHz);
                 float flickerElapsed = duration - flickerTimeRemaining;
                 float pulse = Mathf.Max(0f, Mathf.Sin(flickerElapsed * frequency * Mathf.PI * 2f));
-                SetAlpha(flickerOverlayImage, activeFlickerStrength * envelope * pulse);
+                SetAlpha(flickerOverlayImage, activeFlickerStrength * envelope * pulse * arrivalVisualAlpha);
                 float flickerScale = theme.FlickerStrength > 0f
                     ? activeFlickerStrength / theme.FlickerStrength
                     : 0f;
@@ -783,7 +791,7 @@ namespace BattleCarArena.UI
             }
 
             carFlickerOverlayImage.color = theme.CarFlickerTint;
-            float intensity = Mathf.Clamp01(pulse * theme.CarFlickerResponse);
+            float intensity = Mathf.Clamp01(pulse * theme.CarFlickerResponse) * arrivalVisualAlpha;
             SetAlpha(carFlickerOverlayImage, intensity * (1f - carBackgroundBlend));
             if (alternateCarFlickerOverlayImage != null)
             {

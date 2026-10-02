@@ -91,6 +91,7 @@ Last updated: 2026-10-03
 - [x] Build and enable the `GarageTransit` scene with opening and closing door animations.
 - [x] Keep all garage routes direct before the first victory; route garage entry and exit through the door scene afterward, with animated GarageHub UI arrival and departure.
 - [x] Show the car during mission departure and StartMenu return; hide it during the BattleArena-to-GarageHub door opening.
+- [x] Crossfade the transit background and car into the GarageHub background and car on arrival.
 - [ ] Verify first-win opening, GarageHub reveal, and both GarageHub closing routes in Play Mode.
 - [x] Return to `GarageHub` after the player confirms either result.
 - [x] Replace the blockout cars with player and challenger side-view visual prefabs.
