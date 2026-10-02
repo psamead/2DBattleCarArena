@@ -24,9 +24,9 @@ namespace BattleCarArena.Battle
         [SerializeField, Min(0.01f)] private float pushDirectionSmoothTime = 0.22f;
 
         [Header("Impact Motion")]
-        [SerializeField, Min(0f)] private float impactShakeAmplitude = 0.23f;
-        [SerializeField, Min(0.01f)] private float impactShakeDuration = 0.34f;
-        [SerializeField, Min(0f)] private float impactShakeFrequency = 34f;
+        [SerializeField, Min(0f)] private float impactShakeAmplitude = 0.12f;
+        [SerializeField, Min(0.01f)] private float impactShakeDuration = 0.24f;
+        [SerializeField, Min(0f)] private float impactShakeFrequency = 26f;
 
         private Vector3 followPosition;
         private Vector3 followVelocity;
@@ -113,7 +113,7 @@ namespace BattleCarArena.Battle
         public void TriggerImpact(float intensity = 1f)
         {
             shakeRemaining = Mathf.Max(shakeRemaining, impactShakeDuration);
-            shakeStrength = Mathf.Max(shakeStrength, Mathf.Max(0f, intensity));
+            shakeStrength = Mathf.Max(shakeStrength, Mathf.Clamp(intensity, 0f, 1.2f));
         }
 
         public void SetBattleFinished()

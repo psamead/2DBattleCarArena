@@ -91,10 +91,16 @@ Last updated: 2026-10-02
 - [x] Reduce wheel-dust opacity and density so car sprites remain visible through the clouds.
 - [x] Emit dark engine smoke from the losing car during the results cue and stop its combat presentation.
 - [x] Add a small HUD shake alongside the camera shake on car impacts.
+- [x] Hold the result overlay for 10 seconds before returning to `GarageHub`.
+- [x] Clear tire-dust particles immediately when the battle completes.
+- [x] Add four dark smoke plumes across the losing car's engine/body for its result display.
+- [x] Remove the `ForegroundRoad` overlay and add soft contact shadows beneath all four wheels.
+- [x] Reduce camera shake and add short HUD motion trails for visible impact feedback.
 - [x] Add and start a looping 60-second battle music asset derived from `Locked_At_Redline.mp3`.
 - [x] Record battle art slots, effect assets, loop construction, and current verification limits in [BattleArenaTemplate.md](BattleArenaTemplate.md) and [ArmoredCarArt.md](ArmoredCarArt.md).
 - [x] Observe one resolved Play Mode fight return from `BattleArena` to `GarageHub`.
-- [ ] Capture the results moment and verify both result paths and the 60-second timeout.
+- [ ] Confirm the increased loser-smoke opacity and volume in a fresh result preview.
+- [ ] Watch the full 10-second results hold and verify both result paths and the 60-second timeout.
 - [ ] Listen to the battle loop seam in-game and tune dust presentation after reviewing the full battle.
 
 ## Phase 4 — Results and rank progression

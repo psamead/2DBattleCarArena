@@ -34,7 +34,7 @@ namespace BattleCarArena.Battle
         [SerializeField, Min(0.1f)] private float contactDamageInterval = 5.5f;
         [SerializeField, Min(1f)] private float battleDurationSeconds = 60f;
         [SerializeField, Min(0)] private int boundaryCrashDamage = 2;
-        [SerializeField, Min(0f)] private float resultDisplaySeconds = 2.5f;
+        [SerializeField, Min(0f)] private float resultDisplaySeconds = 10f;
 
         private BattleState state;
         private int playerHealth;
@@ -227,6 +227,8 @@ namespace BattleCarArena.Battle
             cameraRig?.SetBattleFinished();
             playerMotor.StopDriving();
             challengerMotor.StopDriving();
+            foreach (BattleCarPresentation presentation in presentations)
+                presentation?.StopBattleDust();
             presentations[(int)resolution.Loser]?.PlayDefeatEffects();
             hud.SetCue(string.Empty);
             hud.ResultView.Show(resolution);

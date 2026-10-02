@@ -15,7 +15,6 @@ namespace BattleCarArena.Battle.Editor
         private const string HealthBarSpritePath = "Assets/_Project/Art/BattleArena/HealthBarSquare.png";
         private const string BattleMusicPath = "Assets/_Project/Audio/Music/Locked_At_Redline_BattleLoop.wav";
         private static readonly Color SkyColor = new(0.42f, 0.47f, 0.52f, 1f);
-        private static readonly Color RoadColor = new(0.28f, 0.3f, 0.32f, 1f);
         private static readonly Color WallColor = new(0.48f, 0.5f, 0.52f, 1f);
 
         [MenuItem("Tools/2D Battle Car Arena/Build Battle Arena Blockout")]
@@ -115,7 +114,12 @@ namespace BattleCarArena.Battle.Editor
             camera.nearClipPlane = 0.1f;
             camera.farClipPlane = 100f;
             cameraObject.AddComponent<AudioListener>();
-            cameraObject.AddComponent<BattleArenaCameraRig>();
+            BattleArenaCameraRig cameraRig = cameraObject.AddComponent<BattleArenaCameraRig>();
+            SerializedObject cameraSerialized = new(cameraRig);
+            cameraSerialized.FindProperty("impactShakeAmplitude").floatValue = 0.12f;
+            cameraSerialized.FindProperty("impactShakeDuration").floatValue = 0.24f;
+            cameraSerialized.FindProperty("impactShakeFrequency").floatValue = 26f;
+            cameraSerialized.ApplyModifiedPropertiesWithoutUndo();
             return camera;
         }
 
@@ -136,7 +140,6 @@ namespace BattleCarArena.Battle.Editor
                 CreateWorldBlock(square, "Background", null, new Vector3(0f, 1.7f, 5f), new Vector2(20f, 7.4f), SkyColor, 0);
             }
 
-            CreateWorldBlock(square, "ForegroundRoad", null, new Vector3(0f, -3.65f, 0f), new Vector2(20f, 2.1f), RoadColor, 1);
             CreateWorldBlock(square, "RoadCenterMarking", null, new Vector3(0f, -3.61f, -0.1f), new Vector2(17.2f, 0.035f), new Color(0.72f, 0.72f, 0.69f), 2);
         }
 
@@ -367,6 +370,7 @@ namespace BattleCarArena.Battle.Editor
             serialized.FindProperty("contactDamageInterval").floatValue = 5.5f;
             serialized.FindProperty("battleDurationSeconds").floatValue = 60f;
             serialized.FindProperty("boundaryCrashDamage").intValue = 2;
+            serialized.FindProperty("resultDisplaySeconds").floatValue = 10f;
             serialized.ApplyModifiedPropertiesWithoutUndo();
         }
 
@@ -383,6 +387,11 @@ namespace BattleCarArena.Battle.Editor
         {
             SerializedObject serialized = new(hud);
             serialized.FindProperty("resultView").objectReferenceValue = resultView;
+            serialized.FindProperty("impactShakeDistance").floatValue = 12f;
+            serialized.FindProperty("impactShakeDuration").floatValue = 0.28f;
+            serialized.FindProperty("impactShakeFrequency").floatValue = 28f;
+            serialized.FindProperty("motionTrailOpacity").floatValue = 0.2f;
+            serialized.FindProperty("motionTrailDistance").floatValue = 8f;
             serialized.ApplyModifiedPropertiesWithoutUndo();
         }
     }

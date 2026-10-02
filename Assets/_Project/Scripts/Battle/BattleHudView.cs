@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,11 +16,20 @@ namespace BattleCarArena.Battle
         [SerializeField] private TMP_Text startCueText;
         [SerializeField] private BattleResultView resultView;
         [Header("Impact Shake")]
-        [SerializeField, Min(0f)] private float impactShakeDistance = 5f;
-        [SerializeField, Min(0.01f)] private float impactShakeDuration = 0.2f;
-        [SerializeField, Min(0f)] private float impactShakeFrequency = 30f;
+        [SerializeField, Min(0f)] private float impactShakeDistance = 12f;
+        [SerializeField, Min(0.01f)] private float impactShakeDuration = 0.28f;
+        [SerializeField, Min(0f)] private float impactShakeFrequency = 28f;
+        [SerializeField, Range(0f, 0.5f)] private float motionTrailOpacity = 0.2f;
+        [SerializeField, Min(0f)] private float motionTrailDistance = 8f;
+
+        private sealed class MotionTrail
+        {
+            public Graphic Source;
+            public Graphic Ghost;
+        }
 
         private RectTransform shakeRoot;
+        private readonly List<MotionTrail> motionTrails = new();
         private Vector2 restPosition;
         private float shakeRemaining;
         private float shakeStrength;
@@ -37,6 +47,14 @@ namespace BattleCarArena.Battle
             }
             if (shakeRoot != null)
                 restPosition = shakeRoot.anchoredPosition;
+
+            CreateMotionTrail(playerNameText);
+            CreateMotionTrail(challengerNameText);
+            CreateMotionTrail(playerHealthText);
+            CreateMotionTrail(challengerHealthText);
+            CreateMotionTrail(playerHealthFill);
+            CreateMotionTrail(challengerHealthFill);
+            CreateMotionTrail(startCueText);
         }
 
         private void LateUpdate()
@@ -47,13 +65,16 @@ namespace BattleCarArena.Battle
             {
                 shakeRoot.anchoredPosition = restPosition;
                 shakeStrength = 0f;
+                SetMotionTrails(Vector2.zero, 0f);
                 return;
             }
 
             shakePhase += Time.unscaledDeltaTime * impactShakeFrequency;
             float fade = shakeRemaining / impactShakeDuration;
-            Vector2 direction = new(Mathf.Sin(shakePhase * 1.7f), Mathf.Cos(shakePhase * 2.3f));
-            shakeRoot.anchoredPosition = restPosition + direction * (impactShakeDistance * shakeStrength * fade);
+            Vector2 direction = new Vector2(Mathf.Sin(shakePhase * 1.7f), Mathf.Cos(shakePhase * 2.3f)).normalized;
+            Vector2 offset = direction * (impactShakeDistance * shakeStrength * fade);
+            shakeRoot.anchoredPosition = restPosition + offset;
+            SetMotionTrails(offset, fade);
         }
 
         public void TriggerImpact(float intensity = 1f)
@@ -61,7 +82,54 @@ namespace BattleCarArena.Battle
             shakeRemaining = Mathf.Max(shakeRemaining, impactShakeDuration);
             shakeStrength = Mathf.Max(shakeStrength, Mathf.Clamp(intensity, 0f, 1.15f));
             if (shakeRoot != null)
-                shakeRoot.anchoredPosition = restPosition + Vector2.right * (impactShakeDistance * shakeStrength * 0.25f);
+            {
+                Vector2 offset = Vector2.right * (impactShakeDistance * shakeStrength * 0.25f);
+                shakeRoot.anchoredPosition = restPosition + offset;
+                SetMotionTrails(offset, 1f);
+            }
+        }
+
+        private void CreateMotionTrail(Graphic source)
+        {
+            if (source == null) return;
+            GameObject ghostObject = Instantiate(source.gameObject, source.transform.parent);
+            ghostObject.name = source.gameObject.name + " ImpactTrail";
+            Graphic ghost = ghostObject.GetComponent<Graphic>();
+            if (ghost == null)
+            {
+                Destroy(ghostObject);
+                return;
+            }
+
+            ghost.raycastTarget = false;
+            ghostObject.transform.SetAsFirstSibling();
+            ghostObject.SetActive(false);
+            motionTrails.Add(new MotionTrail { Source = source, Ghost = ghost });
+        }
+
+        private void SetMotionTrails(Vector2 shakeOffset, float fade)
+        {
+            bool visible = fade > 0f && motionTrailOpacity > 0f;
+            foreach (MotionTrail trail in motionTrails)
+            {
+                if (trail.Source == null || trail.Ghost == null) continue;
+                if (trail.Ghost.gameObject.activeSelf != visible)
+                    trail.Ghost.gameObject.SetActive(visible);
+                if (!visible) continue;
+
+                if (trail.Source is TMP_Text sourceText && trail.Ghost is TMP_Text ghostText)
+                    ghostText.text = sourceText.text;
+                if (trail.Source is Image sourceImage && trail.Ghost is Image ghostImage)
+                    ghostImage.fillAmount = sourceImage.fillAmount;
+
+                Color ghostColor = trail.Source.color;
+                ghostColor.a *= motionTrailOpacity * fade * shakeStrength;
+                trail.Ghost.color = ghostColor;
+                RectTransform sourceRect = trail.Source.transform as RectTransform;
+                RectTransform ghostRect = trail.Ghost.transform as RectTransform;
+                if (sourceRect != null && ghostRect != null)
+                    ghostRect.anchoredPosition = sourceRect.anchoredPosition - shakeOffset.normalized * (motionTrailDistance * fade);
+            }
         }
 
         public void SetNames(string playerName, string challengerName)

@@ -15,7 +15,10 @@ namespace BattleCarArena.Battle
         private Transform visualRoot;
         private Transform[] wheels;
         private ParticleSystem[] dust;
-        private ParticleSystem defeatSmoke;
+        private ParticleSystem[] defeatSmoke;
+        private Sprite contactShadowSprite;
+        private Texture2D contactShadowTexture;
+        private SpriteRenderer[] contactShadows;
         private Vector3 restPosition;
         private Quaternion restRotation;
         private bool inContact;
@@ -36,6 +39,7 @@ namespace BattleCarArena.Battle
                 CreateDust(FindDescendant(visualRoot, "FrontWheelDustAnchor"), dustDirection),
                 CreateDust(FindDescendant(visualRoot, "RearWheelDustAnchor"), dustDirection)
             };
+            contactShadows = CreateWheelShadows(visualRoot, wheels);
             defeatSmoke = CreateDefeatSmoke(visualRoot);
         }
 
@@ -52,7 +56,7 @@ namespace BattleCarArena.Battle
             phase = Random.Range(0f, 6.28318f);
         }
 
-        public void PlayDefeatEffects()
+        public void StopBattleDust()
         {
             inContact = false;
             crashPulseRemaining = 0f;
@@ -63,12 +67,24 @@ namespace BattleCarArena.Battle
                     if (particles == null) continue;
                     var emission = particles.emission;
                     emission.rateOverTime = 0f;
-                    particles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+                    particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
                 }
             }
+        }
 
-            if (defeatSmoke != null && !defeatSmoke.isPlaying)
-                defeatSmoke.Play();
+        public void PlayDefeatEffects()
+        {
+            StopBattleDust();
+            if (defeatSmoke == null) return;
+            foreach (ParticleSystem plume in defeatSmoke)
+                if (plume != null && !plume.isPlaying)
+                    plume.Play();
+        }
+
+        private void OnDestroy()
+        {
+            if (contactShadowSprite != null) Destroy(contactShadowSprite);
+            if (contactShadowTexture != null) Destroy(contactShadowTexture);
         }
 
         private void LateUpdate()
@@ -162,49 +178,112 @@ namespace BattleCarArena.Battle
             return system;
         }
 
-        private static ParticleSystem CreateDefeatSmoke(Transform root)
+        private static ParticleSystem[] CreateDefeatSmoke(Transform root)
         {
-            GameObject smokeObject = new("DefeatEngineSmoke");
+            return new[]
+            {
+                CreateSmokePlume(root, "EngineSmoke", new Vector3(0.9f, 0.42f, -0.02f), 16f, 0.54f, 1.0f),
+                CreateSmokePlume(root, "HoodSmoke", new Vector3(0.25f, 0.22f, -0.02f), 9f, 0.42f, 0.82f),
+                CreateSmokePlume(root, "CabinSmoke", new Vector3(-0.35f, 0.5f, -0.02f), 7f, 0.4f, 0.78f),
+                CreateSmokePlume(root, "RearDamageSmoke", new Vector3(-1.12f, 0.02f, -0.02f), 5f, 0.4f, 0.78f)
+            };
+        }
+
+        private static ParticleSystem CreateSmokePlume(Transform root, string name, Vector3 localPosition,
+            float emissionRate, float minimumSize, float maximumSize)
+        {
+            GameObject smokeObject = new(name);
             smokeObject.transform.SetParent(root, false);
-            smokeObject.transform.localPosition = new Vector3(0.78f, 0.38f, -0.02f);
+            smokeObject.transform.localPosition = localPosition;
             ParticleSystem system = smokeObject.AddComponent<ParticleSystem>();
             var main = system.main;
             main.loop = true;
             main.playOnAwake = false;
             main.simulationSpace = ParticleSystemSimulationSpace.World;
-            main.startLifetime = new ParticleSystem.MinMaxCurve(2.2f, 3.2f);
-            main.startSpeed = new ParticleSystem.MinMaxCurve(0.25f, 0.65f);
-            main.startSize = new ParticleSystem.MinMaxCurve(0.28f, 0.58f);
-            main.startColor = new Color(0.12f, 0.11f, 0.1f, 0.68f);
-            main.maxParticles = 80;
+            main.startLifetime = new ParticleSystem.MinMaxCurve(3.1f, 4.3f);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(0.4f, 0.9f);
+            main.startSize = new ParticleSystem.MinMaxCurve(minimumSize, maximumSize);
+            main.startColor = new Color(0.1f, 0.095f, 0.09f, 0.92f);
+            main.maxParticles = 112;
             var emission = system.emission;
-            emission.rateOverTime = 7f;
+            emission.rateOverTime = emissionRate;
             var shape = system.shape;
             shape.enabled = true;
             shape.shapeType = ParticleSystemShapeType.Circle;
-            shape.radius = 0.11f;
+            shape.radius = 0.15f;
             var velocity = system.velocityOverLifetime;
             velocity.enabled = true;
             velocity.space = ParticleSystemSimulationSpace.World;
-            velocity.x = new ParticleSystem.MinMaxCurve(-0.08f);
-            velocity.y = new ParticleSystem.MinMaxCurve(0.78f);
+            float driftDirection = root.lossyScale.x < 0f ? -1f : 1f;
+            velocity.x = new ParticleSystem.MinMaxCurve(0.18f * driftDirection);
+            velocity.y = new ParticleSystem.MinMaxCurve(0.92f);
             var color = system.colorOverLifetime;
             color.enabled = true;
             Gradient fade = new();
             fade.SetKeys(
-                new[] { new GradientColorKey(new Color(0.12f, 0.11f, 0.1f), 0f), new GradientColorKey(new Color(0.2f, 0.19f, 0.18f), 1f) },
-                new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(0.78f, 0.18f), new GradientAlphaKey(0.52f, 0.62f), new GradientAlphaKey(0f, 1f) });
+                new[] { new GradientColorKey(new Color(0.08f, 0.075f, 0.07f), 0f), new GradientColorKey(new Color(0.2f, 0.19f, 0.18f), 1f) },
+                new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(0.82f, 0.12f), new GradientAlphaKey(0.58f, 0.72f), new GradientAlphaKey(0f, 1f) });
             color.color = fade;
             var noise = system.noise;
             noise.enabled = true;
-            noise.strength = 0.32f;
-            noise.frequency = 0.24f;
+            noise.strength = 0.48f;
+            noise.frequency = 0.25f;
             var renderer = system.GetComponent<ParticleSystemRenderer>();
             renderer.renderMode = ParticleSystemRenderMode.Billboard;
             renderer.sortingOrder = 13;
             Material smokeMaterial = Resources.Load<Material>("BattleDustPuff");
             if (smokeMaterial != null) renderer.sharedMaterial = smokeMaterial;
             return system;
+        }
+
+        private SpriteRenderer[] CreateWheelShadows(Transform root, Transform[] wheelTransforms)
+        {
+            const int textureWidth = 64;
+            const int textureHeight = 32;
+            contactShadowTexture = new Texture2D(textureWidth, textureHeight, TextureFormat.RGBA32, false, true)
+            {
+                name = "RuntimeCarContactShadowTexture",
+                filterMode = FilterMode.Bilinear,
+                wrapMode = TextureWrapMode.Clamp,
+                hideFlags = HideFlags.DontSave
+            };
+            Color32[] pixels = new Color32[textureWidth * textureHeight];
+            for (int y = 0; y < textureHeight; y++)
+            {
+                float ny = (y + 0.5f) / textureHeight * 2f - 1f;
+                for (int x = 0; x < textureWidth; x++)
+                {
+                    float nx = (x + 0.5f) / textureWidth * 2f - 1f;
+                    float falloff = Mathf.Pow(Mathf.Clamp01(1f - nx * nx - ny * ny), 2f);
+                    byte alpha = (byte)Mathf.RoundToInt(falloff * 105f);
+                    pixels[y * textureWidth + x] = new Color32(9, 7, 6, alpha);
+                }
+            }
+            contactShadowTexture.SetPixels32(pixels);
+            contactShadowTexture.Apply(false, true);
+            contactShadowSprite = Sprite.Create(contactShadowTexture, new Rect(0, 0, textureWidth, textureHeight),
+                new Vector2(0.5f, 0.5f), textureWidth);
+            contactShadowSprite.name = "RuntimeCarContactShadow";
+            contactShadowSprite.hideFlags = HideFlags.DontSave;
+
+            SpriteRenderer[] renderers = new SpriteRenderer[wheelTransforms.Length];
+            for (int i = 0; i < wheelTransforms.Length; i++)
+            {
+                Transform wheel = wheelTransforms[i];
+                if (wheel == null) continue;
+                string shadowName = i == 0 ? "FrontWheelShadow" : "RearWheelShadow";
+                GameObject shadowObject = new(shadowName);
+                shadowObject.transform.SetParent(root, false);
+                Transform anchor = FindDescendant(root, i == 0 ? "FrontWheelDustAnchor" : "RearWheelDustAnchor");
+                float shadowY = anchor != null ? anchor.localPosition.y + 0.06f : wheel.localPosition.y - wheelRadius;
+                shadowObject.transform.localPosition = new Vector3(wheel.localPosition.x, shadowY, 0.02f);
+                shadowObject.transform.localScale = new Vector3(1.45f, 0.72f, 1f);
+                SpriteRenderer renderer = shadowObject.AddComponent<SpriteRenderer>();
+                renderer.sprite = contactShadowSprite;
+                renderer.sortingOrder = 9;
+                renderers[i] = renderer;
+            }
+            return renderers;
         }
     }
 }
