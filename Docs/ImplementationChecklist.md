@@ -89,7 +89,7 @@ Last updated: 2026-10-03
 - [ ] Verify the new battle rules, Garage Energy readout, and win reward in Play Mode.
 - [x] Create separate fixed garage-frame and moving door-panel sprites in the Garage Door theme folder.
 - [x] Build and enable the `GarageTransit` scene with opening and closing door animations.
-- [x] Route first-victory entry through the garage door scene and animate GarageHub UI arrival and departure.
+- [x] Keep all garage routes direct before the first victory; route garage entry and exit through the door scene afterward, with animated GarageHub UI arrival and departure.
 - [ ] Verify first-win opening, GarageHub reveal, and both GarageHub closing routes in Play Mode.
 - [x] Return to `GarageHub` after the player confirms either result.
 - [x] Replace the blockout cars with player and challenger side-view visual prefabs.

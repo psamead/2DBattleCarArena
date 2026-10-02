@@ -35,6 +35,11 @@ namespace BattleCarArena.Core
 
         public bool ExitGarage(string destinationSceneName)
         {
+            if (!GameSession.Instance.GarageProgress.HasWonBattle)
+            {
+                return TryLoad(destinationSceneName);
+            }
+
             return LoadThroughGarageTransit(destinationSceneName, opening: false);
         }
 

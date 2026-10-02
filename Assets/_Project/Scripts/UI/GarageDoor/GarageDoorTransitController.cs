@@ -16,7 +16,7 @@ namespace BattleCarArena.UI
         [SerializeField] private Image doorFrameImage;
         [SerializeField, Min(0.1f)] private float animationDuration = 0.85f;
         [SerializeField, Range(0f, 1f)] private float closedInteriorDarkness = 0.58f;
-        [SerializeField] private Vector2 closedPanelPosition = new(0f, -75f);
+        private Vector2 closedPanelPosition;
         [SerializeField] private float panelOpenTravel = 730f;
 
         private string destinationSceneName;
@@ -40,6 +40,12 @@ namespace BattleCarArena.UI
 
         private void Start()
         {
+            if (doorPanelImage != null)
+            {
+                // Use the authored scene placement so Inspector adjustments define the closed pose.
+                closedPanelPosition = doorPanelImage.rectTransform.anchoredPosition;
+            }
+
             if (!GameSession.Instance.TryConsumeGarageTransit(out destinationSceneName, out opening))
             {
                 Debug.LogError("GarageTransit loaded without a pending door transition request.", this);
