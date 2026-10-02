@@ -152,6 +152,7 @@ namespace BattleCarArena.Battle.Editor
         private static void CreateWall(Sprite square, string name, float x)
         {
             GameObject wall = CreateWorldBlock(square, name, null, new Vector3(x, -0.28f, -0.25f), new Vector2(0.48f, 4.74f), WallColor, 4);
+            wall.GetComponent<SpriteRenderer>().enabled = false;
             BoxCollider2D wallCollider = wall.AddComponent<BoxCollider2D>();
             wallCollider.size = Vector2.one;
             wallCollider.isTrigger = false;
@@ -212,28 +213,47 @@ namespace BattleCarArena.Battle.Editor
             scaler.referenceResolution = new Vector2(1920f, 1080f);
             scaler.matchWidthOrHeight = 0.5f;
 
-            TMP_FontAsset font = TMP_Settings.defaultFontAsset;
-            TMP_Text playerName = CreateText("PlayerName", canvasObject.transform, font, 36f, Vector2.zero, new Vector2(520f, 48f), TextAlignmentOptions.MidlineLeft);
-            TMP_Text challengerName = CreateText("ChallengerName", canvasObject.transform, font, 36f, Vector2.zero, new Vector2(520f, 48f), TextAlignmentOptions.MidlineRight);
-            TMP_Text playerHealthLabel = CreateText("PlayerHealthValue", canvasObject.transform, font, 24f, Vector2.zero, new Vector2(520f, 36f), TextAlignmentOptions.MidlineLeft);
-            TMP_Text challengerHealthLabel = CreateText("ChallengerHealthValue", canvasObject.transform, font, 24f, Vector2.zero, new Vector2(520f, 36f), TextAlignmentOptions.MidlineRight);
-            ConfigureHudRect(playerName.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, -82f), new Vector2(520f, 48f));
-            ConfigureHudRect(challengerName.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-56f, -82f), new Vector2(520f, 48f));
-            ConfigureHudRect(playerHealthLabel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, -132f), new Vector2(520f, 36f));
-            ConfigureHudRect(challengerHealthLabel.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-56f, -132f), new Vector2(520f, 36f));
+            TMP_FontAsset titleFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/_Project/Data/UI/04B_21_UI_TMP.asset");
+            if (titleFont == null) titleFont = TMP_Settings.defaultFontAsset;
+            TMP_Text playerName = CreateText("PlayerName", canvasObject.transform, titleFont, 36f, Vector2.zero, new Vector2(520f, 48f), TextAlignmentOptions.MidlineLeft);
+            TMP_Text challengerName = CreateText("ChallengerName", canvasObject.transform, titleFont, 36f, Vector2.zero, new Vector2(520f, 48f), TextAlignmentOptions.MidlineRight);
+            TMP_Text playerHealthLabel = CreateText("PlayerHealthValue", canvasObject.transform, titleFont, 26f, Vector2.zero, new Vector2(520f, 36f), TextAlignmentOptions.MidlineLeft);
+            TMP_Text challengerHealthLabel = CreateText("ChallengerHealthValue", canvasObject.transform, titleFont, 26f, Vector2.zero, new Vector2(520f, 36f), TextAlignmentOptions.MidlineRight);
+            ApplyTextShadow(playerName);
+            ApplyTextShadow(challengerName);
+            ApplyTextShadow(playerHealthLabel);
+            ApplyTextShadow(challengerHealthLabel);
+            ConfigureHudRect(playerName.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, -165f), new Vector2(520f, 48f));
+            ConfigureHudRect(challengerName.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-56f, -165f), new Vector2(520f, 48f));
+            ConfigureHudRect(playerHealthLabel.rectTransform, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, -207f), new Vector2(520f, 36f));
+            ConfigureHudRect(challengerHealthLabel.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-56f, -207f), new Vector2(520f, 36f));
             playerName.text = "PLAYER";
             challengerName.text = "CHALLENGER";
             playerHealthLabel.text = "65 / 65";
             challengerHealthLabel.text = "140 / 140";
-            Image playerHealthFill = CreateHealthBar(square, canvasObject.transform, "PlayerHealthBar", true, new Color(0.32f, 0.78f, 0.44f));
-            Image challengerHealthFill = CreateHealthBar(square, canvasObject.transform, "ChallengerHealthBar", false, new Color(0.88f, 0.42f, 0.3f));
-            TMP_Text cue = CreateText("StartCue", canvasObject.transform, font, 54f, Vector2.zero, new Vector2(520f, 82f), TextAlignmentOptions.Center);
-            ConfigureHudRect(cue.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -44f), new Vector2(520f, 82f));
+            Sprite healthBarFrame = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/_Project/Art/UI/GarageHub/GarageHubPanelFrame_RustedSteel.png");
+            Image playerHealthFill = CreateHealthBar(square, healthBarFrame, canvasObject.transform, "PlayerHealthBar", true, new Color(0.0f, 0.86f, 1.0f));
+            Image challengerHealthFill = CreateHealthBar(square, healthBarFrame, canvasObject.transform, "ChallengerHealthBar", false, new Color(0.72f, 0.30f, 1.0f));
+            Image playerHealthFrameImage = playerHealthFill.transform.parent.GetComponent<Image>();
+            Image challengerHealthFrameImage = challengerHealthFill.transform.parent.GetComponent<Image>();
+            TMP_Text cue = CreateText("StartCue", canvasObject.transform, titleFont, 44f, Vector2.zero, new Vector2(800f, 82f), TextAlignmentOptions.Center);
+            ConfigureHudRect(cue.rectTransform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -44f), new Vector2(800f, 82f));
             cue.text = "GET READY";
+            ApplyTextShadow(cue);
 
-            GameObject resultPanel = CreateUiImage(square, "ResultPanel", canvasObject.transform, new Vector2(0f, 10f), new Vector2(820f, 300f), new Color(0.1f, 0.12f, 0.14f, 0.94f));
-            TMP_Text resultText = CreateText("ResultText", resultPanel.transform, font, 64f, new Vector2(0f, 42f), new Vector2(780f, 112f), TextAlignmentOptions.Center);
-            TMP_Text reasonText = CreateText("ResultReason", resultPanel.transform, font, 32f, new Vector2(0f, -65f), new Vector2(780f, 72f), TextAlignmentOptions.Center);
+            Sprite resultFrame = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/_Project/Art/UI/BattleArena/BattleResultFrame_RustedSteel.png");
+            GameObject resultPanel = CreateUiImage(resultFrame != null ? resultFrame : square, "ResultPanel", canvasObject.transform, Vector2.zero, new Vector2(1100f, 367f), Color.white);
+            Image resultPanelImage = resultPanel.GetComponent<Image>();
+            resultPanelImage.preserveAspect = true;
+            resultPanelImage.raycastTarget = true;
+            Button confirmButton = resultPanel.AddComponent<Button>();
+            confirmButton.targetGraphic = resultPanelImage;
+            confirmButton.transition = Selectable.Transition.None;
+            TMP_Text resultText = CreateText("ResultText", resultPanel.transform, titleFont, 48f, new Vector2(0f, 24f), new Vector2(1000f, 90f), TextAlignmentOptions.Center);
+            SetTextFontColor(resultText, new Color(1f, 0.34f, 0.08f, 1f));
+            TMP_Text confirmText = CreateText("ConfirmText", resultPanel.transform, titleFont, 24f, new Vector2(0f, -55f), new Vector2(1000f, 42f), TextAlignmentOptions.Center);
+            confirmText.text = "CLICK TO RETURN";
+            SetTextFontColor(confirmText, new Color(1f, 0.34f, 0.08f, 1f));
             resultPanel.SetActive(false);
 
             GameObject hudObject = new("BattleHudView");
@@ -246,6 +266,8 @@ namespace BattleCarArena.Battle.Editor
             hudSerialized.FindProperty("challengerHealthText").objectReferenceValue = challengerHealthLabel;
             hudSerialized.FindProperty("playerHealthFill").objectReferenceValue = playerHealthFill;
             hudSerialized.FindProperty("challengerHealthFill").objectReferenceValue = challengerHealthFill;
+            hudSerialized.FindProperty("playerHealthFrame").objectReferenceValue = playerHealthFrameImage;
+            hudSerialized.FindProperty("challengerHealthFrame").objectReferenceValue = challengerHealthFrameImage;
             hudSerialized.FindProperty("startCueText").objectReferenceValue = cue;
             hudSerialized.ApplyModifiedPropertiesWithoutUndo();
 
@@ -253,25 +275,44 @@ namespace BattleCarArena.Battle.Editor
             SerializedObject resultSerialized = new(result);
             resultSerialized.FindProperty("resultPanel").objectReferenceValue = resultPanel;
             resultSerialized.FindProperty("resultText").objectReferenceValue = resultText;
-            resultSerialized.FindProperty("reasonText").objectReferenceValue = reasonText;
+            resultSerialized.FindProperty("confirmButton").objectReferenceValue = confirmButton;
             resultSerialized.ApplyModifiedPropertiesWithoutUndo();
+            EnsureEventSystem(canvasObject.transform);
             return (hud, result);
         }
 
-        private static Image CreateHealthBar(Sprite square, Transform parent, string name, bool fillFromLeft, Color fillColor)
+        private static void EnsureEventSystem(Transform parent)
         {
-            GameObject track = CreateUiImage(square, name, parent, Vector2.zero, new Vector2(570f, 26f), new Color(0.18f, 0.19f, 0.2f, 0.9f));
+            if (Object.FindFirstObjectByType<UnityEngine.EventSystems.EventSystem>() != null)
+            {
+                return;
+            }
+
+            GameObject eventSystemObject = new("EventSystem", typeof(UnityEngine.EventSystems.EventSystem));
+            eventSystemObject.transform.SetParent(parent, false);
+            UnityEngine.InputSystem.UI.InputSystemUIInputModule inputModule = eventSystemObject.AddComponent<UnityEngine.InputSystem.UI.InputSystemUIInputModule>();
+            inputModule.AssignDefaultActions();
+        }
+
+        private static Image CreateHealthBar(Sprite square, Sprite frameSprite, Transform parent, string name, bool fillFromLeft, Color fillColor)
+        {
+            GameObject track = CreateUiImage(square, name, parent, Vector2.zero, new Vector2(620f, 182.55f), Color.white);
+            Image background = track.GetComponent<Image>();
+            background.sprite = frameSprite != null ? frameSprite : square;
+            // Keep the complete themed frame behind the health fill.
+            background.type = Image.Type.Simple;
+            background.color = Color.white;
             RectTransform trackRect = track.GetComponent<RectTransform>();
             Vector2 topAnchor = fillFromLeft ? new Vector2(0f, 1f) : new Vector2(1f, 1f);
             Vector2 topPivot = topAnchor;
-            Vector2 offset = fillFromLeft ? new Vector2(56f, -46f) : new Vector2(-56f, -46f);
-            ConfigureHudRect(trackRect, topAnchor, topPivot, offset, new Vector2(570f, 26f));
+            Vector2 offset = fillFromLeft ? new Vector2(80f, 11.275f) : new Vector2(-80f, 11.275f);
+            ConfigureHudRect(trackRect, topAnchor, topPivot, offset, new Vector2(620f, 182.55f));
             RectTransform fillRect = CreateRect("Fill", track.transform);
             fillRect.anchorMin = Vector2.zero;
             fillRect.anchorMax = Vector2.one;
             fillRect.pivot = fillFromLeft ? new Vector2(0f, 0.5f) : new Vector2(1f, 0.5f);
-            fillRect.offsetMin = new Vector2(2f, 2f);
-            fillRect.offsetMax = new Vector2(-2f, -2f);
+            fillRect.offsetMin = new Vector2(42f, 26f);
+            fillRect.offsetMax = new Vector2(-42f, -26f);
             Image fill = fillRect.gameObject.AddComponent<Image>();
             fill.sprite = square;
             fill.color = fillColor;
@@ -280,6 +321,7 @@ namespace BattleCarArena.Battle.Editor
             fill.fillOrigin = fillFromLeft ? 0 : 1;
             fill.fillAmount = 1f;
             fill.raycastTarget = false;
+
             return fill;
         }
 
@@ -312,6 +354,26 @@ namespace BattleCarArena.Battle.Editor
             text.text = string.Empty;
             text.raycastTarget = false;
             return text;
+        }
+
+        private static void SetTextFontColor(TMP_Text text, Color color)
+        {
+            SerializedObject serialized = new(text);
+            serialized.FindProperty("m_fontColor").colorValue = color;
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static void ApplyTextShadow(TMP_Text text)
+        {
+            Shadow shadow = text.GetComponent<Shadow>();
+            if (shadow == null)
+            {
+                shadow = text.gameObject.AddComponent<Shadow>();
+            }
+
+            shadow.effectColor = new Color(0f, 0f, 0f, 0.85f);
+            shadow.effectDistance = new Vector2(2f, -2f);
+            shadow.useGraphicAlpha = true;
         }
 
         private static void ConfigureHudRect(RectTransform rect, Vector2 anchor, Vector2 pivot, Vector2 position, Vector2 size)
@@ -370,7 +432,6 @@ namespace BattleCarArena.Battle.Editor
             serialized.FindProperty("contactDamageInterval").floatValue = 5.5f;
             serialized.FindProperty("battleDurationSeconds").floatValue = 60f;
             serialized.FindProperty("boundaryCrashDamage").intValue = 2;
-            serialized.FindProperty("resultDisplaySeconds").floatValue = 10f;
             serialized.ApplyModifiedPropertiesWithoutUndo();
         }
 

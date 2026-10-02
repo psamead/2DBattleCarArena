@@ -34,8 +34,6 @@ namespace BattleCarArena.Battle
         [SerializeField, Min(0.1f)] private float contactDamageInterval = 5.5f;
         [SerializeField, Min(1f)] private float battleDurationSeconds = 60f;
         [SerializeField, Min(0)] private int boundaryCrashDamage = 2;
-        [SerializeField, Min(0f)] private float resultDisplaySeconds = 10f;
-
         private BattleState state;
         private int playerHealth;
         private int playerMaximumHealth;
@@ -81,6 +79,11 @@ namespace BattleCarArena.Battle
             challengerCrashReporter.Configure(this, BattleSide.Challenger);
 
             hud.SetNames(playerName, challengerName);
+            if (hud.ResultView != null)
+            {
+                hud.ResultView.Confirmed += ReturnToGarage;
+            }
+
             RefreshHealth();
             hud.ResultView.Hide();
             hud.SetCue("GET READY");
@@ -102,6 +105,8 @@ namespace BattleCarArena.Battle
             cameraRig?.SetBattleStarted();
             playerMotor.StartDriving();
             challengerMotor.StartDriving();
+            foreach (BattleCarPresentation presentation in presentations)
+                presentation?.SetBattleSmoke(true);
         }
 
         private void Update()
@@ -229,10 +234,10 @@ namespace BattleCarArena.Battle
             challengerMotor.StopDriving();
             foreach (BattleCarPresentation presentation in presentations)
                 presentation?.StopBattleDust();
-            presentations[(int)resolution.Loser]?.PlayDefeatEffects();
+            presentations[(int)resolution.Winner]?.PlayDefeatEffects(false);
+            presentations[(int)resolution.Loser]?.PlayDefeatEffects(true);
             hud.SetCue(string.Empty);
             hud.ResultView.Show(resolution);
-            StartCoroutine(ReturnToGarageAfterResult());
         }
 
         private void TriggerImpact(float intensity = 1f)
@@ -241,13 +246,24 @@ namespace BattleCarArena.Battle
             hud?.TriggerImpact(intensity);
         }
 
-        private IEnumerator ReturnToGarageAfterResult()
+        private void ReturnToGarage()
         {
-            yield return new WaitForSecondsRealtime(resultDisplaySeconds);
+            if (state != BattleState.Results)
+            {
+                return;
+            }
 
             if (!new SceneNavigator().TryLoad("GarageHub"))
             {
-                Debug.LogError("Could not return to GarageHub after the battle. Confirm GarageHub is enabled in Build Settings.", this);
+                Debug.LogError("Could not return to GarageHub after result confirmation. Confirm GarageHub is enabled in Build Settings.", this);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (hud != null && hud.ResultView != null)
+            {
+                hud.ResultView.Confirmed -= ReturnToGarage;
             }
         }
 

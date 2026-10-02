@@ -372,9 +372,12 @@ namespace BattleCarArena.UI
                     continue;
                 }
 
-                if (theme.ActionButtonFrame != null)
+                Sprite frame = image.gameObject.name == "GoToMissionButton"
+                    ? (theme.GoToMissionButtonFrame != null ? theme.GoToMissionButtonFrame : theme.ActionButtonFrame)
+                    : theme.ActionButtonFrame;
+                if (frame != null)
                 {
-                    image.sprite = theme.ActionButtonFrame;
+                    image.sprite = frame;
                     image.type = Image.Type.Simple;
                     image.preserveAspect = false;
                     image.color = Color.white;

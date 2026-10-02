@@ -16,7 +16,7 @@
 - Engine, Weapon, and Armor purchases are handled by `GarageHubController` and the session-owned `GarageProgress`. A purchase spends the card's cost, adds its `+UP` amount to both that vehicle stat and Score, then refreshes Credits, Score, the stat value, and purchase availability. The current starting values are 1000 Credits, 100 Score, Engine 120 (+145 for 250 Credits), Weapon 40 (+55 for 300 Credits), and Armor 65 (+82 for 275 Credits). A card becomes unavailable when its cost exceeds the remaining Credits. This progress lasts while `GameSession` remains alive; it is not saved between application launches.
 - The Engine, Weapon, and Armor `Upgrade` buttons receive pointer clicks after the theme is applied. In Play Mode, clicking a purchase button was verified to deduct Credits, add the upgrade amount to Score and the matching stat, and refresh the displayed values. The card art and labels outside the `Upgrade` button strip are decorative and are not separate purchase targets.
 - The Engine, Weapon, Armor, Energy, Credits, Score, and Rank panels use the shared sliced rusted-steel frame at `Assets/_Project/Art/UI/GarageHub/GarageHubPanelFrame_RustedSteel.png`. Replace the `Slot Frame` field on `DefaultGarageHubTheme` to swap it for another frame; its nine-slice border preserves the corners when each panel scales.
-- The `GoToMissionButton` and `BackToMenuButton` use the full `StartMenuButton_PostApocalypse.png` sprite from the Start Menu and the special 04B pixel font. The action-button sprite and font are theme fields, so both can be replaced without changing the presentation code. The sprite is rendered as a simple stretched image (not nine-sliced); adjust each button's RectTransform to change its size.
+- The `GoToMissionButton` uses the replaceable `Go To Mission Button Frame` theme slot, currently assigned to `Assets/_Project/Art/UI/GarageHub/GoToMissionFrame_RustedSteel.png`; the transparent padding was trimmed to fit the current 470×86 button. `BackToMenuButton` keeps the shared action-button frame. Both buttons use the special 04B pixel font. The frame and font are theme fields, so they can be replaced without changing the presentation code. The sprites are rendered as simple stretched images (not nine-sliced); adjust each button's RectTransform to change its size.
 - Go to Mission loads the `BattleArena` scene, which is currently an empty placeholder. See [BattleArenaTemplate.md](BattleArenaTemplate.md) for the planned next phase. Back to Menu loads `StartMenu`. The session remains alive across either scene change, so the garage Credits, Score, and upgraded stats are retained when returning to the Garage during the same play session.
 
 ## Swap assets
@@ -27,7 +27,8 @@ Select `Assets/_Project/Data/UI/GarageHub/DefaultGarageHubTheme.asset`. Its repl
 - Title Logo
 - Car Preview and the separate Engine Upgrade Icon, Weapon Upgrade Icon, and Armor Upgrade Icon fields
 - Panel and Button sprites
-- Action Button Frame (the Start Menu button sprite used by Go to Mission and Back to Menu)
+- Action Button Frame (shared by Back to Menu and other action buttons)
+- Go To Mission Button Frame (the dedicated rusted-steel frame for Go to Mission; falls back to Action Button Frame when empty)
 - Title Font (applied to the Garage Hub TextMeshPro elements)
 - Action Button Font (applied to the Go to Mission and Back to Menu labels)
 - Background Music

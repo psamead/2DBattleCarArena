@@ -23,6 +23,7 @@ namespace BattleCarArena.UI
         [SerializeField] private Sprite button;
         [SerializeField] private Sprite slotFrame;
         [SerializeField] private Sprite actionButtonFrame;
+        [SerializeField] private Sprite goToMissionButtonFrame;
         [SerializeField] private TMP_FontAsset titleFont;
         [SerializeField] private TMP_FontAsset actionButtonFont;
         [SerializeField] private AudioClip backgroundMusic;
@@ -56,6 +57,7 @@ namespace BattleCarArena.UI
         public Sprite Button => button;
         public Sprite SlotFrame => slotFrame;
         public Sprite ActionButtonFrame => actionButtonFrame;
+        public Sprite GoToMissionButtonFrame => goToMissionButtonFrame;
         public TMP_FontAsset TitleFont => titleFont;
         public TMP_FontAsset ActionButtonFont => actionButtonFont;
         public AudioClip BackgroundMusic => backgroundMusic;

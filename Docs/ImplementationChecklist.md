@@ -2,7 +2,7 @@
 
 This checklist tracks verified work from [ImplementationPlan.md](ImplementationPlan.md). Check an item only after its implementation has been validated in Unity.
 
-Last updated: 2026-10-02
+Last updated: 2026-10-03
 
 ## Project organization
 
@@ -91,9 +91,12 @@ Last updated: 2026-10-02
 - [x] Reduce wheel-dust opacity and density so car sprites remain visible through the clouds.
 - [x] Emit dark engine smoke from the losing car during the results cue and stop its combat presentation.
 - [x] Add a small HUD shake alongside the camera shake on car impacts.
-- [x] Hold the result overlay for 10 seconds before returning to `GarageHub`.
+- [x] Show a themed, clickable result panel and return to `GarageHub` when the player confirms.
+- [x] Style the player/challenger labels and health values with the 04B_21 UI font and shadows.
+- [x] Use the rusted-steel result frame, framed cyan/purple health bars, and hide arena boundary sprites while retaining their colliders.
 - [x] Clear tire-dust particles immediately when the battle completes.
 - [x] Add four dark smoke plumes across the losing car's engine/body for its result display.
+- [x] Show low-rate engine smoke during the battle and stronger smoke on the losing car after resolution.
 - [x] Remove the `ForegroundRoad` overlay and add soft contact shadows beneath all four wheels.
 - [x] Reduce camera shake and add short HUD motion trails for visible impact feedback.
 - [x] Add and start a looping 60-second battle music asset derived from `Locked_At_Redline.mp3`.

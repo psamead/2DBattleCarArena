@@ -13,6 +13,8 @@ namespace BattleCarArena.Battle
         [SerializeField] private TMP_Text challengerHealthText;
         [SerializeField] private Image playerHealthFill;
         [SerializeField] private Image challengerHealthFill;
+        [SerializeField] private Image playerHealthFrame;
+        [SerializeField] private Image challengerHealthFrame;
         [SerializeField] private TMP_Text startCueText;
         [SerializeField] private BattleResultView resultView;
         [Header("Impact Shake")]
@@ -54,6 +56,8 @@ namespace BattleCarArena.Battle
             CreateMotionTrail(challengerHealthText);
             CreateMotionTrail(playerHealthFill);
             CreateMotionTrail(challengerHealthFill);
+            CreateMotionTrail(playerHealthFrame);
+            CreateMotionTrail(challengerHealthFrame);
             CreateMotionTrail(startCueText);
         }
 

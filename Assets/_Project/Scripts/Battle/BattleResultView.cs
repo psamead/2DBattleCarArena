@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,12 +10,42 @@ namespace BattleCarArena.Battle
         [SerializeField] private GameObject resultPanel;
         [SerializeField] private TMP_Text resultText;
         [SerializeField] private TMP_Text reasonText;
+        [SerializeField] private Button confirmButton;
+
+        public event Action Confirmed;
+
+        private void Awake()
+        {
+            if (confirmButton == null && resultPanel != null)
+            {
+                confirmButton = resultPanel.GetComponent<Button>();
+            }
+
+            if (confirmButton != null)
+            {
+                confirmButton.onClick.AddListener(HandleConfirmClicked);
+                confirmButton.interactable = false;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (confirmButton != null)
+            {
+                confirmButton.onClick.RemoveListener(HandleConfirmClicked);
+            }
+        }
 
         public void Show(BattleResolution resolution)
         {
             if (resultPanel != null)
             {
                 resultPanel.SetActive(true);
+            }
+
+            if (confirmButton != null)
+            {
+                confirmButton.interactable = true;
             }
 
             if (resultText != null)
@@ -24,20 +55,29 @@ namespace BattleCarArena.Battle
 
             if (reasonText != null)
             {
-                reasonText.text = resolution.Reason switch
-                {
-                    BattleEndReason.BoundaryHit => "PUSHED INTO THE WALL",
-                    BattleEndReason.TimeLimit => "TIME LIMIT - HEALTH LEAD",
-                    _ => "HEALTH DEPLETED"
-                };
+                reasonText.text = string.Empty;
+                reasonText.gameObject.SetActive(false);
             }
         }
 
         public void Hide()
         {
+            if (confirmButton != null)
+            {
+                confirmButton.interactable = false;
+            }
+
             if (resultPanel != null)
             {
                 resultPanel.SetActive(false);
+            }
+        }
+
+        private void HandleConfirmClicked()
+        {
+            if (resultPanel != null && resultPanel.activeInHierarchy)
+            {
+                Confirmed?.Invoke();
             }
         }
     }

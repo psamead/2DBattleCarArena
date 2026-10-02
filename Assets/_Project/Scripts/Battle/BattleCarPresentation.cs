@@ -72,13 +72,41 @@ namespace BattleCarArena.Battle
             }
         }
 
-        public void PlayDefeatEffects()
+        public void PlayDefeatEffects(bool isLoser)
         {
             StopBattleDust();
             if (defeatSmoke == null) return;
+            float[] defeatEmissionRates = { 30f, 20f, 16f, 12f };
+            for (int i = 0; i < defeatSmoke.Length; i++)
+            {
+                ParticleSystem plume = defeatSmoke[i];
+                if (plume != null) plume.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            }
+            if (!isLoser) return;
+
+            for (int i = 0; i < defeatSmoke.Length; i++)
+            {
+                ParticleSystem plume = defeatSmoke[i];
+                if (plume == null) continue;
+                var emission = plume.emission;
+                emission.rateOverTime = defeatEmissionRates[i];
+                SetSmokeOpacity(plume, 0.72f, 0.56f);
+                plume.Play();
+            }
+        }
+
+        public void SetBattleSmoke(bool enabled)
+        {
+            if (defeatSmoke == null) return;
             foreach (ParticleSystem plume in defeatSmoke)
-                if (plume != null && !plume.isPlaying)
-                    plume.Play();
+            {
+                if (plume == null) continue;
+                var emission = plume.emission;
+                emission.rateOverTime = enabled ? 0.8f : 0f;
+                if (enabled && !plume.isPlaying) plume.Play();
+                else if (!enabled && plume.isPlaying)
+                    plume.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            }
         }
 
         private void OnDestroy()
@@ -222,7 +250,7 @@ namespace BattleCarArena.Battle
             Gradient fade = new();
             fade.SetKeys(
                 new[] { new GradientColorKey(new Color(0.08f, 0.075f, 0.07f), 0f), new GradientColorKey(new Color(0.2f, 0.19f, 0.18f), 1f) },
-                new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(0.82f, 0.12f), new GradientAlphaKey(0.58f, 0.72f), new GradientAlphaKey(0f, 1f) });
+                new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(0.48f, 0.12f), new GradientAlphaKey(0.32f, 0.72f), new GradientAlphaKey(0f, 1f) });
             color.color = fade;
             var noise = system.noise;
             noise.enabled = true;
@@ -234,6 +262,17 @@ namespace BattleCarArena.Battle
             Material smokeMaterial = Resources.Load<Material>("BattleDustPuff");
             if (smokeMaterial != null) renderer.sharedMaterial = smokeMaterial;
             return system;
+        }
+
+        private static void SetSmokeOpacity(ParticleSystem system, float peak, float body)
+        {
+            var color = system.colorOverLifetime;
+            color.enabled = true;
+            Gradient fade = new();
+            fade.SetKeys(
+                new[] { new GradientColorKey(new Color(0.035f, 0.03f, 0.028f), 0f), new GradientColorKey(new Color(0.11f, 0.095f, 0.085f), 1f) },
+                new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(peak, 0.12f), new GradientAlphaKey(body, 0.72f), new GradientAlphaKey(0f, 1f) });
+            color.color = fade;
         }
 
         private SpriteRenderer[] CreateWheelShadows(Transform root, Transform[] wheelTransforms)
