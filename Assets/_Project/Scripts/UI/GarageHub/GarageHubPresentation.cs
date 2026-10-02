@@ -46,7 +46,7 @@ namespace BattleCarArena.UI
         private readonly List<int> transitionPhases = new();
         private bool transitionRunning;
         private float transitCarFade = 1f;
-        private float transitSceneFade = 1f;
+        private float transitSceneFade;
         private bool transitCrossfadeStarted;
         private Image entranceDarknessOverlay;
         [SerializeField, Range(0f, 1f)] private float arrivalStartingDarkness = 0.2f;

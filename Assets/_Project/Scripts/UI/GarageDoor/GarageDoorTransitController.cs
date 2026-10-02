@@ -17,6 +17,7 @@ namespace BattleCarArena.UI
         [SerializeField, Min(0.1f)] private float openingAnimationDuration = 2f;
         [SerializeField, Min(0.1f)] private float missionOpeningAnimationDuration = 2.55f;
         [SerializeField, Min(0.1f)] private float missionSceneCrossfadeDuration = 1f;
+        [SerializeField, Min(0.05f)] private float missionCarFadeOutDuration = 0.5f;
         [SerializeField, Min(0.1f)] private float closingAnimationDuration = 2.55f;
         [SerializeField, Range(0f, 1f)] private float closedInteriorDarkness = 0.85f;
         [SerializeField, Range(0f, 1f)] private float openInteriorDarkness = 0.2f;
@@ -69,7 +70,6 @@ namespace BattleCarArena.UI
             if (crossfadeFromGarageHub)
             {
                 garageHubPresentation = FindGarageHubPresentation();
-                DisableOtherAudioListeners();
                 SetLayerAlpha(garageBackgroundImage, garageBackgroundBaseColor, 0f);
                 SetLayerAlpha(garageCarImage, garageCarBaseColor, 0f);
                 SetLayerAlpha(doorPanelImage, doorPanelBaseColor, 0f);
@@ -110,6 +110,10 @@ namespace BattleCarArena.UI
                 ? missionOpeningAnimationDuration
                 : openingAnimationDuration;
             yield return AnimateDoor(closedPanelPosition, closedPanelPosition + Vector2.up * panelOpenTravel, true, duration);
+            if (crossfadeFromGarageHub && destinationSceneName == "BattleArena" && showCar)
+            {
+                yield return FadeMissionCarOut();
+            }
             if (destinationSceneName == "GarageHub")
             {
                 GameSession.Instance.MarkGarageEntrancePresentationPending();
@@ -159,7 +163,7 @@ namespace BattleCarArena.UI
                 SetLayerAlpha(garageBackgroundImage, garageBackgroundBaseColor, 1f);
                 SetLayerAlpha(doorPanelImage, doorPanelBaseColor, 1f);
                 SetLayerAlpha(doorFrameImage, doorFrameBaseColor, 1f);
-                SetLayerAlpha(garageCarImage, garageCarBaseColor, 0f);
+                SetLayerAlpha(garageCarImage, garageCarBaseColor, showCar ? 1f : 0f);
                 garageHubPresentation?.SetTransitCarFade(0f);
                 garageHubPresentation?.SetTransitSceneFade(1f);
             }
@@ -174,9 +178,24 @@ namespace BattleCarArena.UI
             SetDarkness(Mathf.Lerp(startDarkness, endDarkness, doorProgress) * fadeProgress);
 
             garageHubPresentation?.SetTransitSceneFade(fadeProgress);
-            float carAlpha = showCar ? fadeProgress * (1f - doorProgress) : 0f;
+            float carAlpha = showCar ? fadeProgress : 0f;
             SetLayerAlpha(garageCarImage, garageCarBaseColor, carAlpha);
             garageHubPresentation?.SetTransitCarFade(1f - fadeProgress);
+        }
+
+        private IEnumerator FadeMissionCarOut()
+        {
+            float elapsed = 0f;
+            float duration = Mathf.Max(0.05f, missionCarFadeOutDuration);
+            while (elapsed < duration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float progress = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / duration));
+                SetLayerAlpha(garageCarImage, garageCarBaseColor, 1f - progress);
+                yield return null;
+            }
+
+            SetLayerAlpha(garageCarImage, garageCarBaseColor, 0f);
         }
 
         private void CacheVisualBaseColors()
@@ -201,11 +220,6 @@ namespace BattleCarArena.UI
             }
 
             return null;
-        }
-
-        private void DisableOtherAudioListeners()
-        {
-            AudioListenerHandoff.DisableAllEnabled(gameObject.scene);
         }
 
         private void SetDarkness(float alpha)
@@ -243,12 +257,9 @@ namespace BattleCarArena.UI
                 yield break;
             }
 
-            AudioListener[] disabledListeners = AudioListenerHandoff.DisableAllEnabled();
-
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(destinationSceneName, LoadSceneMode.Additive);
             if (loadOperation == null)
             {
-                AudioListenerHandoff.Restore(disabledListeners);
                 Debug.LogError($"Could not begin loading '{destinationSceneName}' additively.", this);
                 yield break;
             }
@@ -261,7 +272,6 @@ namespace BattleCarArena.UI
             Scene garageScene = SceneManager.GetSceneByName(destinationSceneName);
             if (!garageScene.IsValid() || !garageScene.isLoaded)
             {
-                AudioListenerHandoff.Restore(disabledListeners);
                 Debug.LogError($"'{destinationSceneName}' did not finish loading for the garage crossfade.", this);
                 yield break;
             }

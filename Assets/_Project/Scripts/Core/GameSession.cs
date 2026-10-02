@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace BattleCarArena.Core
 {
@@ -8,6 +9,7 @@ namespace BattleCarArena.Core
         private const string ObjectName = "GameSession";
         private static GameSession instance;
         private AudioSource uiAudioSource;
+        private AudioListener sessionAudioListener;
         private string pendingGarageTransitDestination;
         private bool pendingGarageTransitOpening;
         private bool pendingGarageTransitShowCar;
@@ -127,6 +129,15 @@ namespace BattleCarArena.Core
             instance = this;
             EnsureInitialized();
             DontDestroyOnLoad(gameObject);
+            sessionAudioListener = GetComponent<AudioListener>();
+            if (sessionAudioListener == null)
+            {
+                sessionAudioListener = gameObject.AddComponent<AudioListener>();
+            }
+
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            EnforceSingleAudioListener();
         }
 
         private void EnsureInitialized()
@@ -137,9 +148,36 @@ namespace BattleCarArena.Core
 
         private void OnDestroy()
         {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
             if (instance == this)
             {
                 instance = null;
+            }
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            EnforceSingleAudioListener();
+        }
+
+        private void EnforceSingleAudioListener()
+        {
+            if (sessionAudioListener == null)
+            {
+                sessionAudioListener = GetComponent<AudioListener>();
+                if (sessionAudioListener == null)
+                {
+                    sessionAudioListener = gameObject.AddComponent<AudioListener>();
+                }
+            }
+
+            sessionAudioListener.enabled = true;
+            foreach (AudioListener listener in FindObjectsByType<AudioListener>(FindObjectsSortMode.None))
+            {
+                if (listener != null && listener != sessionAudioListener)
+                {
+                    listener.enabled = false;
+                }
             }
         }
     }
