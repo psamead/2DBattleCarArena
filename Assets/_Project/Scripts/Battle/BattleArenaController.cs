@@ -131,7 +131,7 @@ namespace BattleCarArena.Battle
                 challengerMotor.SetContactPushMultiplier(playerHasPushSurge ? 0.92f : 1.08f);
                 foreach (BattleCarPresentation presentation in presentations)
                     presentation?.TriggerCrash();
-                cameraRig?.TriggerImpact(0.95f);
+                TriggerImpact(0.95f);
             }
 
             contactTimer += Time.deltaTime;
@@ -141,7 +141,7 @@ namespace BattleCarArena.Battle
             }
 
             contactTimer -= contactDamageInterval;
-            cameraRig?.TriggerImpact(0.75f);
+            TriggerImpact(0.75f);
             playerHealth = Mathf.Max(0, playerHealth - challengerWeaponDamageRuntime);
             challengerHealth = Mathf.Max(0, challengerHealth - playerWeaponDamage);
             RefreshHealth();
@@ -178,7 +178,7 @@ namespace BattleCarArena.Battle
                     challengerMotor.SetContactPushMultiplier(1.08f);
                     foreach (BattleCarPresentation presentation in presentations)
                         presentation?.TriggerCrash();
-                    cameraRig?.TriggerImpact();
+                    TriggerImpact();
                 }
             }
             else
@@ -198,7 +198,7 @@ namespace BattleCarArena.Battle
                 return;
             }
 
-            cameraRig?.TriggerImpact(1.8f);
+            TriggerImpact(1.8f);
             bool playerHitWall = sideAtBoundary == BattleSide.Player;
             CarMotor2D motor = playerHitWall ? playerMotor : challengerMotor;
             motor.ReboundFromWall(motor.transform.position.x < 0f ? 1 : -1);
@@ -227,9 +227,16 @@ namespace BattleCarArena.Battle
             cameraRig?.SetBattleFinished();
             playerMotor.StopDriving();
             challengerMotor.StopDriving();
+            presentations[(int)resolution.Loser]?.PlayDefeatEffects();
             hud.SetCue(string.Empty);
             hud.ResultView.Show(resolution);
             StartCoroutine(ReturnToGarageAfterResult());
+        }
+
+        private void TriggerImpact(float intensity = 1f)
+        {
+            cameraRig?.TriggerImpact(intensity);
+            hud?.TriggerImpact(intensity);
         }
 
         private IEnumerator ReturnToGarageAfterResult()

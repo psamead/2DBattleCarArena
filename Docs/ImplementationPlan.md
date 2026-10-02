@@ -9,7 +9,7 @@ Source brief: [Google design document](https://docs.google.com/document/d/12c7xQ
 - `Assets/_Project/Scenes/StartMenu.unity`, `Assets/_Project/Scenes/GarageHub.unity`, and the empty `Assets/_Project/Scenes/BattleArena.unity` placeholder are enabled build scenes.
 - The original planning baseline had no gameplay code, prefabs, tests, or established application architecture. The current prototype includes the Start Menu, Garage Hub, session-owned Garage upgrades, and a battle scene; save persistence and planned automated test coverage remain future work.
 
-## Prototype status (2026-09-30)
+## Prototype status (2026-10-02)
 
 - The Start Menu to Garage Hub route and both scene layout prototypes exist. Their art and theme assets are kept in feature-named folders.
 - `GameSession` owns runtime Garage progress across scene changes. Upgrade purchasing and the Garage-to-menu/BattleArena placeholder navigation are implemented; save persistence and the battle loop remain future work.
@@ -24,7 +24,7 @@ Source brief: [Google design document](https://docs.google.com/document/d/12c7xQ
 - The Battery display is named `EnergyPanel` and reads `ENERGY`.
 - Garage Hub shows the front-view pixel-art car (`Art/UI/GarageHub/GarageCarPreview_Front.png`) in a resized `CarPreviewArtSlot` (813×498, Preserve Aspect).
 - See [ImplementationChecklist.md](ImplementationChecklist.md), [StartMenuTemplate.md](StartMenuTemplate.md), and [GarageHubTemplate.md](GarageHubTemplate.md) for verified setup and swap instructions.
-- BattleArena now uses player and challenger side-view car prefabs, rectangular health bars, timed contact damage and push surges, solid rebound walls, a 60-second timeout, impact camera shake, wheel rotation and dust, and a looping battle music asset. A Play Mode smoke check confirmed music playback and active dust systems at about 14.6 seconds; a full fight, both result/return paths, music-seam listening check, and development build still need validation.
+- BattleArena now uses player and challenger side-view car prefabs, rectangular health bars, timed contact damage and push surges, solid rebound walls, a 60-second timeout, impact camera and HUD shake, fast wheel rotation, translucent wheel dust, losing-car engine smoke, and a looping battle music asset. Updated battle scripts compile in Unity; Play Mode showed the dust and smoke effects and returned to GarageHub after a resolved fight. A captured results moment, both result paths, the timeout, music-seam listening check, and development build still need validation.
 - See [BattleArenaTemplate.md](BattleArenaTemplate.md) and [ArmoredCarArt.md](ArmoredCarArt.md) for current battle setup, replaceable art/effect/audio assets, and validation limits.
 
 ## Architecture

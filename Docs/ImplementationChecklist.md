@@ -88,9 +88,13 @@ Last updated: 2026-10-02
 - [x] Use rectangular health bars with the challenger fill progressing from the right.
 - [x] Add a 60-second battle limit, alternating push surges, wall rebounds, and time-limit health comparison.
 - [x] Add fast wheel rotation, contact recoil, wheel dust texture/material, and impact camera shake; smoke-checked in Play Mode.
+- [x] Reduce wheel-dust opacity and density so car sprites remain visible through the clouds.
+- [x] Emit dark engine smoke from the losing car during the results cue and stop its combat presentation.
+- [x] Add a small HUD shake alongside the camera shake on car impacts.
 - [x] Add and start a looping 60-second battle music asset derived from `Locked_At_Redline.mp3`.
 - [x] Record battle art slots, effect assets, loop construction, and current verification limits in [BattleArenaTemplate.md](BattleArenaTemplate.md) and [ArmoredCarArt.md](ArmoredCarArt.md).
-- [ ] Play through a complete fight and verify both result paths return to `GarageHub`.
+- [x] Observe one resolved Play Mode fight return from `BattleArena` to `GarageHub`.
+- [ ] Capture the results moment and verify both result paths and the 60-second timeout.
 - [ ] Listen to the battle loop seam in-game and tune dust presentation after reviewing the full battle.
 
 ## Phase 4 — Results and rank progression

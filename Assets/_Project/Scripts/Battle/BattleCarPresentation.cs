@@ -15,6 +15,7 @@ namespace BattleCarArena.Battle
         private Transform visualRoot;
         private Transform[] wheels;
         private ParticleSystem[] dust;
+        private ParticleSystem defeatSmoke;
         private Vector3 restPosition;
         private Quaternion restRotation;
         private bool inContact;
@@ -35,6 +36,7 @@ namespace BattleCarArena.Battle
                 CreateDust(FindDescendant(visualRoot, "FrontWheelDustAnchor"), dustDirection),
                 CreateDust(FindDescendant(visualRoot, "RearWheelDustAnchor"), dustDirection)
             };
+            defeatSmoke = CreateDefeatSmoke(visualRoot);
         }
 
         public void SetInContact(bool value)
@@ -48,6 +50,25 @@ namespace BattleCarArena.Battle
         {
             crashPulseRemaining = Mathf.Max(crashPulseRemaining, 0.9f);
             phase = Random.Range(0f, 6.28318f);
+        }
+
+        public void PlayDefeatEffects()
+        {
+            inContact = false;
+            crashPulseRemaining = 0f;
+            if (dust != null)
+            {
+                foreach (ParticleSystem particles in dust)
+                {
+                    if (particles == null) continue;
+                    var emission = particles.emission;
+                    emission.rateOverTime = 0f;
+                    particles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
+                }
+            }
+
+            if (defeatSmoke != null && !defeatSmoke.isPlaying)
+                defeatSmoke.Play();
         }
 
         private void LateUpdate()
@@ -72,7 +93,7 @@ namespace BattleCarArena.Battle
                 ParticleSystem particles = dust[i];
                 if (particles == null) continue;
                 var emission = particles.emission;
-                emission.rateOverTime = dustBurst ? 46f : Mathf.Clamp(Mathf.Abs(speed) * 8f, 0f, 24f);
+                emission.rateOverTime = dustBurst ? 40f : Mathf.Clamp(Mathf.Abs(speed) * 8f, 0f, 24f);
                 if ((dustBurst || Mathf.Abs(speed) > 0.15f) && !particles.isPlaying) particles.Play();
                 else if (!dustBurst && Mathf.Abs(speed) <= 0.15f && particles.isPlaying) particles.Stop(false, ParticleSystemStopBehavior.StopEmitting);
             }
@@ -107,9 +128,9 @@ namespace BattleCarArena.Battle
             main.simulationSpace = ParticleSystemSimulationSpace.World;
             main.startLifetime = new ParticleSystem.MinMaxCurve(1.4f, 2.6f);
             main.startSpeed = new ParticleSystem.MinMaxCurve(0.03f, 0.22f);
-            main.startSize = new ParticleSystem.MinMaxCurve(0.42f, 1.05f);
-            main.startColor = new Color(1f, 0.96f, 0.88f, 0.62f);
-            main.maxParticles = 240;
+            main.startSize = new ParticleSystem.MinMaxCurve(0.4f, 0.95f);
+            main.startColor = new Color(1f, 0.96f, 0.88f, 0.42f);
+            main.maxParticles = 200;
             main.gravityModifier = -0.015f;
             var emission = system.emission;
             emission.rateOverTime = 0f;
@@ -127,7 +148,7 @@ namespace BattleCarArena.Battle
             Gradient fade = new();
             fade.SetKeys(
                 new[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(new Color(0.9f, 0.76f, 0.57f), 1f) },
-                new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(0.58f, 0.12f), new GradientAlphaKey(0.36f, 0.68f), new GradientAlphaKey(0f, 1f) });
+                new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(0.44f, 0.12f), new GradientAlphaKey(0.24f, 0.68f), new GradientAlphaKey(0f, 1f) });
             color.color = fade;
             var noise = system.noise;
             noise.enabled = true;
@@ -138,6 +159,51 @@ namespace BattleCarArena.Battle
             renderer.sortingOrder = 12;
             Material dustMaterial = Resources.Load<Material>("BattleDustPuff");
             if (dustMaterial != null) renderer.sharedMaterial = dustMaterial;
+            return system;
+        }
+
+        private static ParticleSystem CreateDefeatSmoke(Transform root)
+        {
+            GameObject smokeObject = new("DefeatEngineSmoke");
+            smokeObject.transform.SetParent(root, false);
+            smokeObject.transform.localPosition = new Vector3(0.78f, 0.38f, -0.02f);
+            ParticleSystem system = smokeObject.AddComponent<ParticleSystem>();
+            var main = system.main;
+            main.loop = true;
+            main.playOnAwake = false;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+            main.startLifetime = new ParticleSystem.MinMaxCurve(2.2f, 3.2f);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(0.25f, 0.65f);
+            main.startSize = new ParticleSystem.MinMaxCurve(0.28f, 0.58f);
+            main.startColor = new Color(0.12f, 0.11f, 0.1f, 0.68f);
+            main.maxParticles = 80;
+            var emission = system.emission;
+            emission.rateOverTime = 7f;
+            var shape = system.shape;
+            shape.enabled = true;
+            shape.shapeType = ParticleSystemShapeType.Circle;
+            shape.radius = 0.11f;
+            var velocity = system.velocityOverLifetime;
+            velocity.enabled = true;
+            velocity.space = ParticleSystemSimulationSpace.World;
+            velocity.x = new ParticleSystem.MinMaxCurve(-0.08f);
+            velocity.y = new ParticleSystem.MinMaxCurve(0.78f);
+            var color = system.colorOverLifetime;
+            color.enabled = true;
+            Gradient fade = new();
+            fade.SetKeys(
+                new[] { new GradientColorKey(new Color(0.12f, 0.11f, 0.1f), 0f), new GradientColorKey(new Color(0.2f, 0.19f, 0.18f), 1f) },
+                new[] { new GradientAlphaKey(0f, 0f), new GradientAlphaKey(0.78f, 0.18f), new GradientAlphaKey(0.52f, 0.62f), new GradientAlphaKey(0f, 1f) });
+            color.color = fade;
+            var noise = system.noise;
+            noise.enabled = true;
+            noise.strength = 0.32f;
+            noise.frequency = 0.24f;
+            var renderer = system.GetComponent<ParticleSystemRenderer>();
+            renderer.renderMode = ParticleSystemRenderMode.Billboard;
+            renderer.sortingOrder = 13;
+            Material smokeMaterial = Resources.Load<Material>("BattleDustPuff");
+            if (smokeMaterial != null) renderer.sharedMaterial = smokeMaterial;
             return system;
         }
     }

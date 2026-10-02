@@ -36,7 +36,7 @@ The controller initializes player Engine, Weapon, and Armor from `GameSession.Ga
 
 Health bars are rectangular, with player health filling from the left and challenger health from the right. Keep their names, colors, and fill images on the HUD so the presentation can be adjusted without changing combat logic.
 
-Current battle presentation includes fast wheel rotation, short body recoil/sway during contact, warm road-dust clouds emitted from wheel anchors, and camera shake on impacts. Dust uses `Resources/BattleDustPuff.png` with `Resources/BattleDustPuff.mat`; replace or tune those separately from the car sprites. The configured loop asset is `Audio/Music/Locked_At_Redline_BattleLoop.wav`, sourced from `Locked_At_Redline.mp3`. It is a 60-second stereo loop with a crossfade; the selected source window begins at approximately 14 seconds and its 2.5-second tail/head overlap crossfades to reduce the loop seam. `BattleArenaController` starts the looping 2D AudioSource when the fight begins.
+Current battle presentation includes fast wheel rotation, short body recoil/sway during contact, translucent warm road-dust clouds emitted from wheel anchors, and camera plus subtle HUD shake on impacts. The losing car stops and emits dark engine smoke during the result display. Dust and smoke use `Resources/BattleDustPuff.png` with `Resources/BattleDustPuff.mat`; particle colors and alpha are separate so the dust stays see-through while defeat smoke is dark. Replace or tune these separately from the car sprites. The configured loop asset is `Audio/Music/Locked_At_Redline_BattleLoop.wav`, sourced from `Locked_At_Redline.mp3`. It is a 60-second stereo loop with a crossfade; the selected source window begins at approximately 14 seconds and its 2.5-second tail/head overlap crossfades to reduce the loop seam. `BattleArenaController` starts the looping 2D AudioSource when the fight begins.
 
 ## Responsibilities
 
@@ -50,7 +50,7 @@ Current battle presentation includes fast wheel rotation, short body recoil/sway
 
 ## Verification record
 
-On 2026-10-02, Unity Play Mode was observed in `BattleArena` at about 14.6 seconds. The battle music was playing, four wheel particle systems were active, and the systems reported 371 live particles. Earlier runtime inspection caught a particle velocity-curve mode error; the curves were corrected and no new particle error was logged in the subsequent smoke check. This confirms startup and effects are active, but does not constitute a full 60-second fight, loop-seam listening check, resolution/return-flow check, or build validation.
+On 2026-10-02, Unity compiled the updated battle scripts without errors. Play Mode showed the reduced-alpha dust while both cars remained visible. Direct effect activation reported the defeat-smoke system playing with live particles, and triggering the HUD shake moved its Canvas RectTransform by 1.61 × 0.58 UI units. A later Play Mode run was observed returning from `BattleArena` to `GarageHub` after the battle resolved. The result view was not captured at the moment of that transition. A dedicated full 60-second fight, both result paths, loop-seam listening check, and build validation remain open.
 
 ## Remaining validation
 
