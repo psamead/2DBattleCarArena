@@ -230,6 +230,7 @@ MonoBehaviour:
   doorPanelImage: {fileID: 1689186917}
   doorFrameImage: {fileID: 968254121}
   openingAnimationDuration: 2
+  missionOpeningAnimationDuration: 2.55
   closingAnimationDuration: 2.55
   closedInteriorDarkness: 0.85
   openInteriorDarkness: 0.2

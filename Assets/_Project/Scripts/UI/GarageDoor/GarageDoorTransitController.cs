@@ -15,6 +15,7 @@ namespace BattleCarArena.UI
         [SerializeField] private Image doorPanelImage;
         [SerializeField] private Image doorFrameImage;
         [SerializeField, Min(0.1f)] private float openingAnimationDuration = 2f;
+        [SerializeField, Min(0.1f)] private float missionOpeningAnimationDuration = 2.55f;
         [SerializeField, Min(0.1f)] private float closingAnimationDuration = 2.55f;
         [SerializeField, Range(0f, 1f)] private float closedInteriorDarkness = 0.85f;
         [SerializeField, Range(0f, 1f)] private float openInteriorDarkness = 0.2f;
@@ -23,6 +24,7 @@ namespace BattleCarArena.UI
 
         private string destinationSceneName;
         private bool opening;
+        private bool showCar;
 
         public void Configure(
             GarageDoorTransitionTheme transitionTheme,
@@ -48,7 +50,7 @@ namespace BattleCarArena.UI
                 closedPanelPosition = doorPanelImage.rectTransform.anchoredPosition;
             }
 
-            if (!GameSession.Instance.TryConsumeGarageTransit(out destinationSceneName, out opening))
+            if (!GameSession.Instance.TryConsumeGarageTransit(out destinationSceneName, out opening, out showCar))
             {
                 Debug.LogError("GarageTransit loaded without a pending door transition request.", this);
                 SceneManager.LoadScene("GarageHub", LoadSceneMode.Single);
@@ -71,7 +73,7 @@ namespace BattleCarArena.UI
 
             if (garageCarImage != null)
             {
-                garageCarImage.gameObject.SetActive(garageCarImage.sprite != null);
+                garageCarImage.gameObject.SetActive(showCar && garageCarImage.sprite != null);
             }
 
             if (doorPanelImage != null)
@@ -86,7 +88,10 @@ namespace BattleCarArena.UI
 
         private IEnumerator OpenGarage()
         {
-            yield return AnimateDoor(closedPanelPosition, closedPanelPosition + Vector2.up * panelOpenTravel, true, openingAnimationDuration);
+            float duration = destinationSceneName == "BattleArena"
+                ? missionOpeningAnimationDuration
+                : openingAnimationDuration;
+            yield return AnimateDoor(closedPanelPosition, closedPanelPosition + Vector2.up * panelOpenTravel, true, duration);
             GameSession.Instance.MarkGarageEntrancePresentationPending();
             LoadDestination();
         }

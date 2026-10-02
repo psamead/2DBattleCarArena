@@ -10,6 +10,7 @@ namespace BattleCarArena.Core
         private AudioSource uiAudioSource;
         private string pendingGarageTransitDestination;
         private bool pendingGarageTransitOpening;
+        private bool pendingGarageTransitShowCar;
         private bool garageEntrancePresentationPending;
 
         public static GameSession Instance
@@ -55,18 +56,21 @@ namespace BattleCarArena.Core
             uiAudioSource.PlayOneShot(clip);
         }
 
-        public void SetPendingGarageTransit(string destinationSceneName, bool opening)
+        public void SetPendingGarageTransit(string destinationSceneName, bool opening, bool showCar)
         {
             pendingGarageTransitDestination = destinationSceneName;
             pendingGarageTransitOpening = opening;
+            pendingGarageTransitShowCar = showCar;
         }
 
-        public bool TryConsumeGarageTransit(out string destinationSceneName, out bool opening)
+        public bool TryConsumeGarageTransit(out string destinationSceneName, out bool opening, out bool showCar)
         {
             destinationSceneName = pendingGarageTransitDestination;
             opening = pendingGarageTransitOpening;
+            showCar = pendingGarageTransitShowCar;
             pendingGarageTransitDestination = null;
             pendingGarageTransitOpening = false;
+            pendingGarageTransitShowCar = false;
             return !string.IsNullOrWhiteSpace(destinationSceneName);
         }
 
@@ -74,6 +78,7 @@ namespace BattleCarArena.Core
         {
             pendingGarageTransitDestination = null;
             pendingGarageTransitOpening = false;
+            pendingGarageTransitShowCar = false;
         }
 
         public void MarkGarageEntrancePresentationPending()

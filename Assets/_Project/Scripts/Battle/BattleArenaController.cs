@@ -253,7 +253,7 @@ namespace BattleCarArena.Battle
                 return;
             }
 
-            if (!GameSession.Instance.SceneNavigator.EnterGarage("GarageHub"))
+            if (!GameSession.Instance.SceneNavigator.EnterGarage("GarageHub", showCarInTransit: false))
             {
                 Debug.LogError("Could not return to GarageHub after result confirmation. Confirm GarageHub and GarageTransit are enabled in Build Settings.", this);
             }

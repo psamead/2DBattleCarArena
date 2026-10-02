@@ -76,7 +76,7 @@ namespace BattleCarArena.UI
 
         private void StartGame()
         {
-            if (!GameSession.Instance.SceneNavigator.EnterGarage(garageSceneName))
+            if (!GameSession.Instance.SceneNavigator.EnterGarage(garageSceneName, showCarInTransit: true))
             {
                 Debug.LogWarning($"Cannot open '{garageSceneName}'. Confirm the scene and GarageTransit are enabled in Build Settings.", this);
                 return;

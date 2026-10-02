@@ -104,7 +104,10 @@ namespace BattleCarArena.UI
 
             void LoadDestination()
             {
-                if (!GameSession.Instance.SceneNavigator.ExitGarage(sceneName)
+                if (!GameSession.Instance.SceneNavigator.ExitGarage(
+                        sceneName,
+                        openingDoor: sceneName == battleSceneName,
+                        showCarInTransit: true)
                     && !GameSession.Instance.SceneNavigator.TryLoad(sceneName))
                 {
                     isLeavingGarage = false;

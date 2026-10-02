@@ -22,7 +22,7 @@ namespace BattleCarArena.Core
             return true;
         }
 
-        public bool EnterGarage(string garageSceneName)
+        public bool EnterGarage(string garageSceneName, bool showCarInTransit)
         {
             GameSession session = GameSession.Instance;
             if (!session.GarageProgress.HasWonBattle)
@@ -30,20 +30,20 @@ namespace BattleCarArena.Core
                 return TryLoad(garageSceneName);
             }
 
-            return LoadThroughGarageTransit(garageSceneName, opening: true);
+            return LoadThroughGarageTransit(garageSceneName, opening: true, showCar: showCarInTransit);
         }
 
-        public bool ExitGarage(string destinationSceneName)
+        public bool ExitGarage(string destinationSceneName, bool openingDoor, bool showCarInTransit)
         {
             if (!GameSession.Instance.GarageProgress.HasWonBattle)
             {
                 return TryLoad(destinationSceneName);
             }
 
-            return LoadThroughGarageTransit(destinationSceneName, opening: false);
+            return LoadThroughGarageTransit(destinationSceneName, openingDoor, showCarInTransit);
         }
 
-        private bool LoadThroughGarageTransit(string destinationSceneName, bool opening)
+        private bool LoadThroughGarageTransit(string destinationSceneName, bool opening, bool showCar)
         {
             const string transitSceneName = "GarageTransit";
             if (!CanLoad(destinationSceneName) || !CanLoad(transitSceneName))
@@ -51,7 +51,7 @@ namespace BattleCarArena.Core
                 return false;
             }
 
-            GameSession.Instance.SetPendingGarageTransit(destinationSceneName, opening);
+            GameSession.Instance.SetPendingGarageTransit(destinationSceneName, opening, showCar);
             if (TryLoad(transitSceneName))
             {
                 return true;
