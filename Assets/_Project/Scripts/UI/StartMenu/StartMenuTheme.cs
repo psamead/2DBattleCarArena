@@ -13,6 +13,8 @@ namespace BattleCarArena.UI
         [SerializeField] private Sprite buttonSprite;
         [SerializeField] private TMP_FontAsset fontAsset;
         [SerializeField] private AudioClip menuMusic;
+        [SerializeField] private AudioClip optionHoverSound;
+        [SerializeField] private AudioClip optionConfirmSound;
 
         [Header("Palette")]
         [SerializeField] private Color backgroundColor = new(0.025f, 0.035f, 0.055f, 1f);
@@ -29,6 +31,8 @@ namespace BattleCarArena.UI
         public Sprite ButtonSprite => buttonSprite;
         public TMP_FontAsset FontAsset => fontAsset;
         public AudioClip MenuMusic => menuMusic;
+        public AudioClip OptionHoverSound => optionHoverSound;
+        public AudioClip OptionConfirmSound => optionConfirmSound;
         public Color BackgroundColor => backgroundColor;
         public Color PanelColor => panelColor;
         public Color AccentColor => accentColor;

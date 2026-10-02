@@ -28,6 +28,8 @@ namespace BattleCarArena.UI
 
         public UnityEngine.UI.Button StartButton => startButton;
         public UnityEngine.UI.Button ExitButton => exitButton;
+        private AudioClip optionHoverSound;
+        private AudioClip optionConfirmSound;
 
         public void Configure(
             UnityEngine.UI.Image background,
@@ -72,6 +74,9 @@ namespace BattleCarArena.UI
 
                 return;
             }
+
+            optionHoverSound = theme.OptionHoverSound;
+            optionConfirmSound = theme.OptionConfirmSound;
 
             // Keep the replaceable background artwork visible at full color. The
             // theme background color remains the fallback when no sprite is set.
@@ -128,6 +133,46 @@ namespace BattleCarArena.UI
             musicSource.loop = true;
             musicSource.playOnAwake = false;
             musicSource.Play();
+        }
+
+        public void PlayOptionHoverSound()
+        {
+            PlayUiSound(optionHoverSound);
+        }
+
+        public void PlayOptionConfirmSound()
+        {
+            PlayUiSound(optionConfirmSound);
+        }
+
+        public void EnsureOptionHoverFeedback()
+        {
+            ConfigureHoverFeedback(startButton);
+            ConfigureHoverFeedback(exitButton);
+        }
+
+        private void PlayUiSound(AudioClip clip)
+        {
+            if (musicSource != null && clip != null)
+            {
+                musicSource.PlayOneShot(clip);
+            }
+        }
+
+        private void ConfigureHoverFeedback(UnityEngine.UI.Button button)
+        {
+            if (button == null)
+            {
+                return;
+            }
+
+            StartMenuHoverFeedback feedback = button.GetComponent<StartMenuHoverFeedback>();
+            if (feedback == null)
+            {
+                feedback = button.gameObject.AddComponent<StartMenuHoverFeedback>();
+            }
+
+            feedback.Configure(this);
         }
 
         public void SelectPrimaryAction()

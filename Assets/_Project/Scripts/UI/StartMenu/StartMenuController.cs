@@ -39,7 +39,10 @@ namespace BattleCarArena.UI
             }
 
             view.ApplyTheme(theme);
+            view.EnsureOptionHoverFeedback();
+            view.StartButton.onClick.AddListener(view.PlayOptionConfirmSound);
             view.StartButton.onClick.AddListener(StartGame);
+            view.ExitButton.onClick.AddListener(view.PlayOptionConfirmSound);
             view.ExitButton.onClick.AddListener(ExitGame);
             view.PlayMusic();
             view.SelectPrimaryAction();
@@ -60,11 +63,13 @@ namespace BattleCarArena.UI
 
             if (view.StartButton != null)
             {
+                view.StartButton.onClick.RemoveListener(view.PlayOptionConfirmSound);
                 view.StartButton.onClick.RemoveListener(StartGame);
             }
 
             if (view.ExitButton != null)
             {
+                view.ExitButton.onClick.RemoveListener(view.PlayOptionConfirmSound);
                 view.ExitButton.onClick.RemoveListener(ExitGame);
             }
         }

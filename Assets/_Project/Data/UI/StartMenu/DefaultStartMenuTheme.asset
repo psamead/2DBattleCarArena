@@ -18,6 +18,8 @@ MonoBehaviour:
   buttonSprite: {fileID: 1450413102316742792, guid: 03d6da9033f0f76428cbdb72f9d87b60, type: 3}
   fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   menuMusic: {fileID: 8300000, guid: 54d8dcf9620526a4998fc20eddc879aa, type: 3}
+  optionHoverSound: {fileID: 8300000, guid: f7f432a3d8d0c504793222a4a8e8b329, type: 3}
+  optionConfirmSound: {fileID: 8300000, guid: 207dba58ae9f5b644b64ed210eb08c4d, type: 3}
   backgroundColor: {r: 0.025, g: 0.035, b: 0.055, a: 1}
   panelColor: {r: 0.055, g: 0.075, b: 0.11, a: 0.9411765}
   accentColor: {r: 1, g: 0.34, b: 0.08, a: 1}

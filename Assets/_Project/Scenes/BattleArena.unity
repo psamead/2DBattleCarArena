@@ -2321,7 +2321,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100 / 100
+  m_text: 500 / 500
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e847f2595900640419b886f274120735, type: 2}
   m_sharedMaterial: {fileID: -3316334264435428955, guid: e847f2595900640419b886f274120735, type: 2}
@@ -3011,7 +3011,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 140 / 140
+  m_text: 500 / 500
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e847f2595900640419b886f274120735, type: 2}
   m_sharedMaterial: {fileID: -3316334264435428955, guid: e847f2595900640419b886f274120735, type: 2}
@@ -3453,12 +3453,10 @@ MonoBehaviour:
   cameraRig: {fileID: 1260176546}
   playerName: PLAYER
   challengerName: CHALLENGER
-  challengerEnginePower: 220
-  challengerWeaponDamage: 6
-  challengerArmorDurability: 140
+  challengerStatVariation: 0.2
   startCueSeconds: 2
   contactDamageInterval: 5.5
-  battleDurationSeconds: 60
+  gunAttackInterval: 5
   boundaryCrashDamage: 2
 --- !u!4 &1537312164
 Transform:

@@ -229,8 +229,8 @@ namespace BattleCarArena.Battle.Editor
             ConfigureHudRect(challengerHealthLabel.rectTransform, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-56f, -207f), new Vector2(520f, 36f));
             playerName.text = "PLAYER";
             challengerName.text = "CHALLENGER";
-            playerHealthLabel.text = "65 / 65";
-            challengerHealthLabel.text = "140 / 140";
+            playerHealthLabel.text = "500 / 500";
+            challengerHealthLabel.text = "500 / 500";
             Sprite healthBarFrame = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/_Project/Art/UI/GarageHub/GarageHubPanelFrame_RustedSteel.png");
             Image playerHealthFill = CreateHealthBar(square, healthBarFrame, canvasObject.transform, "PlayerHealthBar", true, new Color(0.0f, 0.86f, 1.0f));
             Image challengerHealthFill = CreateHealthBar(square, healthBarFrame, canvasObject.transform, "ChallengerHealthBar", false, new Color(0.72f, 0.30f, 1.0f));
@@ -426,11 +426,9 @@ namespace BattleCarArena.Battle.Editor
             serialized.FindProperty("challengerCrashReporter").objectReferenceValue = challengerCrash;
             serialized.FindProperty("hud").objectReferenceValue = hud;
             serialized.FindProperty("cameraRig").objectReferenceValue = cameraRig;
-            serialized.FindProperty("challengerEnginePower").intValue = 220;
-            serialized.FindProperty("challengerWeaponDamage").intValue = 6;
-            serialized.FindProperty("challengerArmorDurability").intValue = 140;
+            serialized.FindProperty("challengerStatVariation").floatValue = 0.2f;
             serialized.FindProperty("contactDamageInterval").floatValue = 5.5f;
-            serialized.FindProperty("battleDurationSeconds").floatValue = 60f;
+            serialized.FindProperty("gunAttackInterval").floatValue = 5f;
             serialized.FindProperty("boundaryCrashDamage").intValue = 2;
             serialized.ApplyModifiedPropertiesWithoutUndo();
         }

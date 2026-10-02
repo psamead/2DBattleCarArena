@@ -9,7 +9,6 @@ namespace BattleCarArena.Battle
     public enum BattleEndReason
     {
         HealthDepleted,
-        BoundaryHit,
-        TimeLimit
+        BoundaryHit
     }
 }

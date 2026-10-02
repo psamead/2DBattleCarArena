@@ -25,15 +25,14 @@ namespace BattleCarArena.Battle
         [Header("Challenger Blockout Stats")]
         [SerializeField] private string playerName = "PLAYER";
         [SerializeField] private string challengerName = "CHALLENGER";
-        [SerializeField, Min(1)] private int challengerEnginePower = 220;
-        [SerializeField, Min(1)] private int challengerWeaponDamage = 6;
-        [SerializeField, Min(1)] private int challengerArmorDurability = 140;
+        [SerializeField, Range(0f, 0.5f)] private float challengerStatVariation = 0.2f;
 
         [Header("Battle Timing")]
         [SerializeField, Min(0f)] private float startCueSeconds = 2f;
         [SerializeField, Min(0.1f)] private float contactDamageInterval = 5.5f;
-        [SerializeField, Min(1f)] private float battleDurationSeconds = 60f;
+        [SerializeField, Min(0.1f)] private float gunAttackInterval = 5f;
         [SerializeField, Min(0)] private int boundaryCrashDamage = 2;
+        private GarageProgress garageProgress;
         private BattleState state;
         private int playerHealth;
         private int playerMaximumHealth;
@@ -41,10 +40,14 @@ namespace BattleCarArena.Battle
         private int challengerMaximumHealth;
         private int playerWeaponDamage;
         private int challengerWeaponDamageRuntime;
+        private int playerEnginePower;
+        private int challengerEnginePowerRuntime;
+        private BattleArmorDefense playerArmorDefense;
+        private BattleArmorDefense challengerArmorDefense;
         private bool carsInContact;
         private float contactTimer;
         private float pushCycleTimer;
-        private float battleElapsed;
+        private float gunAttackTimer;
         private bool playerHasPushSurge;
         private BattleCarPresentation[] presentations;
         private AudioSource battleMusicSource;
@@ -65,16 +68,20 @@ namespace BattleCarArena.Battle
             if (challengerPresentation == null) challengerPresentation = challengerMotor.gameObject.AddComponent<BattleCarPresentation>();
             presentations = new[] { playerPresentation, challengerPresentation };
 
-            GarageProgress progress = GameSession.Instance.GarageProgress;
-            playerMaximumHealth = Mathf.Max(1, progress.ArmorDurability);
+            garageProgress = GameSession.Instance.GarageProgress;
+            playerMaximumHealth = Mathf.Max(1, garageProgress.Score);
             playerHealth = playerMaximumHealth;
-            challengerMaximumHealth = Mathf.Max(1, challengerArmorDurability);
+            challengerMaximumHealth = RandomizeChallengerStat(playerMaximumHealth);
             challengerHealth = challengerMaximumHealth;
-            playerWeaponDamage = Mathf.Max(1, progress.WeaponDamage);
-            challengerWeaponDamageRuntime = Mathf.Max(1, challengerWeaponDamage);
+            playerEnginePower = Mathf.Max(1, garageProgress.EnginePower);
+            challengerEnginePowerRuntime = RandomizeChallengerStat(playerEnginePower);
+            playerWeaponDamage = Mathf.Max(1, garageProgress.WeaponDamage);
+            challengerWeaponDamageRuntime = RandomizeChallengerStat(playerWeaponDamage);
+            playerArmorDefense = new BattleArmorDefense(garageProgress.ArmorPower);
+            challengerArmorDefense = new BattleArmorDefense(RandomizeChallengerStat(garageProgress.ArmorPower));
 
-            playerMotor.Configure(progress.EnginePower, 1);
-            challengerMotor.Configure(challengerEnginePower, -1);
+            playerMotor.Configure(playerEnginePower, 1);
+            challengerMotor.Configure(challengerEnginePowerRuntime, -1);
             playerCrashReporter.Configure(this, BattleSide.Player);
             challengerCrashReporter.Configure(this, BattleSide.Challenger);
 
@@ -100,7 +107,6 @@ namespace BattleCarArena.Battle
 
             state = BattleState.Approaching;
             hud.SetCue("FIGHT!");
-            battleElapsed = 0f;
             battleMusicSource?.Play();
             cameraRig?.SetBattleStarted();
             playerMotor.StartDriving();
@@ -113,13 +119,14 @@ namespace BattleCarArena.Battle
         {
             if (state != BattleState.Preparing && state != BattleState.Results)
             {
-                battleElapsed += Time.deltaTime;
-                if (battleElapsed >= battleDurationSeconds)
+                gunAttackTimer += Time.deltaTime;
+                if (gunAttackTimer >= gunAttackInterval)
                 {
-                    Finish(BattleResolver.ResolveTimeLimit(playerHealth, playerMaximumHealth,
-                        challengerHealth, challengerMaximumHealth));
-                    return;
+                    gunAttackTimer %= gunAttackInterval;
+                    FireGuns();
+                    if (state == BattleState.Results) return;
                 }
+
             }
 
             if (state != BattleState.Fighting || !carsInContact)
@@ -147,15 +154,7 @@ namespace BattleCarArena.Battle
 
             contactTimer -= contactDamageInterval;
             TriggerImpact(0.75f);
-            playerHealth = Mathf.Max(0, playerHealth - challengerWeaponDamageRuntime);
-            challengerHealth = Mathf.Max(0, challengerHealth - playerWeaponDamage);
-            RefreshHealth();
-
-            if (playerHealth == 0 || challengerHealth == 0)
-            {
-                Finish(BattleResolver.ResolveHealthDepletion(playerHealth, challengerHealth));
-                return;
-            }
+            ResolveCarHits();
 
         }
 
@@ -226,6 +225,7 @@ namespace BattleCarArena.Battle
             }
 
             state = BattleState.Results;
+            garageProgress.CompleteBattleRound(resolution.Winner == BattleSide.Player);
             carsInContact = false;
             playerMotor.SetContactPushMultiplier(1f);
             challengerMotor.SetContactPushMultiplier(1f);
@@ -270,6 +270,42 @@ namespace BattleCarArena.Battle
         private void RefreshHealth()
         {
             hud.SetHealth(playerHealth, playerMaximumHealth, challengerHealth, challengerMaximumHealth);
+        }
+
+        private int RandomizeChallengerStat(int playerValue)
+        {
+            int minimum = Mathf.Max(1, Mathf.RoundToInt(playerValue * (1f - challengerStatVariation)));
+            int maximum = Mathf.Max(minimum, Mathf.RoundToInt(playerValue * (1f + challengerStatVariation)));
+            return Random.Range(minimum, maximum + 1);
+        }
+
+        private void FireGuns()
+        {
+            TriggerImpact(0.35f);
+            int damageToChallenger = challengerArmorDefense.AbsorbGunShot(playerWeaponDamage);
+            int damageToPlayer = playerArmorDefense.AbsorbGunShot(challengerWeaponDamageRuntime);
+            challengerHealth = Mathf.Max(0, challengerHealth - damageToChallenger);
+            playerHealth = Mathf.Max(0, playerHealth - damageToPlayer);
+            RefreshHealth();
+
+            if (playerHealth == 0 || challengerHealth == 0)
+            {
+                Finish(BattleResolver.ResolveHealthDepletion(playerHealth, challengerHealth));
+            }
+        }
+
+        private void ResolveCarHits()
+        {
+            int damageToChallenger = challengerArmorDefense.AbsorbCarHit(playerEnginePower);
+            int damageToPlayer = playerArmorDefense.AbsorbCarHit(challengerEnginePowerRuntime);
+            challengerHealth = Mathf.Max(0, challengerHealth - damageToChallenger);
+            playerHealth = Mathf.Max(0, playerHealth - damageToPlayer);
+
+            RefreshHealth();
+            if (playerHealth == 0 || challengerHealth == 0)
+            {
+                Finish(BattleResolver.ResolveHealthDepletion(playerHealth, challengerHealth));
+            }
         }
     }
 }

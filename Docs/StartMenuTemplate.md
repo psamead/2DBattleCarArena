@@ -8,6 +8,7 @@ The Start Menu is intentionally asset-independent. It creates a complete uGUI la
 - Start loads `GarageHub` when that scene is present in Build Settings.
 - Exit quits a player build and stops Play Mode in the Editor.
 - The first button is selected for keyboard/controller navigation.
+- Moving the pointer over either option plays the theme's hover sound. Clicking an option or activating it with keyboard/controller plays its confirmation sound.
 - Canvas scaling uses a 1920×1080 reference resolution with a balanced width/height match.
 
 ## Bake the editable hierarchy into the scene
@@ -30,9 +31,11 @@ Select `DefaultStartMenuTheme.asset` and assign:
 - Button Sprite
 - Font Asset
 - Menu Music
+- Option Hover Sound
+- Option Confirm Sound
 - Background, panel, accent, text, muted text, and button colors
 
-The current Start Menu sprites are grouped under `Assets/_Project/Art/UI/StartMenu`. The theme asset is the main place to swap the background, button, logo, font, and music. The title and both selection-bar labels remain editable TextMeshPro objects.
+The current Start Menu sprites are grouped under `Assets/_Project/Art/UI/StartMenu`, and the procedural UI sounds are under `Assets/_Project/Audio/SFX/UI`. The theme asset is the main place to swap the background, button, logo, font, music, and menu sound effects. The title and both selection-bar labels remain editable TextMeshPro objects.
 
 For generation without a baked hierarchy, create a `StartMenuTheme` asset at `Assets/Resources/UI/StartMenuTheme.asset`; the runtime bootstrap loads that conventional path automatically.
 

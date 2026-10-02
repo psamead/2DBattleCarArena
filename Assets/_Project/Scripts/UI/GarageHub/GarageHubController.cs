@@ -24,6 +24,7 @@ namespace BattleCarArena.UI
         [SerializeField] private TMP_Text armorValueText;
         [SerializeField] private TMP_Text creditsValueText;
         [SerializeField] private TMP_Text scoreValueText;
+        [SerializeField] private TMP_Text energyValueText;
 
         private void OnEnable()
         {
@@ -72,9 +73,10 @@ namespace BattleCarArena.UI
             GarageProgress progress = GameSession.Instance.GarageProgress;
             if (engineValueText != null) engineValueText.text = $"HPR: {progress.EnginePower}";
             if (weaponValueText != null) weaponValueText.text = $"DMG: {progress.WeaponDamage}";
-            if (armorValueText != null) armorValueText.text = $"DUR: {progress.ArmorDurability}";
+            if (armorValueText != null) armorValueText.text = $"PWR: {progress.ArmorPower}";
             if (creditsValueText != null) creditsValueText.text = progress.Credits.ToString();
             if (scoreValueText != null) scoreValueText.text = progress.Score.ToString();
+            if (energyValueText != null) energyValueText.text = $"{progress.EnergyPercent}%";
 
             if (engineUpgradeButton != null) engineUpgradeButton.interactable = progress.CanPurchase(GarageUpgradeType.Engine);
             if (weaponUpgradeButton != null) weaponUpgradeButton.interactable = progress.CanPurchase(GarageUpgradeType.Weapon);

@@ -22,13 +22,5 @@ namespace BattleCarArena.Battle
             return new BattleResolution(winner, sideAtBoundary, BattleEndReason.BoundaryHit);
         }
 
-        public static BattleResolution ResolveTimeLimit(int playerHealth, int playerMaximum, int challengerHealth, int challengerMaximum)
-        {
-            float playerRatio = playerHealth / (float)System.Math.Max(1, playerMaximum);
-            float challengerRatio = challengerHealth / (float)System.Math.Max(1, challengerMaximum);
-            BattleSide winner = playerRatio >= challengerRatio ? BattleSide.Player : BattleSide.Challenger;
-            BattleSide loser = winner == BattleSide.Player ? BattleSide.Challenger : BattleSide.Player;
-            return new BattleResolution(winner, loser, BattleEndReason.TimeLimit);
-        }
     }
 }

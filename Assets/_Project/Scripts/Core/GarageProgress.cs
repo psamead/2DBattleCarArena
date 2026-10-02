@@ -10,11 +10,19 @@ namespace BattleCarArena.Core
     /// <summary>Runtime garage credits, score, and upgraded vehicle stats for one play session.</summary>
     public sealed class GarageProgress
     {
+        private const int MaximumEnergyPercent = 100;
+        private const int EnergyCostPerRound = 20;
+        private const int EnergyRecoveryInterval = 3;
+        private const int EnergyRecoveryPercent = 20;
+        private const int VictoryScoreRewardPercent = 5;
+
         public int Credits { get; private set; } = 1000;
-        public int Score { get; private set; } = 100;
-        public int EnginePower { get; private set; } = 120;
-        public int WeaponDamage { get; private set; } = 40;
-        public int ArmorDurability { get; private set; } = 65;
+        public int Score { get; private set; } = 500;
+        public int EnginePower { get; private set; } = 100;
+        public int WeaponDamage { get; private set; } = 100;
+        public int ArmorPower { get; private set; } = 100;
+        public int EnergyPercent { get; private set; } = MaximumEnergyPercent;
+        public int CompletedRounds { get; private set; }
 
         public int GetUpgradeCost(GarageUpgradeType upgradeType)
         {
@@ -64,11 +72,27 @@ namespace BattleCarArena.Core
                     WeaponDamage += amount;
                     break;
                 case GarageUpgradeType.Armor:
-                    ArmorDurability += amount;
+                    ArmorPower += amount;
                     break;
             }
 
             return true;
+        }
+
+        public void CompleteBattleRound(bool playerWon)
+        {
+            CompletedRounds++;
+            EnergyPercent = System.Math.Max(0, EnergyPercent - EnergyCostPerRound);
+
+            if (CompletedRounds % EnergyRecoveryInterval == 0)
+            {
+                EnergyPercent = System.Math.Min(MaximumEnergyPercent, EnergyPercent + EnergyRecoveryPercent);
+            }
+
+            if (playerWon)
+            {
+                Score += System.Math.Max(1, (Score * VictoryScoreRewardPercent + 99) / 100);
+            }
         }
     }
 }

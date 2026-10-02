@@ -31,7 +31,7 @@ BattleArena
 Preparing → Approaching ⇄ Fighting → Results → GarageHub
 ```
 
-The controller initializes player Engine, Weapon, and Armor from `GameSession.GarageProgress`; challenger values remain serialized tuning fields. Cars drive toward one another, apply contact damage on timed intervals, and push in alternating surges. End boundaries are solid: wall contact rebounds a car and applies a small impact, while health depletion or the 60-second time limit resolves the fight once. A time-limit result awards the win to the car with the higher remaining health ratio. Both outcomes show a themed result panel; clicking it returns to `GarageHub`.
+The player's maximum battle health comes from Garage Score, which starts at 500 and is displayed as the player's health value in the BattleArena HUD. Engine, Weapon, and Armor power come from `GameSession.GarageProgress`; upgrades and the 5% victory reward increase Score and therefore raise the player's next battle health maximum. Challenger health and each power value are independently randomized within ±20% of the player's corresponding value at battle start. A car hit applies the attacker's Engine power; while armor charges remain, the defender takes `max(0, engine power - armor power)`. Gun shots fire for both cars every 5 seconds and use the same formula with Weapon power. Each car can use armor for 3 car hits and 3 gun shots independently; after that attack-type counter reaches zero, that armor no longer reduces that type of damage. Car hits occur at the existing 5.5-second contact interval. There is no battle time limit: the fight ends when a car's health reaches zero or it loses at a boundary. Both outcomes show a themed result panel; clicking it returns to `GarageHub`.
 
 Health bars are rectangular, with player health filling from the left and challenger health from the right. Keep their names, colors, and fill images on the HUD so the presentation can be adjusted without changing combat logic.
 
@@ -51,9 +51,11 @@ Current battle presentation includes fast wheel rotation, short body recoil/sway
 
 On 2026-10-02, Unity compiled the battle scripts without errors. A Play Mode result preview confirmed four losing-car smoke emitters, four wheel shadows, seven HUD motion trails, and zero remaining tire-dust particles under the winner overlay. The smoke opacity, size, and emission were subsequently increased; this tuning still needs visual confirmation. The result flow was changed to wait for a player click before returning to `GarageHub`; both result paths and the confirmation interaction need fresh Play Mode verification. The scene no longer contains `ForegroundRoad`. The loop-seam listening check and build validation remain open.
 
+On 2026-10-03, the mechanic implementation compiled after a Unity asset refresh, and the Unity Console reported no errors. The combat timing, armor charge depletion, challenger randomization, energy changes, victory reward, and Garage Energy display have not yet been observed in Play Mode. Battles have no time limit, player health follows Garage Score, and armor protects against three hits and three gunshots per vehicle.
+
 ## Remaining validation
 
-- Play through results for both winner paths, verify click-to-return to `GarageHub`, contact timing, and timeout resolution.
+- Play through both result paths, verify click-to-return to `GarageHub`, Score-linked health, three-hit/three-shot armor depletion, and that battles continue without a time limit.
 - Listen across the generated music-loop seam and confirm the blend sounds natural in the game mix.
 - Review dust density and visibility at the intended game resolution and during the full crash sequence.
 - Validate supported aspect ratios and input devices, add planned EditMode/PlayMode tests, and produce a Windows x86_64 development build.

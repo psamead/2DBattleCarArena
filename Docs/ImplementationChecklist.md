@@ -80,13 +80,17 @@ Last updated: 2026-10-03
 - [x] Drive the cars toward each other and keep them from rolling.
 - [x] Apply contact damage and end the fight when either car's health reaches zero.
 - [x] End the fight when a car is pushed into an end wall.
-- [x] Show the winner and defeat reason once; keep the scene to one fight.
-- [x] Feed player engine, weapon, and armor stats into movement and health.
-- [x] Return to `GarageHub` after briefly showing the result for either outcome.
+- [x] Show the battle winner and result confirmation once; keep the scene to one fight.
+- [ ] Feed Engine, Weapon, and Armor upgrade values into movement, attacks, and defense.
+- [ ] Link player health to the starting Garage Score of 500 and randomize challenger health and each power within ±20% of the player.
+- [ ] Apply Engine power on car hits and Weapon power every 5 seconds, with separate 3-hit/3-shot Armor counters.
+- [ ] Deduct 20% Energy per completed round, restore 20% after every third round, and award 5% Score on victory.
+- [ ] Verify the new battle rules, Garage Energy readout, and win reward in Play Mode.
+- [x] Return to `GarageHub` after the player confirms either result.
 - [x] Replace the blockout cars with player and challenger side-view visual prefabs.
 - [x] Align both vehicle bodies and expose separate wheel transforms and dust anchors.
 - [x] Use rectangular health bars with the challenger fill progressing from the right.
-- [x] Add a 60-second battle limit, alternating push surges, wall rebounds, and time-limit health comparison.
+- [x] Add alternating push surges and wall rebounds.
 - [x] Add fast wheel rotation, contact recoil, wheel dust texture/material, and impact camera shake; smoke-checked in Play Mode.
 - [x] Reduce wheel-dust opacity and density so car sprites remain visible through the clouds.
 - [x] Emit dark engine smoke from the losing car during the results cue and stop its combat presentation.
@@ -103,7 +107,7 @@ Last updated: 2026-10-03
 - [x] Record battle art slots, effect assets, loop construction, and current verification limits in [BattleArenaTemplate.md](BattleArenaTemplate.md) and [ArmoredCarArt.md](ArmoredCarArt.md).
 - [x] Observe one resolved Play Mode fight return from `BattleArena` to `GarageHub`.
 - [ ] Confirm the increased loser-smoke opacity and volume in a fresh result preview.
-- [ ] Watch the full 10-second results hold and verify both result paths and the 60-second timeout.
+- [ ] Verify both result paths, Score-linked health, three-hit/three-shot armor depletion, and battles continuing until health depletion or a boundary loss.
 - [ ] Listen to the battle loop seam in-game and tune dust presentation after reviewing the full battle.
 
 ## Phase 4 — Results and rank progression

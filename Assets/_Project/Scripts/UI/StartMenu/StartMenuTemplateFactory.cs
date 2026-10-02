@@ -88,6 +88,8 @@ namespace BattleCarArena.UI
             EnsureEventSystem(root.transform);
 
             view.Configure(background, carForeground, logo, menuPanel, null, startButton, exitButton, title, subtitle, startLabel, exitLabel, null, audioSource);
+            startButton.gameObject.AddComponent<StartMenuHoverFeedback>().Configure(view);
+            exitButton.gameObject.AddComponent<StartMenuHoverFeedback>().Configure(view);
             view.ApplyTheme(theme);
 
             StartMenuController controller = GetOrAdd<StartMenuController>(root);
