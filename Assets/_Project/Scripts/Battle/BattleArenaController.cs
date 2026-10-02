@@ -21,6 +21,16 @@ namespace BattleCarArena.Battle
         [SerializeField] private CrashReporter challengerCrashReporter;
         [SerializeField] private BattleHudView hud;
         [SerializeField] private BattleArenaCameraRig cameraRig;
+        [SerializeField] private AudioClip engineSoundClip;
+        [SerializeField, Range(0f, 1f)] private float engineStartupVolume = 0.8f;
+        [SerializeField, Range(0f, 1f)] private float engineContactVolume = 0.65f;
+        [SerializeField, Min(0.05f)] private float minimumEngineImpactClipSeconds = 0.25f;
+        [SerializeField, Min(0.05f)] private float maximumEngineImpactClipSeconds = 0.85f;
+        [SerializeField] private AudioClip battleEngineBedClip;
+        [SerializeField, Range(0f, 1f)] private float battleEngineBedVolume = 0.22f;
+        [SerializeField, Range(0f, 1f)] private float battleEngineBedResultVolume = 0.04f;
+        [SerializeField, Min(0.05f)] private float battleEngineBedFadeInSeconds = 0.6f;
+        [SerializeField, Min(0.05f)] private float battleEngineBedFadeOutSeconds = 0.75f;
 
         [Header("Challenger Blockout Stats")]
         [SerializeField] private string playerName = "PLAYER";
@@ -51,6 +61,11 @@ namespace BattleCarArena.Battle
         private bool playerHasPushSurge;
         private BattleCarPresentation[] presentations;
         private AudioSource battleMusicSource;
+        private AudioSource engineStartupSource;
+        private AudioSource engineImpactSource;
+        private float engineImpactRemaining;
+        private AudioSource battleEngineBedSource;
+        private Coroutine battleEngineBedFadeRoutine;
 
         private void Awake()
         {
@@ -60,6 +75,17 @@ namespace BattleCarArena.Battle
                 battleMusicSource.playOnAwake = false;
                 battleMusicSource.loop = true;
                 battleMusicSource.spatialBlend = 0f;
+            }
+
+            engineStartupSource = CreateEngineAudioSource(1f);
+            engineImpactSource = CreateEngineAudioSource(engineContactVolume);
+            if (engineImpactSource != null)
+                engineImpactSource.clip = engineSoundClip;
+            battleEngineBedSource = CreateEngineAudioSource(0f);
+            if (battleEngineBedSource != null)
+            {
+                battleEngineBedSource.clip = battleEngineBedClip;
+                battleEngineBedSource.loop = true;
             }
 
             BattleCarPresentation playerPresentation = playerMotor.GetComponent<BattleCarPresentation>();
@@ -99,6 +125,9 @@ namespace BattleCarArena.Battle
 
         private IEnumerator Start()
         {
+            if (engineSoundClip != null)
+                engineStartupSource?.PlayOneShot(engineSoundClip, engineStartupVolume);
+
             yield return new WaitForSeconds(startCueSeconds);
             if (state != BattleState.Preparing)
             {
@@ -108,6 +137,11 @@ namespace BattleCarArena.Battle
             state = BattleState.Approaching;
             hud.SetCue("FIGHT!");
             battleMusicSource?.Play();
+            if (battleEngineBedClip != null && battleEngineBedSource != null)
+            {
+                battleEngineBedSource.Play();
+                FadeBattleEngineBedTo(battleEngineBedVolume, battleEngineBedFadeInSeconds);
+            }
             cameraRig?.SetBattleStarted();
             playerMotor.StartDriving();
             challengerMotor.StartDriving();
@@ -117,6 +151,8 @@ namespace BattleCarArena.Battle
 
         private void Update()
         {
+            UpdateEngineImpactAudio();
+
             if (state != BattleState.Preparing && state != BattleState.Results)
             {
                 gunAttackTimer += Time.deltaTime;
@@ -143,6 +179,7 @@ namespace BattleCarArena.Battle
                 challengerMotor.SetContactPushMultiplier(playerHasPushSurge ? 0.92f : 1.08f);
                 foreach (BattleCarPresentation presentation in presentations)
                     presentation?.TriggerCrash();
+                PlayEngineImpactSound();
                 TriggerImpact(0.95f);
             }
 
@@ -180,6 +217,7 @@ namespace BattleCarArena.Battle
                     playerHasPushSurge = false;
                     playerMotor.SetContactPushMultiplier(0.92f);
                     challengerMotor.SetContactPushMultiplier(1.08f);
+                    PlayEngineImpactSound();
                     foreach (BattleCarPresentation presentation in presentations)
                         presentation?.TriggerCrash();
                     TriggerImpact();
@@ -187,6 +225,7 @@ namespace BattleCarArena.Battle
             }
             else
             {
+                StopEngineImpactSound();
                 contactTimer = 0f;
                 pushCycleTimer = 0f;
                 playerMotor.SetContactPushMultiplier(1f);
@@ -203,6 +242,7 @@ namespace BattleCarArena.Battle
             }
 
             TriggerImpact(1.8f);
+            PlayEngineImpactSound();
             bool playerHitWall = sideAtBoundary == BattleSide.Player;
             CarMotor2D motor = playerHitWall ? playerMotor : challengerMotor;
             motor.ReboundFromWall(motor.transform.position.x < 0f ? 1 : -1);
@@ -225,6 +265,8 @@ namespace BattleCarArena.Battle
             }
 
             state = BattleState.Results;
+            StopEngineImpactSound();
+            FadeBattleEngineBedTo(battleEngineBedResultVolume, battleEngineBedFadeOutSeconds);
             garageProgress.CompleteBattleRound(resolution.Winner == BattleSide.Player);
             carsInContact = false;
             playerMotor.SetContactPushMultiplier(1f);
@@ -270,6 +312,74 @@ namespace BattleCarArena.Battle
         private void RefreshHealth()
         {
             hud.SetHealth(playerHealth, playerMaximumHealth, challengerHealth, challengerMaximumHealth);
+        }
+
+        private AudioSource CreateEngineAudioSource(float volume)
+        {
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.playOnAwake = false;
+            source.loop = false;
+            source.spatialBlend = 0f;
+            source.volume = volume;
+            source.priority = 96;
+            return source;
+        }
+
+        private void PlayEngineImpactSound()
+        {
+            if (engineImpactSource == null || engineSoundClip == null)
+                return;
+
+            engineImpactSource.Stop();
+            engineImpactSource.timeSamples = 0;
+            engineImpactSource.Play();
+            float minimumDuration = Mathf.Min(minimumEngineImpactClipSeconds, maximumEngineImpactClipSeconds);
+            float maximumDuration = Mathf.Max(minimumEngineImpactClipSeconds, maximumEngineImpactClipSeconds);
+            float duration = Random.Range(minimumDuration, maximumDuration);
+            engineImpactRemaining = Mathf.Min(duration, engineSoundClip.length);
+        }
+
+        private void UpdateEngineImpactAudio()
+        {
+            if (engineImpactRemaining <= 0f)
+                return;
+
+            engineImpactRemaining -= Time.unscaledDeltaTime;
+            if (engineImpactRemaining <= 0f)
+                StopEngineImpactSound();
+        }
+
+        private void StopEngineImpactSound()
+        {
+            engineImpactRemaining = 0f;
+            engineImpactSource?.Stop();
+        }
+
+        private void FadeBattleEngineBedTo(float targetVolume, float duration)
+        {
+            if (battleEngineBedSource == null)
+                return;
+
+            if (battleEngineBedFadeRoutine != null)
+                StopCoroutine(battleEngineBedFadeRoutine);
+
+            battleEngineBedFadeRoutine = StartCoroutine(FadeBattleEngineBedVolume(targetVolume, duration));
+        }
+
+        private IEnumerator FadeBattleEngineBedVolume(float targetVolume, float duration)
+        {
+            float startVolume = battleEngineBedSource.volume;
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.unscaledDeltaTime;
+                float progress = Mathf.Clamp01(elapsed / duration);
+                battleEngineBedSource.volume = Mathf.Lerp(startVolume, targetVolume, progress);
+                yield return null;
+            }
+
+            battleEngineBedSource.volume = targetVolume;
+            battleEngineBedFadeRoutine = null;
         }
 
         private int RandomizeChallengerStat(int playerValue)

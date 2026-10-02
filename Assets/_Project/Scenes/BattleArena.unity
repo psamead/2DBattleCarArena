@@ -3452,6 +3452,16 @@ MonoBehaviour:
   challengerCrashReporter: {fileID: 1736690554}
   hud: {fileID: 421603635}
   cameraRig: {fileID: 1260176546}
+  engineSoundClip: {fileID: 8300000, guid: 60df771c9723f5341839da219cd97592, type: 3}
+  engineStartupVolume: 0.8
+  engineContactVolume: 0.65
+  minimumEngineImpactClipSeconds: 0.25
+  maximumEngineImpactClipSeconds: 0.85
+  battleEngineBedClip: {fileID: 8300000, guid: 368ad57969b62594d816da6d168ea624, type: 3}
+  battleEngineBedVolume: 0.22
+  battleEngineBedResultVolume: 0.04
+  battleEngineBedFadeInSeconds: 0.6
+  battleEngineBedFadeOutSeconds: 0.75
   playerName: PLAYER
   challengerName: CHALLENGER
   challengerStatVariation: 0.2

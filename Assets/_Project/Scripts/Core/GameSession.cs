@@ -11,6 +11,7 @@ namespace BattleCarArena.Core
         private string pendingGarageTransitDestination;
         private bool pendingGarageTransitOpening;
         private bool pendingGarageTransitShowCar;
+        private bool pendingGarageTransitCrossfadeFromHub;
         private bool garageEntrancePresentationPending;
 
         public static GameSession Instance
@@ -56,21 +57,24 @@ namespace BattleCarArena.Core
             uiAudioSource.PlayOneShot(clip);
         }
 
-        public void SetPendingGarageTransit(string destinationSceneName, bool opening, bool showCar)
+        public void SetPendingGarageTransit(string destinationSceneName, bool opening, bool showCar, bool crossfadeFromHub = false)
         {
             pendingGarageTransitDestination = destinationSceneName;
             pendingGarageTransitOpening = opening;
             pendingGarageTransitShowCar = showCar;
+            pendingGarageTransitCrossfadeFromHub = crossfadeFromHub;
         }
 
-        public bool TryConsumeGarageTransit(out string destinationSceneName, out bool opening, out bool showCar)
+        public bool TryConsumeGarageTransit(out string destinationSceneName, out bool opening, out bool showCar, out bool crossfadeFromHub)
         {
             destinationSceneName = pendingGarageTransitDestination;
             opening = pendingGarageTransitOpening;
             showCar = pendingGarageTransitShowCar;
+            crossfadeFromHub = pendingGarageTransitCrossfadeFromHub;
             pendingGarageTransitDestination = null;
             pendingGarageTransitOpening = false;
             pendingGarageTransitShowCar = false;
+            pendingGarageTransitCrossfadeFromHub = false;
             return !string.IsNullOrWhiteSpace(destinationSceneName);
         }
 
@@ -79,6 +83,7 @@ namespace BattleCarArena.Core
             pendingGarageTransitDestination = null;
             pendingGarageTransitOpening = false;
             pendingGarageTransitShowCar = false;
+            pendingGarageTransitCrossfadeFromHub = false;
         }
 
         public void MarkGarageEntrancePresentationPending()

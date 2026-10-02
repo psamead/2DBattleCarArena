@@ -16,6 +16,7 @@ namespace BattleCarArena.UI
         [SerializeField] private Image doorFrameImage;
         [SerializeField, Min(0.1f)] private float openingAnimationDuration = 2f;
         [SerializeField, Min(0.1f)] private float missionOpeningAnimationDuration = 2.55f;
+        [SerializeField, Min(0.1f)] private float missionSceneCrossfadeDuration = 1f;
         [SerializeField, Min(0.1f)] private float closingAnimationDuration = 2.55f;
         [SerializeField, Range(0f, 1f)] private float closedInteriorDarkness = 0.85f;
         [SerializeField, Range(0f, 1f)] private float openInteriorDarkness = 0.2f;
@@ -25,6 +26,12 @@ namespace BattleCarArena.UI
         private string destinationSceneName;
         private bool opening;
         private bool showCar;
+        private bool crossfadeFromGarageHub;
+        private Color garageBackgroundBaseColor;
+        private Color garageCarBaseColor;
+        private Color doorPanelBaseColor;
+        private Color doorFrameBaseColor;
+        private GarageHubPresentation garageHubPresentation;
 
         public void Configure(
             GarageDoorTransitionTheme transitionTheme,
@@ -50,7 +57,7 @@ namespace BattleCarArena.UI
                 closedPanelPosition = doorPanelImage.rectTransform.anchoredPosition;
             }
 
-            if (!GameSession.Instance.TryConsumeGarageTransit(out destinationSceneName, out opening, out showCar))
+            if (!GameSession.Instance.TryConsumeGarageTransit(out destinationSceneName, out opening, out showCar, out crossfadeFromGarageHub))
             {
                 Debug.LogError("GarageTransit loaded without a pending door transition request.", this);
                 SceneManager.LoadScene("GarageHub", LoadSceneMode.Single);
@@ -58,6 +65,17 @@ namespace BattleCarArena.UI
             }
 
             ApplyTheme();
+            CacheVisualBaseColors();
+            if (crossfadeFromGarageHub)
+            {
+                garageHubPresentation = FindGarageHubPresentation();
+                DisableOtherAudioListeners();
+                SetLayerAlpha(garageBackgroundImage, garageBackgroundBaseColor, 0f);
+                SetLayerAlpha(garageCarImage, garageCarBaseColor, 0f);
+                SetLayerAlpha(doorPanelImage, doorPanelBaseColor, 0f);
+                SetLayerAlpha(doorFrameImage, doorFrameBaseColor, 0f);
+                SetDarkness(0f);
+            }
             StartCoroutine(opening ? OpenGarage() : CloseGarage());
         }
 
@@ -116,18 +134,78 @@ namespace BattleCarArena.UI
             float elapsed = 0f;
             float startDarkness = openingDoor ? closedInteriorDarkness : openInteriorDarkness;
             float endDarkness = openingDoor ? openInteriorDarkness : closedInteriorDarkness;
+            bool crossfadingMissionExit = crossfadeFromGarageHub && openingDoor && destinationSceneName == "BattleArena";
             while (elapsed < duration)
             {
                 elapsed += Time.unscaledDeltaTime;
                 float linear = Mathf.Clamp01(elapsed / duration);
                 float eased = linear * linear * (3f - 2f * linear);
                 doorPanelImage.rectTransform.anchoredPosition = Vector2.LerpUnclamped(startPosition, endPosition, eased);
-                SetDarkness(Mathf.Lerp(startDarkness, endDarkness, eased));
+                if (crossfadingMissionExit)
+                {
+                    ApplyMissionExitCrossfade(elapsed, eased, startDarkness, endDarkness);
+                }
+                else
+                {
+                    SetDarkness(Mathf.Lerp(startDarkness, endDarkness, eased));
+                }
                 yield return null;
             }
 
             doorPanelImage.rectTransform.anchoredPosition = endPosition;
             SetDarkness(endDarkness);
+            if (crossfadingMissionExit)
+            {
+                SetLayerAlpha(garageBackgroundImage, garageBackgroundBaseColor, 1f);
+                SetLayerAlpha(doorPanelImage, doorPanelBaseColor, 1f);
+                SetLayerAlpha(doorFrameImage, doorFrameBaseColor, 1f);
+                SetLayerAlpha(garageCarImage, garageCarBaseColor, 0f);
+                garageHubPresentation?.SetTransitCarFade(0f);
+                garageHubPresentation?.SetTransitSceneFade(1f);
+            }
+        }
+
+        private void ApplyMissionExitCrossfade(float elapsed, float doorProgress, float startDarkness, float endDarkness)
+        {
+            float fadeProgress = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / missionSceneCrossfadeDuration));
+            SetLayerAlpha(garageBackgroundImage, garageBackgroundBaseColor, fadeProgress);
+            SetLayerAlpha(doorPanelImage, doorPanelBaseColor, fadeProgress);
+            SetLayerAlpha(doorFrameImage, doorFrameBaseColor, fadeProgress);
+            SetDarkness(Mathf.Lerp(startDarkness, endDarkness, doorProgress) * fadeProgress);
+
+            garageHubPresentation?.SetTransitSceneFade(fadeProgress);
+            float carAlpha = showCar ? fadeProgress * (1f - doorProgress) : 0f;
+            SetLayerAlpha(garageCarImage, garageCarBaseColor, carAlpha);
+            garageHubPresentation?.SetTransitCarFade(1f - fadeProgress);
+        }
+
+        private void CacheVisualBaseColors()
+        {
+            garageBackgroundBaseColor = garageBackgroundImage != null ? garageBackgroundImage.color : Color.clear;
+            garageCarBaseColor = garageCarImage != null ? garageCarImage.color : Color.clear;
+            doorPanelBaseColor = doorPanelImage != null ? doorPanelImage.color : Color.clear;
+            doorFrameBaseColor = doorFrameImage != null ? doorFrameImage.color : Color.clear;
+        }
+
+        private GarageHubPresentation FindGarageHubPresentation()
+        {
+            Scene garageScene = SceneManager.GetSceneByName("GarageHub");
+            if (!garageScene.IsValid() || !garageScene.isLoaded)
+                return null;
+
+            foreach (GameObject root in garageScene.GetRootGameObjects())
+            {
+                GarageHubPresentation presentation = root.GetComponentInChildren<GarageHubPresentation>(true);
+                if (presentation != null)
+                    return presentation;
+            }
+
+            return null;
+        }
+
+        private void DisableOtherAudioListeners()
+        {
+            AudioListenerHandoff.DisableAllEnabled(gameObject.scene);
         }
 
         private void SetDarkness(float alpha)
@@ -152,6 +230,7 @@ namespace BattleCarArena.UI
 
             if (!GameSession.Instance.SceneNavigator.TryLoad(destinationSceneName))
             {
+                garageHubPresentation?.SetTransitCarFade(1f);
                 Debug.LogError($"Could not load '{destinationSceneName}' after the garage-door transition.", this);
             }
         }
@@ -164,16 +243,12 @@ namespace BattleCarArena.UI
                 yield break;
             }
 
-            AudioListener transitAudioListener = GetComponentInChildren<AudioListener>(true);
-            if (transitAudioListener != null)
-            {
-                transitAudioListener.enabled = false;
-            }
+            AudioListener[] disabledListeners = AudioListenerHandoff.DisableAllEnabled();
 
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(destinationSceneName, LoadSceneMode.Additive);
             if (loadOperation == null)
             {
-                if (transitAudioListener != null) transitAudioListener.enabled = true;
+                AudioListenerHandoff.Restore(disabledListeners);
                 Debug.LogError($"Could not begin loading '{destinationSceneName}' additively.", this);
                 yield break;
             }
@@ -186,7 +261,7 @@ namespace BattleCarArena.UI
             Scene garageScene = SceneManager.GetSceneByName(destinationSceneName);
             if (!garageScene.IsValid() || !garageScene.isLoaded)
             {
-                if (transitAudioListener != null) transitAudioListener.enabled = true;
+                AudioListenerHandoff.Restore(disabledListeners);
                 Debug.LogError($"'{destinationSceneName}' did not finish loading for the garage crossfade.", this);
                 yield break;
             }

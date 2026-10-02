@@ -231,6 +231,7 @@ MonoBehaviour:
   doorFrameImage: {fileID: 968254121}
   openingAnimationDuration: 2
   missionOpeningAnimationDuration: 2.55
+  missionSceneCrossfadeDuration: 1
   closingAnimationDuration: 2.55
   closedInteriorDarkness: 0.85
   openInteriorDarkness: 0.2

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,7 +52,27 @@ namespace BattleCarArena.Core
                 return false;
             }
 
-            GameSession.Instance.SetPendingGarageTransit(destinationSceneName, opening, showCar);
+            bool crossfadeFromGarageHub = opening
+                && destinationSceneName == "BattleArena"
+                && SceneManager.GetActiveScene().name == "GarageHub";
+            GameSession.Instance.SetPendingGarageTransit(destinationSceneName, opening, showCar, crossfadeFromGarageHub);
+            if (crossfadeFromGarageHub)
+            {
+                AudioListener[] disabledListeners = AudioListenerHandoff.DisableAllEnabled();
+                try
+                {
+                    SceneManager.LoadScene(transitSceneName, LoadSceneMode.Additive);
+                    return true;
+                }
+                catch (System.Exception exception)
+                {
+                    AudioListenerHandoff.Restore(disabledListeners);
+                    GameSession.Instance.ClearPendingGarageTransit();
+                    Debug.LogError($"Could not load '{transitSceneName}' additively: {exception.Message}");
+                    return false;
+                }
+            }
+
             if (TryLoad(transitSceneName))
             {
                 return true;
@@ -59,6 +80,40 @@ namespace BattleCarArena.Core
 
             GameSession.Instance.ClearPendingGarageTransit();
             return false;
+        }
+
+    }
+
+    internal static class AudioListenerHandoff
+    {
+        public static AudioListener[] DisableAllEnabled(Scene keepScene = default)
+        {
+            AudioListener[] listeners = Object.FindObjectsByType<AudioListener>(FindObjectsSortMode.None);
+            List<AudioListener> disabledListeners = new(listeners.Length);
+            foreach (AudioListener listener in listeners)
+            {
+                if (listener == null || !listener.enabled || !listener.gameObject.activeInHierarchy)
+                    continue;
+                if (keepScene.IsValid() && listener.gameObject.scene == keepScene)
+                    continue;
+
+                listener.enabled = false;
+                disabledListeners.Add(listener);
+            }
+
+            return disabledListeners.ToArray();
+        }
+
+        public static void Restore(AudioListener[] listeners)
+        {
+            if (listeners == null)
+                return;
+
+            foreach (AudioListener listener in listeners)
+            {
+                if (listener != null)
+                    listener.enabled = true;
+            }
         }
     }
 }

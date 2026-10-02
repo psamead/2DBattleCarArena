@@ -45,6 +45,9 @@ namespace BattleCarArena.UI
         private readonly List<Color> transitionBaseColors = new();
         private readonly List<int> transitionPhases = new();
         private bool transitionRunning;
+        private float transitCarFade = 1f;
+        private float transitSceneFade = 1f;
+        private bool transitCrossfadeStarted;
         private Image entranceDarknessOverlay;
         [SerializeField, Range(0f, 1f)] private float arrivalStartingDarkness = 0.2f;
         private float arrivalVisualAlpha = 1f;
@@ -67,6 +70,23 @@ namespace BattleCarArena.UI
             {
                 BattleCarArena.Core.GameSession.Instance.PlayUiSound(theme.SelectionConfirmSound);
             }
+        }
+
+        public void SetTransitCarFade(float alpha)
+        {
+            transitCarFade = Mathf.Clamp01(alpha);
+        }
+
+        public void SetTransitSceneFade(float alpha)
+        {
+            transitSceneFade = Mathf.Clamp01(alpha);
+            if (!transitCrossfadeStarted)
+            {
+                CacheTransitionGraphics();
+                transitCrossfadeStarted = true;
+            }
+
+            SetTransitionAlpha(1f - transitSceneFade);
         }
 
         public void PlayExitAnimation(Action onComplete)
@@ -293,21 +313,21 @@ namespace BattleCarArena.UI
             carBackgroundBlend = blend;
             if (neutralBackgroundImage != null)
             {
-                SetAlpha(neutralBackgroundImage, arrivalVisualAlpha);
+                SetAlpha(neutralBackgroundImage, arrivalVisualAlpha * (1f - transitSceneFade));
             }
             if (carPreviewImage != null)
             {
                 Color neutralColor = carPreviewImage.color;
-                neutralColor.a = Mathf.Lerp(1f, 0.9f, blend) * arrivalVisualAlpha;
+                neutralColor.a = Mathf.Lerp(1f, 0.9f, blend) * arrivalVisualAlpha * transitCarFade;
                 carPreviewImage.color = neutralColor;
             }
             if (alternateBackgroundImage != null)
             {
-                SetAlpha(alternateBackgroundImage, blend * arrivalVisualAlpha);
+                SetAlpha(alternateBackgroundImage, blend * arrivalVisualAlpha * (1f - transitSceneFade));
             }
             if (alternateCarPreviewImage != null)
             {
-                SetAlpha(alternateCarPreviewImage, blend * theme.AlternateCarPreviewTint.a * arrivalVisualAlpha);
+                SetAlpha(alternateCarPreviewImage, blend * theme.AlternateCarPreviewTint.a * arrivalVisualAlpha * transitCarFade);
             }
 
             UpdateFlicker(deltaTime);
@@ -791,7 +811,7 @@ namespace BattleCarArena.UI
             }
 
             carFlickerOverlayImage.color = theme.CarFlickerTint;
-            float intensity = Mathf.Clamp01(pulse * theme.CarFlickerResponse) * arrivalVisualAlpha;
+            float intensity = Mathf.Clamp01(pulse * theme.CarFlickerResponse) * arrivalVisualAlpha * transitCarFade;
             SetAlpha(carFlickerOverlayImage, intensity * (1f - carBackgroundBlend));
             if (alternateCarFlickerOverlayImage != null)
             {
