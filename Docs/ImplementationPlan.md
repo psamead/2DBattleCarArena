@@ -8,6 +8,7 @@ Source brief: [Google design document](https://docs.google.com/document/d/12c7xQ
 - New Input System, uGUI, and Unity Test Framework are installed.
 - `Assets/_Project/Scenes/StartMenu.unity`, `Assets/_Project/Scenes/GarageHub.unity`, `Assets/_Project/Scenes/BattleArena.unity`, and `Assets/_Project/Scenes/GarageTransit.unity` are enabled build scenes.
 - The original planning baseline had no gameplay code, prefabs, tests, or established application architecture. The current prototype includes the Start Menu, Garage Hub, session-owned Garage upgrades, and a battle scene; save persistence and planned automated test coverage remain future work.
+- A Web build is uploaded to the itch.io HTML channel and has been confirmed to start in Android Chrome. The page remains a draft, and desktop embedded Garage Hub layout still needs checking; see [WebBuildAndItchIO.md](WebBuildAndItchIO.md).
 
 ## Prototype status (2026-10-03)
 

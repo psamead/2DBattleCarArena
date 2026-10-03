@@ -130,3 +130,9 @@ Last updated: 2026-10-03
 - [ ] Validate common aspect ratios and supported input devices.
 - [ ] Add the planned EditMode and PlayMode test coverage.
 - [ ] Produce and launch a Windows x86_64 development build.
+
+### Web delivery
+
+- [x] Build the Web target with all four project scenes enabled and upload it to the itch.io `html` channel; see [WebBuildAndItchIO.md](WebBuildAndItchIO.md).
+- [x] Confirm the uploaded game starts in Android Chrome (user verified).
+- [ ] Verify Garage Hub side-panel visibility in the desktop itch.io embed and fullscreen; compare the Web default 960×600 size with the 1920×1080 Canvas reference.
